@@ -14,14 +14,14 @@
         <a href="parents.html">Parents</a>
     </nav>
 
-    <div id="pet_search">
+    <div id="invoice_search">
         <form action="">
-            <input type="text" placeholder="pet name or pet id">
+            <input type="text" placeholder="invoice id">
             <button type="submit">Search</button>
         </form>
     </div>
-    <table id="Pets">
-        <caption>Pets</caption>
+    <table id="Invoices">
+        <caption>Invoices</caption>
         <!-- <tr>
             <th>Pet ID</th>
             <th>Pet Name</th>
@@ -29,58 +29,46 @@
             <th>Breed</th>
         </tr> -->
         <tr>
-            <th>pet_id</th>
-            <th>pet_name</th>
-            <th>parent_id</th>
-            <th>breed</th>
+            <th>Invoice ID</th>
+            <th>Parent Name</th>
+            <th>Invoice Date</th>
+            <th>Invoice Total</th>
         </tr>
         <tr>
             <th>1</th>
-            <th>Togepi</th>
-            <th>1</th>
-            <th>Chihuahua Mix</th>
+            <th>Bengie Seo</th>
+            <th>2022-02-01</th>
+            <th>75</th>
             <th><button>edit</button></th>
             <th><button>delete</button></th>
         </tr>
         <tr>
             <th>2</th>
-            <th>Evee</th>
-            <th>2</th>
-            <th>Maltese Poodle</th>
+            <th>Vivi Kim</th>
+            <th>2023-02-02</th>
+            <th>100</th>
             <th><button>edit</button></th>
             <th><button>delete</button></th>
         </tr>
         <tr>
             <th>3</th>
-            <th>Ollie</th>
-            <th>1</th>
-            <th>Bulldog</th>
+            <th>Bengie Seo</th>
+            <th>2024-02-03</th>
+            <th>150</th>
             <th><button>edit</button></th>
             <th><button>delete</button></th>
         </tr>
         <tr>
             <th>4</th>
-            <th>Luna</th>
-            <th>4</th>
-            <th>Golden Retriever</th>
-            <th><button>edit</button></th>
-            <th><button>delete</button></th>
-        </tr>
-        <tr>
-            <th>5</th>
-            <th>Dobey</th>
-            <th>3</th>
-            <th>Chihuahua</th>
+            <th>Patrick Scovis</th>
+            <th>2024-02-04</th>
+            <th>50</th>
             <th><button>edit</button></th>
             <th><button>delete</button></th>
         </tr>
     </table>
     <div>
         <form action="">
-            <label for="pet_name">Pet Name</label>
-            <input type="text" id="pet_name">
-            <label for="breed">Pet Breed</label>
-            <input type="text" id="breed">
             <label for="parent_id">Parent ID</label>
             <select name="parent_id" id="parent_id">
                 <option value selected disabled hidden>Select</option>
@@ -89,7 +77,11 @@
                 <option value="3">3</option>
                 <option value="4">4</option>
             </select>
-            <button>add pet</button>
+            <label for="invoice_date">Invoice Date</label>
+            <input type="date" id="pet_name">
+            <label for="invoice_total">Invoice Total</label>
+            <input type="number" id="invoice_total">
+            <button>Add Invoice</button>
         </form>
         
     </div>
