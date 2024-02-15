@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokopiPlayground</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h1>Tokopi Playground</h1>
+        <a href="index.html">Tokopi Playgrournd</a>
+        <a href="pets.html">Pets</a>
+        <a href="parents.html">Parents</a>
+        <a href="services.html">Services</a>
+    </nav>
+
+    <div id="service_search">
+        <form action="">
+            <input type="text" placeholder="service name or service id">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <table id="Services">
+        <caption>Services</caption>
+        <!-- <tr>
+            <th>Pet ID</th>
+            <th>Pet Name</th>
+            <th>Parent ID</th>
+            <th>Breed</th>
+        </tr> -->
+        <tr>
+            <th>service_id</th>
+            <th>service_name</th>
+            <th>service_cost</th>
+            <th>service_description</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <th>15-minute walk</th>
+            <th>5</th>
+            <th>An employee will walk the pet around the block for approximately 15 minutes.</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+        <tr>
+            <th>2</th>
+            <th>Bath</th>
+            <th>50</th>
+            <th>An employee will shampoo and dry your pet.</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+        <tr>
+            <th>3</th>
+            <th>Clip nails</th>
+            <th>25</th>
+            <th>An employee will trim your pet’s nails.</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+    </table>
+    <div>
+        <form action="">
+            <label for="service_name">Service Name</label>
+            <input type="text" id="service_name">
+            <label for="service_cost">Service Cost</label>
+            <input type="number" id="service_cost" min="0" step="0.01">
+            <label for="service_description">Service Description</label>
+            <input type="text" id="service_description">
+            <!-- <textarea name="service_description" id="service_description" cols="30" rows="10"></textarea> -->
+            <button>add service</button>
+        </form>
+        
+    </div>
+
+</body>
+</html>

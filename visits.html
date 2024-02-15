@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokopiPlayground</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h1>Tokopi Playground</h1>
+        <a href="index.html">Tokopi Playgrournd</a>
+        <a href="pets.html">Pets</a>
+        <a href="parents.html">Parents</a>
+    </nav>
+
+    <div id="visit_search">
+        <form action="">
+            <input type="text" placeholder="visit id">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <table id="Visits">
+        <caption>Visits</caption>
+        <tr>
+            <th>visit_id</th>
+            <th>pet_id</th>
+            <th>visit_date</th>
+            <th>visit_cost</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <th>1</th>
+            <th>2022-01-31</th>
+            <th>75</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+        <tr>
+            <th>2</th>
+            <th>2</th>
+            <th>2023-01-30</th>
+            <th>25</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+        <tr>
+            <th>3</th>
+            <th>1</th>
+            <th>2024-01-25</th>
+            <th>25</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+        <tr>
+            <th>4</th>
+            <th>5</th>
+            <th>2024-01-28</th>
+            <th>50</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+    </table>
+    <div>
+        <form action="">
+            <label for="pet_id">Pet ID</label>
+            <select name="pet_id" id="pet_id">
+                <option value selected disabled hidden>Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="4">5</option>
+            </select>
+            <label for="visit_date">Visit Date</label>
+            <input type="date" id="visit_date">
+            <label for="visit_cost">Visit Cost</label>
+            <input type="number" id="visit_cost" min="0" step="0.01">
+
+            <button>add visit</button>
+        </form>
+    </div>
+
+
+    <table id="Services_During_Visit">
+        <caption>Services_During_Visit</caption>
+        <tr>
+            <th>service_during_visit_id</th>
+            <th>visit_id</th>
+            <th>service_id</th>
+        </tr>
+        <tr>
+            <th>1</th>
+            <th>1</th>
+            <th>2</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+        <tr>
+            <th>2</th>
+            <th>3</th>
+            <th>3</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+        <tr>
+            <th>3</th>
+            <th>2</th>
+            <th>3</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+        <tr>
+            <th>4</th>
+            <th>4</th>
+            <th>2</th>
+            <th><button>edit</button></th>
+            <th><button>delete</button></th>
+        </tr>
+    </table>
+
+    <div>
+        <form action="">
+            <label for="visit_id">Visit ID</label>
+            <select name="visit_id" id="visit_id">
+                <option value selected disabled hidden>Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="4">5</option>
+            </select>
+            <label for="service_id">Service ID</label>
+            <select name="service_id" id=service_id">
+                <option value selected disabled hidden>Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="4">5</option>
+            </select>
+
+            <button>add service during visit</button>
+        </form>
+    </div>
+</body>
+</html>
