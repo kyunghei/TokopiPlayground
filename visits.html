@@ -28,13 +28,13 @@
         <caption>Visits</caption>
         <tr>
             <th>Visit ID</th>
-            <th>Pet ID</th>
+            <th>Pet Name</th>
             <th>Visit Date</th>
             <th>Visit Cost</th>
         </tr>
         <tr>
             <th>1</th>
-            <th>1</th>
+            <th>Togepi</th>
             <th>2022-01-31</th>
             <th>75</th>
             <th><button>edit</button></th>
@@ -42,7 +42,7 @@
         </tr>
         <tr>
             <th>2</th>
-            <th>2</th>
+            <th>Evee</th>
             <th>2023-01-30</th>
             <th>25</th>
             <th><button>edit</button></th>
@@ -50,7 +50,7 @@
         </tr>
         <tr>
             <th>3</th>
-            <th>1</th>
+            <th>Togepi</th>
             <th>2024-01-25</th>
             <th>25</th>
             <th><button>edit</button></th>
@@ -58,7 +58,7 @@
         </tr>
         <tr>
             <th>4</th>
-            <th>5</th>
+            <th>Dobey</th>
             <th>2024-01-28</th>
             <th>50</th>
             <th><button>edit</button></th>
@@ -67,21 +67,29 @@
     </table>
     <div>
         <form action="">
-            <label for="pet_id">Pet ID</label>
-            <select name="pet_id" id="pet_id">
+            <label for="pet_id">Pet Name</label>
+            <!-- <select name="pet_id" id="pet_id">
                 <option value selected disabled hidden>Select</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="4">5</option>
+                <option value="5">5</option>
+            </select> -->
+            <select name="pet_id" id="pet_id">
+                <option value selected disabled hidden>Select</option>
+                <option value="1">Togepi</option>
+                <option value="2">Evee</option>
+                <option value="3">Ollie</option>
+                <option value="4">Luna</option>
+                <option value="5">Dobey</option>
             </select>
             <label for="visit_date">Visit Date</label>
             <input type="date" id="visit_date">
             <label for="visit_cost">Visit Cost</label>
             <input type="number" id="visit_cost" min="0" step="0.01">
 
-            <button>add visit</button>
+            <button>Add Visit</button>
         </form>
     </div>
 
