@@ -1,3 +1,13 @@
+body{
+    margin: 5%;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    margin: 0 5px;
+}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -13,4 +23,8 @@ div{
 
 #divide{
     color: red;
+}
+
+#overview{
+    width: 800px;
 }
