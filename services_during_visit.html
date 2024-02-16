@@ -72,19 +72,46 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="4">5</option>
+                <option value="5">5</option>
             </select>
             <label for="service_id">Service ID</label>
-            <select name="service_id" id=service_id">
+            <select name="service_id" id="service_id">
                 <option value selected disabled hidden>Select</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="4">5</option>
+                <option value="5">5</option>
             </select>
 
             <button>Add Service During Visit</button>
+        </form>
+    </div>
+
+    <div>
+        <form action="">
+            <label for="service_during_visit_id">Service During Visit ID</label>
+            <input type="number" value="4" disabled>
+            <label for="visit_id">Visit ID</label>
+            <select name="visit_id" id="visit_id">
+                <option value disabled hidden>Select</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+            </select>
+            <label for="service_id">Service ID</label>
+            <select name="service_id" id="service_id">
+                <option value disabled hidden>Select</option>
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <button>Edit Service During Visit</button>
         </form>
     </div>
 </body>
