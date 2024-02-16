@@ -26,12 +26,6 @@
     </div>
     <table id="Pet_Invoices">
         <caption>Pet Invoices</caption>
-        <!-- <tr>
-            <th>Pet ID</th>
-            <th>Pet Name</th>
-            <th>Parent ID</th>
-            <th>Breed</th>
-        </tr> -->
         <tr>
             <th>Pet Invoice ID</th>
             <th>Pet ID</th>
@@ -94,6 +88,32 @@
             </select>
 
             <button>Add Pet Invoice</button>
+        </form>
+    </div>
+
+    <div>
+        <form action="">
+            <label for="pet_invoice_id">Pet Invoice ID</label>
+            <input type="number" value="1" disabled>
+            <label for="pet_id">Pet ID</label>
+            <select name="pet_id" id="pet_id">
+                <option value disabled hidden>Select</option>
+                <option value="1" selected >1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="4">5</option>
+            </select>
+            <label for="invoice_id">Invoice ID</label>
+            <select name="invoice_id" id="invoice_id">
+                <option value selected disabled hidden>Select</option>
+                <option value="1" selected >1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+
+            <button>Edit Pet Invoice</button>
         </form>
     </div>
 
