@@ -19,6 +19,8 @@ th,td{
 
 div{
     margin: 30px 0;
+    border: 1px solid black;
+    padding:20px 5px;
 }
 
 
