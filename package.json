@@ -1,0 +1,19 @@
+{
+  "name": "tokopiplayground",
+  "version": "1.0.0",
+  "description": "https://web.engr.oregonstate.edu/~seolo/TokopiPlayground/index.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyunghei/TokopiPlayground.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyunghei/TokopiPlayground/issues"
+  },
+  "homepage": "https://github.com/kyunghei/TokopiPlayground#readme"
+}
