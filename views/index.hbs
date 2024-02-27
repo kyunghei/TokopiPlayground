@@ -1,6 +1,5 @@
 <!-- index.hbs -->
-<h1>The server is running!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<h1>Tokopi Playground</h1>
 
 {{!-- Create a table --}}
 <table id="pets-table">
@@ -29,18 +28,17 @@
             <td>{{this.pet_name}}</td>
             <td>{{this.parent_id}}</td>
             <td>{{this.breed}}</td>
-            {{!-- <td>{{this.age}}</td> --}}
+            <td><button onclick="deletePet({{this.pet_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 
 
-<!-- /views/index.hbs -->
 
 {{!-- Form to add a record to the table  --}}
-<h2>Adding Data with AJAX</h2>
-<p>To add a new person, please enter their information below and click 'Submit'!</p>
+<h2>Adding Pet Form</h2>
+<p>To add a new pet, please enter their information below and click 'Submit'!</p>
 <form id="add-pet-form-ajax">
     <label for="input-pet-name">Pet Name </label>
     <input type="text" name="input-pet-name" id="input-pet-name">
@@ -57,5 +55,33 @@
     <input type="submit">
 </form>
 
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_pet.js"></script>
+<script src="./js/delete_pet.js"></script>
+
+<h2>Updating Pet Form</h2>
+<form id="update-pet-form-ajax">
+
+    <label for="input-pet-id">Pet ID: </label>
+    <select name="input-pet-id" id="select-pet-id">
+        <option value="test">Select a Pet</option>
+        {{#each data}}
+        <option value="{{this.pet_id}}">{{this.pet_id}} {{this.pet_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-parent-id">Parent ID: </label>
+    <select name="input-parent-id" id="update-parent-id">
+        <option>Select Parent ID</option>
+        {{#each data}}
+        <option value="{{this.parent_id}}">{{this.parent_id}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-breed">Breed </label>
+    <input type="text" name="input-breed" id="update-breed">
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_pet.js"></script>
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}

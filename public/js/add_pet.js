@@ -17,6 +17,7 @@ addPetForm.addEventListener("submit", function (e) {
     let ParentNameValue = inputParentId.value;
     let BreedValue = inputBreed.value;
 
+    //console.log(`data obtained: ${PetNameValue} ${ParentNameValue} ${BreedValue}`)
 
     // Put our data we want to send in a javascript object
     let data = {
@@ -69,23 +70,45 @@ addRowToTable = (data) => {
 
     // Create a row and 4 cells
     let row = document.createElement("TR");
-    let idCell = document.createElement("TD");
+    let petIdCell = document.createElement("TD");
     let petNameCell = document.createElement("TD");
     let parentIdCell = document.createElement("TD");
     let breedCell = document.createElement("TD");
 
+    let deleteCell = document.createElement("TD");
+    
+
     // Fill the cells with correct data
-    idCell.innerText = newRow.id;
+    petIdCell.innerText = newRow.pet_id;
     petNameCell.innerText = newRow.pet_name;
     parentIdCell.innerText = newRow.parent_id;
     breedCell.innerText = newRow.breed;
 
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function(){
+        deletePet(newRow.pet_id);
+    };
+
     // Add the cells to the row 
-    row.appendChild(idCell);
+    row.appendChild(petIdCell);
     row.appendChild(petNameCell);
     row.appendChild(parentIdCell);
     row.appendChild(breedCell);
+    row.appendChild(deleteCell);
+
+    // Add a custom row attribute so the deleteRow function can find a newly added row
+    row.setAttribute('data-value', newRow.id);
     
     // Add the row to the table
     currentTable.appendChild(row);
+
+    // Find drop down menu, create a new option, fill data in the option (full name, id),
+    // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
+    let selectMenu = document.getElementById("select-pet-id");
+    let option = document.createElement("option");
+    option.text = newRow.pet_id + ' ' +  newRow.pet_name;
+    option.value = newRow.pet_id;
+    selectMenu.add(option);
 }
+
