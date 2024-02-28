@@ -3,8 +3,6 @@ function deletePet(petID) {
     let data = {
         pet_id: petID
     };
-    //console.log(data.pet_id);
-
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
@@ -14,7 +12,6 @@ function deletePet(petID) {
     // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 204) {
-            console.log("deleting row now");
             // Add the new data to the table
             deleteRow(petID);
 
@@ -34,6 +31,7 @@ function deleteRow(petID){
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
+       //console.log(table.rows[i].getAttribute("data-value"));
        if (table.rows[i].getAttribute("data-value") == petID) {
             table.deleteRow(i);
             break;

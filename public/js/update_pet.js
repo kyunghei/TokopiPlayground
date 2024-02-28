@@ -7,7 +7,6 @@ updatePetForm.addEventListener("submit", function (e) {
    
     // Prevent the form from submitting
     e.preventDefault();
-    console.log("submit update")
     // Get form fields we need to get data from
     let inputPetId = document.getElementById("select-pet-id");
     let inputParentId = document.getElementById("update-parent-id");
@@ -33,7 +32,7 @@ updatePetForm.addEventListener("submit", function (e) {
         parent_id: parentIdValue,
         breed:breedValue
     }
-    console.log(`PET:${data.pet_id} PARENT:${data.parent_id} BREED: ${data.breed}`);
+    //console.log(`PET:${data.pet_id} PARENT:${data.parent_id} BREED: ${data.breed}`);
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
@@ -46,6 +45,11 @@ updatePetForm.addEventListener("submit", function (e) {
 
             // Add the new data to the table
             updateRow(xhttp.response, petIdValue);
+
+            // Clear the input fields for another transaction
+            inputPetId.value = 'Select';
+            inputParentId.value = 'Select';
+            inputBreed.value = '';
 
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {

@@ -1,0 +1,31 @@
+<table id="parents-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each parents_data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each parents_data}}
+        <tr>
+            <td>{{this.parent_id}}</td>
+            <td>{{this.parent_name}}</td>
+            <td>{{this.parent_number}}</td>
+            <td>{{this.email}}</td>
+            {{!-- <td><button onclick="deletePet({{this.pet_id}})">Delete</button></td> --}}
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
