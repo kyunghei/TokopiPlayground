@@ -128,6 +128,7 @@ app.post('/add-parent-ajax', function (req, res) {
                 }
                 // If all went well, send the results of the query back.
                 else {
+                    parents_rows = rows;
                     res.send(parents_rows);
                 }
             })
@@ -143,6 +144,26 @@ app.delete('/delete-pet-ajax', function (req, res, next) {
 
     // Run the 1st query
     db.pool.query(deletePet, [petID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            res.sendStatus(204);
+        }
+
+    })
+});
+
+app.delete('/delete-parent-ajax', function (req, res, next) {
+    let data = req.body;
+    let parentID = parseInt(data.parent_id);
+    let deleteParent = `DELETE FROM Parents WHERE parent_id = ?`;
+
+    // Run the 1st query
+    db.pool.query(deleteParent, [parentID], function (error, rows, fields) {
         if (error) {
 
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -194,6 +215,58 @@ app.put('/put-pet-ajax', function (req, res, next) {
                 else {
                     // Run the second query
                     db.pool.query(selectPet, [pet_id], function (error, rows, fields) {
+
+                        if (error) {
+                            console.log(error);
+                            res.sendStatus(400);
+                        } else {
+                            res.send(rows);
+                        }
+                    })
+                }
+            })
+        }
+    })
+});
+
+
+app.put('/put-parent-ajax', function (req, res, next) {
+    let data = req.body;
+
+    let parent_id = parseInt(data.parent_id);
+    let parent_number = parseInt(data.parent_number);
+    let parent_email = data.parent_email;
+
+    let queryUpdateParentNumber = `UPDATE Parents SET parent_number = ? WHERE Parents.parent_id = ?`;
+    let queryUpdateParentEmail = `UPDATE Parents SET parent_email = ? WHERE Parents.parent_id = ?`;
+    let selectParent = `SELECT * FROM Parents WHERE parent_id = ?`
+
+    // Run the 1st query
+    db.pool.query(queryUpdateParentNumber, [parent_number, parent_id], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // table on the front-end
+        else {
+            // Run the second query
+            db.pool.query(queryUpdateParentEmail, [parent_email, parent_id], function (error, rows, fields) {
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                // If there was no error, we run our second query and return that data so we can use it to update the people's
+                // table on the front-end
+                else {
+                    // Run the second query
+                    db.pool.query(selectParent, [parent_id], function (error, rows, fields) {
 
                         if (error) {
                             console.log(error);

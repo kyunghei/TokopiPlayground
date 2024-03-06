@@ -1,5 +1,18 @@
-<table id="parents-table">
+<h1>Tokopi Playground</h1>
 
+<nav>
+    <a href="/">Pets</a>
+    <a href="/parents">Parents</a>
+    <a href="/invoices">Invoices</a>
+    <a href="/pet_invoices">Pet Invoices</a>
+    <a href="/services">Services</a>
+    <a href="/visits">Visits</a>
+    <a href="/services_during_visit"></a>
+
+</nav>
+
+<table id="parents-table">
+    <caption>Parents</caption>
     {{!-- Header section --}}
     <thead>
 
@@ -15,17 +28,61 @@
     </thead>
 
     {{!-- Body section --}}
-    <tbody>
+    <tbody id="parents-table-body">
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each parents_data}}
-        <tr>
+        <tr data-value="{{this.parent_id}}">
             <td>{{this.parent_id}}</td>
             <td>{{this.parent_name}}</td>
             <td>{{this.parent_number}}</td>
-            <td>{{this.email}}</td>
-            {{!-- <td><button onclick="deletePet({{this.pet_id}})">Delete</button></td> --}}
+            <td>{{this.parent_email}}</td>
+            <td><button onclick="deleteParent({{this.parent_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<script src="./js/delete_parent.js"></script>
+
+{{!-- Form to add a record to the table --}}
+<h2>Adding Parent Form</h2>
+<form id="add-parent-form-ajax">
+    <label for="input-parent-name">Parent Name:</label>
+    <input type="text" name="input-parent-name" id="input-parent-name">
+
+    <label for="input-parent-number">Phone Number: </label>
+    <input type="tel" name="input-parent-number" id="input-parent-number">
+
+    <label for="input-parent-email">Email: </label>
+    <input type="email" name="input-parent-email" id="input-parent-email">
+
+    <input type="submit" value="Add Parent">
+</form>
+
+<script src="./js/add_parent.js"></script>
+
+<h2>Updating Parent Form</h2>
+<form id="update-parent-form-ajax">
+
+    <label for="input-parent-id">Parent ID [Parent Name]:</label>
+    <select name="input-parent-id" id="select-parent-id">
+        <option>Select</option>
+        {{#each parents_data}}
+        <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
+        {{/each}}
+    </select>
+    {{!-- <label for="input-pet-name">Pet Name:</label>
+    <input type="text" name="input-pet-name" id="display-pet-name" value="{{this.pet_name}}"> --}}
+
+    <label for="input-parent-number">Phone Number:</label>
+    <input type="tel" name="input-parent-number" id="update-parent-number">
+
+    <label for="input-parent-email">Email:</label>
+    <input type="email" name="input-parent-email" id="update-parent-email">
+
+    <input type="submit" value="Update Parent">
+
+</form>
+
+<script src="./js/update_parent.js"></script>

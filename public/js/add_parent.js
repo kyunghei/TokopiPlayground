@@ -1,34 +1,34 @@
 // Get the objects we need to modify
-let addPetForm = document.getElementById('add-pet-form-ajax');
+let addParentForm = document.getElementById('add-parent-form-ajax');
 
 // Modify the objects we need
-addPetForm.addEventListener("submit", function (e) {
+addParentForm.addEventListener("submit", function (e) {
 
     // Prevent the form from submitting
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputPetName = document.getElementById("input-pet-name");
-    let inputParentId = document.getElementById("input-parent-id");
-    let inputBreed = document.getElementById("input-breed");
+    let inputParentName = document.getElementById("input-parent-name");
+    let inputParentNumber = document.getElementById("input-parent-number");
+    let inputParentEmail = document.getElementById("input-parent-email");
 
     // Get the values from the form fields
-    let PetNameValue = inputPetName.value;
-    let ParentNameValue = inputParentId.value;
-    let BreedValue = inputBreed.value;
+    let ParentNameValue = inputParentName.value;
+    let ParentNumberValue = inputParentNumber.value;
+    let ParentEmailValue = inputParentEmail.value;
 
     //console.log(`data obtained: ${PetNameValue} ${ParentNameValue} ${BreedValue}`)
 
     // Put our data we want to send in a javascript object
     let data = {
-        pet_name: PetNameValue,
-        parent_id: ParentNameValue,
-        breed: BreedValue
+        parent_name: ParentNameValue,
+        parent_number: ParentNumberValue,
+        parent_email: ParentEmailValue
     }
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-pet-ajax", true);
+    xhttp.open("POST", "/add-parent-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -39,9 +39,9 @@ addPetForm.addEventListener("submit", function (e) {
             addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
-            inputPetName.value = '';
-            inputParentId.value = '';
-            inputBreed.value = '';
+            inputParentName.value = '';
+            inputParentNumber.value = '';
+            inputParentEmail.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -59,7 +59,7 @@ addPetForm.addEventListener("submit", function (e) {
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("pets-table");
+    let currentTable = document.getElementById("parents-table");
 
     // Get the location where we should insert the new row (end of table)
     let newRowIndex = currentTable.rows.length;
@@ -70,47 +70,39 @@ addRowToTable = (data) => {
 
     // Create a row and 4 cells
     let row = document.createElement("TR");
-    let petIdCell = document.createElement("TD");
-    let petNameCell = document.createElement("TD");
     let parentIdCell = document.createElement("TD");
-    let breedCell = document.createElement("TD");
+    let parentNameCell = document.createElement("TD");
+    let parentNumberCell = document.createElement("TD");
+    let parentEmailCell = document.createElement("TD");
 
     let deleteCell = document.createElement("TD");
 
 
     // Fill the cells with correct data
-    petIdCell.innerText = newRow.pet_id;
-    petNameCell.innerText = newRow.pet_name;
     parentIdCell.innerText = newRow.parent_id;
-    breedCell.innerText = newRow.breed;
+    parentNameCell.innerText = newRow.parent_name;
+    parentNumberCell.innerText = newRow.parent_number;
+    parentEmailCell.innerText = newRow.parent_email;
 
     deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "Delete";
     deleteBtn.onclick = function () {
-        deletePet(newRow.pet_id);
+        deleteParent(newRow.parent_id);
     };
     deleteCell.appendChild(deleteBtn);
 
     // Add the cells to the row 
-    row.appendChild(petIdCell);
-    row.appendChild(petNameCell);
     row.appendChild(parentIdCell);
-    row.appendChild(breedCell);
+    row.appendChild(parentNameCell);
+    row.appendChild(parentNumberCell);
+    row.appendChild(parentEmailCell);
     row.appendChild(deleteCell);
 
     // Add a custom row attribute so the deleteRow function can find a newly added row
-    row.setAttribute('data-value', newRow.pet_id);
+    row.setAttribute('data-value', newRow.parent_id);
 
-    let currentTableBody = document.getElementById("pets-table-body");
+    let currentTableBody = document.getElementById("parents-table-body");
     // Add the row to the table
     currentTableBody.appendChild(row);
-
-    // Find drop down menu, create a new option, fill data in the option (full name, id),
-    // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
-    let selectMenu = document.getElementById("select-pet-id");
-    let option = document.createElement("option");
-    option.text = newRow.pet_id + ' ' + newRow.pet_name;
-    option.value = newRow.pet_id;
-    selectMenu.add(option);
 }
 
