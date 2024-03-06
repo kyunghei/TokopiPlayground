@@ -1,0 +1,46 @@
+body {
+    background-color: rgb(216, 240, 240);
+}
+
+h1 {
+    font: bold 45px Arial;
+    color: rgb(148, 162, 201);
+    /* text-align: center; */
+}
+
+nav {
+    display: flex;
+    justify-content: baseline;
+}
+
+nav a {
+    padding: 0 15px;
+    text-decoration: none;
+    font: 14px Arial;
+}
+
+caption {
+    font: 35px arial;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgb(148, 162, 201);
+    border-radius: 25px;
+    background-color: rgb(247, 247, 247);
+    width: 50%;
+
+}
+
+
+
+th,
+td {
+    padding: 15px;
+    font-family: arial;
+}
+
+td {
+    text-align: center;
+}
