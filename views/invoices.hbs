@@ -1,0 +1,33 @@
+<table id="invoices-table">
+    <caption>Invoices</caption>
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each invoices_data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody id="invoices-table-body">
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each invoices_data}}
+        <tr data-value="{{this.invoice_id}}">
+            <td>{{this.invoice_id}}</td>
+            <td>{{this.parent_id}}</td>
+            <td>{{this.invoice_date}}</td>
+            <td>{{this.invoice_total}}</td>
+            <td><button onclick="deleteInvoice({{this.invoice_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="./js/delete_invoice.js"></script>

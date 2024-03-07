@@ -10,7 +10,7 @@
 //express
 var express = require('express');   // We are using the express library for the web server
 var app = express();            // We need to instantiate an express object to interact with the server in our code
-PORT = 6225;                 // Set a port number at the top so it's easy to change in the future
+PORT = 6224;                 // Set a port number at the top so it's easy to change in the future
 
 // configure express to handle JSON and Form Data
 app.use(express.json())
@@ -55,6 +55,20 @@ app.get('/parents', function (req, res) {
     })                                                      // an object where 'data' is equal to the 'rows' we
 }
 );                                                         // received back from the query
+
+app.get('/invoices', function (req, res) {
+    let query1 = "SELECT * FROM Invoices;";               // Define our query
+    let query2 = "SELECT * FROM Parents;";
+    db.pool.query(query1, function (error, rows, fields) {    // Execute the query
+        let invoices = rows;
+
+        db.pool.query(query2, function (error, rows, fields) {    // Execute the query
+            let parents = rows;
+            return res.render('invoices', { invoices_data: invoices, parents_data: parents });                  // Render the index.hbs file, and also send the renderer
+        });
+    });                                                      // an object where 'data' is equal to the 'rows' we  
+}
+);
 
 app.post('/add-pet-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
