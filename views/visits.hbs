@@ -1,6 +1,5 @@
-
-<table id="pets-table">
-    <caption>Pets</caption>
+<table id="visits-table">
+    <caption>Visits</caption>
     {{!-- Header section --}}
     <thead>
 
@@ -16,16 +15,16 @@
     </thead>
 
     {{!-- Body section --}}
-    <tbody id="pets-table-body">
+    <tbody id="visits-table-body">
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr data-value="{{this.pet_id}}">
+        <tr data-value="{{this.visit_id}}">
+            <td>{{this.visit_id}}</td>
             <td>{{this.pet_id}}</td>
-            <td>{{this.pet_name}}</td>
-            <td>{{this.parent_id}}</td>
-            <td>{{this.breed}}</td>
-            <td><button onclick="deletePet({{this.pet_id}})">Delete</button></td>
+            <td>{{this.visit_date}}</td>
+            <td>{{this.visit_cost}}</td>
+            <td><button onclick="deletePet({{this.visit_id}})">Delete</button></td> //###########
         </tr>
         {{/each}}
     </tbody>
