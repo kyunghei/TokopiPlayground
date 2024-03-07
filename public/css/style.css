@@ -152,7 +152,8 @@ select {
 
 input[type=text],
 input[type=email],
-input[type=tel] {
+input[type=tel],
+input[type=number] {
     border: none;
     border-bottom: 1px solid rgb(90, 90, 90);
 
@@ -160,7 +161,8 @@ input[type=tel] {
 
 input[type=text]:focus,
 input[type=email]:focus,
-input[type=tel]:focus {
+input[type=tel]:focus,
+input[type=number]:focus {
     outline: none;
     border-bottom: 2px solid rgb(90, 90, 90);
 }

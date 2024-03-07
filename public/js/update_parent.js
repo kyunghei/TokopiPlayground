@@ -9,11 +9,13 @@ updateParentForm.addEventListener("submit", function (e) {
     e.preventDefault();
     // Get form fields we need to get data from
     let inputParentId = document.getElementById("select-parent-id");
+    let inputParentName = document.getElementById("update-parent-name");
     let inputParentNumber = document.getElementById("update-parent-number");
     let inputParentEmail = document.getElementById("update-parent-email");
 
     // Get the values from the form fields
     let parentIdValue = inputParentId.value;
+    let parentNameValue = inputParentName.value;
     let parentNumberValue = inputParentNumber.value;
     let parentEmailValue = inputParentEmail.value;
 
@@ -29,6 +31,7 @@ updateParentForm.addEventListener("submit", function (e) {
     // Put our data we want to send in a javascript object
     let data = {
         parent_id: parentIdValue,
+        parent_name: parentNameValue,
         parent_number: parentNumberValue,
         parent_email: parentEmailValue
     }
@@ -47,8 +50,9 @@ updateParentForm.addEventListener("submit", function (e) {
             updateRow(xhttp.response, parentIdValue);
 
             // Clear the input fields for another transaction
-            inputParentId.value = 'Select';
-            inputParentNumber.value = 'Select';
+            inputParentId.value = 'Parent ID [Parent Name]';
+            inputParentName.value = '';
+            inputParentNumber.value = '';
             inputParentEmail.value = '';
 
         }
@@ -76,6 +80,8 @@ function updateRow(data, parentID) {
             // Get the location of the row where we found the matching parent ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
+            let parent_name_td = updateRowIndex.getElementsByTagName("td")[1];
+
             // Get td of parent number value
             let parent_number_td = updateRowIndex.getElementsByTagName("td")[2];
 
@@ -83,6 +89,7 @@ function updateRow(data, parentID) {
             let parent_email_td = updateRowIndex.getElementsByTagName("td")[3];
 
             // Reassign parent to our value we updated to
+            parent_name_td.innerHTML = parsedData[0].parent_name;
             parent_number_td.innerHTML = parsedData[0].parent_number;
             parent_email_td.innerHTML = parsedData[0].parent_email;
         }

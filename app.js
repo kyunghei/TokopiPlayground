@@ -70,6 +70,26 @@ app.get('/invoices', function (req, res) {
 }
 );
 
+app.get('/pet_invoices', function (req, res) {
+    let query1 = "SELECT * FROM Pet_Invoices;";               // Define our query
+    let query2 = "SELECT * FROM Pets;";
+    let query3 = "SELECT * FROM Invoices";
+    db.pool.query(query1, function (error, rows, fields) {    // Execute the query
+        let pet_invoices = rows;
+
+        db.pool.query(query2, function (error, rows, fields) {    // Execute the query
+            let pets = rows;
+
+            db.pool.query(query3, function (error, rows, fields) {
+                let invoices = rows;
+                return res.render('pet_invoices', { pet_invoices_data: pet_invoices, pets_data: pets, invoices_data: invoices });                  // Render the index.hbs file, and also send the renderer
+
+            })
+        });
+    });                                                      // an object where 'data' is equal to the 'rows' we  
+}
+);
+
 app.post('/add-pet-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -150,6 +170,42 @@ app.post('/add-parent-ajax', function (req, res) {
     })
 });
 
+app.post('/add-invoice-ajax', function (req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let invoices_data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Invoices (parent_id, invoice_date, invoice_total) VALUES ('${invoices_data.parent_id}', '${invoices_data.invoice_date}', '${invoices_data.invoice_total}')`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM Invoices;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    invoices_rows = rows;
+                    res.send(invoices_rows);
+                }
+            })
+        }
+    })
+});
 
 app.delete('/delete-pet-ajax', function (req, res, next) {
     let data = req.body;
@@ -196,27 +252,25 @@ app.put('/put-pet-ajax', function (req, res, next) {
     let data = req.body;
 
     let pet_id = parseInt(data.pet_id);
+    let pet_name = data.pet_name;
     let parent_id = parseInt(data.parent_id);
     let breed = data.breed;
 
+    let queryUpdatePetName = `UPDATE Pets SET pet_name = ? WHERE Pets.pet_id = ?`;
     let queryUpdateParentId = `UPDATE Pets SET parent_id = ? WHERE Pets.pet_id = ?`;
     let queryUpdateBreed = `UPDATE Pets SET breed = ? WHERE Pets.pet_id = ?`;
     let selectPet = `SELECT * FROM Pets WHERE pet_id = ?`
 
     // Run the 1st query
-    db.pool.query(queryUpdateParentId, [parent_id, pet_id], function (error, rows, fields) {
+    db.pool.query(queryUpdatePetName, [pet_name, pet_id], function (error, rows, fields) {
         if (error) {
 
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
-
-        // If there was no error, we run our second query and return that data so we can use it to update the people's
-        // table on the front-end
         else {
-            // Run the second query
-            db.pool.query(queryUpdateBreed, [breed, pet_id], function (error, rows, fields) {
+            db.pool.query(queryUpdateParentId, [parent_id, pet_id], function (error, rows, fields) {
                 if (error) {
 
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -228,19 +282,35 @@ app.put('/put-pet-ajax', function (req, res, next) {
                 // table on the front-end
                 else {
                     // Run the second query
-                    db.pool.query(selectPet, [pet_id], function (error, rows, fields) {
-
+                    db.pool.query(queryUpdateBreed, [breed, pet_id], function (error, rows, fields) {
                         if (error) {
+
+                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                             console.log(error);
                             res.sendStatus(400);
-                        } else {
-                            res.send(rows);
+                        }
+
+                        // If there was no error, we run our second query and return that data so we can use it to update the people's
+                        // table on the front-end
+                        else {
+                            // Run the second query
+                            db.pool.query(selectPet, [pet_id], function (error, rows, fields) {
+
+                                if (error) {
+                                    console.log(error);
+                                    res.sendStatus(400);
+                                } else {
+                                    res.send(rows);
+                                }
+                            })
                         }
                     })
                 }
             })
         }
     })
+
+
 });
 
 
@@ -248,27 +318,23 @@ app.put('/put-parent-ajax', function (req, res, next) {
     let data = req.body;
 
     let parent_id = parseInt(data.parent_id);
-    let parent_number = parseInt(data.parent_number);
+    let parent_name = data.parent_name;
+    let parent_number = data.parent_number;
     let parent_email = data.parent_email;
 
+    let queryUpdateParentName = `UPDATE Parents SET parent_name = ? WHERE Parents.parent_id = ?`;
     let queryUpdateParentNumber = `UPDATE Parents SET parent_number = ? WHERE Parents.parent_id = ?`;
     let queryUpdateParentEmail = `UPDATE Parents SET parent_email = ? WHERE Parents.parent_id = ?`;
     let selectParent = `SELECT * FROM Parents WHERE parent_id = ?`
 
     // Run the 1st query
-    db.pool.query(queryUpdateParentNumber, [parent_number, parent_id], function (error, rows, fields) {
+    db.pool.query(queryUpdateParentName, [parent_name, parent_id], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
-            res.sendStatus(400);
+            res.sendStauts(400);
         }
-
-        // If there was no error, we run our second query and return that data so we can use it to update the people's
-        // table on the front-end
         else {
-            // Run the second query
-            db.pool.query(queryUpdateParentEmail, [parent_email, parent_id], function (error, rows, fields) {
+            db.pool.query(queryUpdateParentNumber, [parent_number, parent_id], function (error, rows, fields) {
                 if (error) {
 
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -280,13 +346,89 @@ app.put('/put-parent-ajax', function (req, res, next) {
                 // table on the front-end
                 else {
                     // Run the second query
-                    db.pool.query(selectParent, [parent_id], function (error, rows, fields) {
+                    db.pool.query(queryUpdateParentEmail, [parent_email, parent_id], function (error, rows, fields) {
+                        if (error) {
+
+                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                            console.log(error);
+                            res.sendStatus(400);
+                        }
+
+                        // If there was no error, we run our second query and return that data so we can use it to update the people's
+                        // table on the front-end
+                        else {
+                            // Run the second query
+                            db.pool.query(selectParent, [parent_id], function (error, rows, fields) {
+
+                                if (error) {
+                                    console.log(error);
+                                    res.sendStatus(400);
+                                } else {
+                                    res.send(rows);
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    })
+
+});
+
+app.put('/put-invoice-ajax', function (req, res, next) {
+    let data = req.body;
+
+    let invoice_id = parseInt(data.invoice_id);
+    let parent_id = parseInt(data.parent_id);
+    let invoice_date = data.invoice_date;
+    let invoice_total = parseInt(data.invoice_total);
+
+    let queryUpdateParentId = `UPDATE Invoices SET parent_id = ? WHERE Invoices.invoice_id = ?`;
+    let queryUpdateInvoiceDate = `UPDATE Invoices SET invoice_date = ? WHERE Invoices.invoice_id = ?`;
+    let queryUpdateInvoiceTotal = `UPDATE Invoices SET invoice_total = ? WHERE Invoices.invoice_id = ?`;
+    let selectInvoice = `SELECT * FROM Invoices WHERE invoice_id = ?`
+
+    // Run the 1st query
+    db.pool.query(queryUpdateParentId, [parent_id, invoice_id], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we run our second query and return that data so we can use it to update the people's
+        // table on the front-end
+        else {
+            // Run the second query
+            db.pool.query(queryUpdateInvoiceDate, [invoice_date, invoice_id], function (error, rows, fields) {
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                // If there was no error, we run our second query and return that data so we can use it to update the people's
+                // table on the front-end
+                else {
+                    // Run the second query
+                    db.pool.query(queryUpdateInvoiceTotal, [invoice_total, invoice_id], function (error, rows, fields) {
 
                         if (error) {
                             console.log(error);
                             res.sendStatus(400);
                         } else {
-                            res.send(rows);
+                            db.pool.query(selectInvoice, [invoice_id], function (error, rows, fields) {
+
+                                if (error) {
+                                    console.log(error);
+                                    res.sendStatus(400);
+                                } else {
+                                    res.send(rows);
+                                }
+                            })
                         }
                     })
                 }
@@ -294,6 +436,7 @@ app.put('/put-parent-ajax', function (req, res, next) {
         }
     })
 });
+
 
 //with handlebar
 app.get('/', function (req, res) {

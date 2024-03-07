@@ -1,12 +1,12 @@
-<table id="invoices-table">
-    <caption>Invoices</caption>
+<table id="pet-invoices-table">
+    <caption>Pet Invoices</caption>
     {{!-- Header section --}}
     <thead>
 
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each invoices_data.[0]}}
+            {{#each pet_invoices_data.[0]}}
             <th>
                 {{@key}}
             </th>
@@ -15,22 +15,21 @@
     </thead>
 
     {{!-- Body section --}}
-    <tbody id="invoices-table-body">
+    <tbody id="pet-invoices-table-body">
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each invoices_data}}
-        <tr data-value="{{this.invoice_id}}">
+        {{#each pet_invoices_data}}
+        <tr data-value="{{this.pet_invoice_id}}">
+            <td>{{this.pet_invoice_id}}</td>
+            <td>{{this.pet_id}}</td>
             <td>{{this.invoice_id}}</td>
-            <td>{{this.parent_id}}</td>
-            <td>{{this.invoice_date}}</td>
-            <td>{{this.invoice_total}}</td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 
 {{!-- Form to add a record to the table --}}
-<div class="forms">
+{{!-- <div class="forms">
     <form id="add-invoice-form-ajax">
         <h2>Add New Invoice</h2>
         <select name="input-parent-id" id="input-parent-id">
@@ -81,4 +80,4 @@
 
     <script src="./js/update_invoice.js"></script>
     {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-</div>
+</div> --}}

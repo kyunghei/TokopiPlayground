@@ -85,7 +85,7 @@ addRowToTable = (data) => {
     parentEmailCell.innerText = newRow.parent_email;
 
     deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = "Delete";
+    deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
     deleteBtn.onclick = function () {
         deleteParent(newRow.parent_id);
     };
