@@ -45,7 +45,7 @@
         <select name="input-parent-id" id="input-parent-id">
             <option>Parent ID</option>
             {{#each parents_data}}
-            <option value="{{this.parent_id}}">{{this.parent_id}}</option>
+            <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
             {{/each}}
         </select>
         <br>
@@ -78,7 +78,7 @@
         <select name="input-parent-id" id="update-parent-id">
             <option>Parent ID</option>
             {{#each parents_data}}
-            <option value="{{this.parent_id}}">{{this.parent_id}}</option>
+            <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
             {{/each}}
         </select>
         <br>
