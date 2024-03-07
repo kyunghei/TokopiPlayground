@@ -1,4 +1,3 @@
-
 <table id="pets-table">
     <caption>Pets</caption>
     {{!-- Header section --}}
@@ -25,7 +24,7 @@
             <td>{{this.pet_name}}</td>
             <td>{{this.parent_id}}</td>
             <td>{{this.breed}}</td>
-            <td><button onclick="deletePet({{this.pet_id}})">Delete</button></td>
+            <td><button onclick="deletePet({{this.pet_id}})"><i class="fa fa-trash"></i></button></td>
         </tr>
         {{/each}}
     </tbody>

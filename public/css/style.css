@@ -44,7 +44,7 @@ nav a:hover {
 
 
 caption {
-    font: 35px "Madimi One", san-serif;
+    font: 38px "Madimi One", san-serif;
     letter-spacing: 2px;
     text-align: center;
     color: grey;
@@ -91,4 +91,16 @@ tbody tr:hover {
 
 tr {
     border-bottom: 1px solid rgb(127, 138, 170, .5);
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    color: grey;
+    transform: scale(1.2);
+}
+
+button:hover {
+    color: black;
+    cursor: pointer;
 }
