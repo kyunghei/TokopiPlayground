@@ -29,29 +29,31 @@
 </table>
 
 {{!-- Form to add a record to the table --}}
-{{!-- <div class="forms">
-    <form id="add-invoice-form-ajax">
-        <h2>Add New Invoice</h2>
-        <select name="input-parent-id" id="input-parent-id">
-            <option>Parent ID</option>
-            {{#each parents_data}}
-            <option value="{{this.parent_id}}">{{this.parent_id}}</option>
+<div class="forms">
+    <form id="add-pet-invoice-form-ajax">
+        <h2>Add New Pet Invoice</h2>
+        <select name="input-pet-id" id="input-pet-id" required>
+            <option value="">Pet ID</option>
+            {{#each pets_data}}
+            <option value="{{this.pet_id}}">{{this.pet_id}}[{{this.pet_name}}]</option>
             {{/each}}
         </select>
         <br>
-        <input type="date" name="input-invoice-date" id="input-invoice-date">
+        <select name="input-invoice-id" id="input-invoice-id" required>
+            <option value="">Invoice ID</option>
+            {{#each invoices_data}}
+            <option value="{{this.invoice_id}}">{{this.invoice_id}}</option>
+            {{/each}}
+        </select>
         <br>
-        <input type="number" min="0.01" step="0.01" name="input-invoice-total" id="input-invoice-total"
-            placeholder="Invoice Total">
-        <br>
-        <input type="submit" value="Add Invoice">
+        <input type="submit" value="Add Pet Invoice">
         <br>
     </form>
 
-    <script src="./js/add_invoice.js"></script>
+    <script src="./js/add_pet_invoice.js"></script>
 
 
-    <form id="update-invoice-form-ajax">
+    {{!-- <form id="update-invoice-form-ajax">
         <h2>Update Invoice Data</h2>
 
         <select name="input-invoice-id" id="select-invoice-id">
@@ -78,6 +80,6 @@
 
     </form>
 
-    <script src="./js/update_invoice.js"></script>
+    <script src="./js/update_invoice.js"></script> --}}
     {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-</div> --}}
+</div>
