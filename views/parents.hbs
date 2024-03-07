@@ -32,44 +32,48 @@
 
 <script src="./js/delete_parent.js"></script>
 
-{{!-- Form to add a record to the table --}}
-<h2>Adding Parent Form</h2>
-<form id="add-parent-form-ajax">
-    <label for="input-parent-name">Parent Name:</label>
-    <input type="text" name="input-parent-name" id="input-parent-name">
+<div class="forms">
+    {{!-- Form to add a record to the table --}}
+    <form id="add-parent-form-ajax">
+        <h2>Add New Parent</h2>
 
-    <label for="input-parent-number">Phone Number: </label>
-    <input type="tel" name="input-parent-number" id="input-parent-number">
+        {{!-- <label for="input-parent-name">Parent Name:</label> --}}
+        <input type="text" name="input-parent-name" id="input-parent-name" placeholder="Parent Name">
+        <br>
+        {{!-- <label for="input-parent-number">Phone Number: </label> --}}
+        <input type="tel" name="input-parent-number" id="input-parent-number" placeholder="Phone Number">
+        <br>
+        {{!-- <label for="input-parent-email">Email: </label> --}}
+        <input type="email" name="input-parent-email" id="input-parent-email" placeholder="Email">
+        <br>
+        <input type="submit" value="Add Parent">
+        <br>
+    </form>
 
-    <label for="input-parent-email">Email: </label>
-    <input type="email" name="input-parent-email" id="input-parent-email">
+    <script src="./js/add_parent.js"></script>
 
-    <input type="submit" value="Add Parent">
-</form>
+    <form id="update-parent-form-ajax">
+        <h2>Update Parent Data</h2>
 
-<script src="./js/add_parent.js"></script>
+        {{!-- <label for="input-parent-id">Parent ID [Parent Name]:</label> --}}
+        <select name="input-parent-id" id="select-parent-id">
+            <option>Parent ID [Parent Name]</option>
+            {{#each parents_data}}
+            <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
+            {{/each}}
+        </select>
+        {{!-- <label for="input-pet-name">Pet Name:</label>
+        <input type="text" name="input-pet-name" id="display-pet-name" value="{{this.pet_name}}"> --}}
+        <br>
+        {{!-- <label for="input-parent-number">Phone Number:</label> --}}
+        <input type="tel" name="input-parent-number" id="update-parent-number" placeholder="Phone Number">
+        <br>
+        {{!-- <label for="input-parent-email">Email:</label> --}}
+        <input type="email" name="input-parent-email" id="update-parent-email" placeholder="Email">
+        <br>
+        <input type="submit" value="Update Parent">
+        <br>
+    </form>
 
-<h2>Updating Parent Form</h2>
-<form id="update-parent-form-ajax">
-
-    <label for="input-parent-id">Parent ID [Parent Name]:</label>
-    <select name="input-parent-id" id="select-parent-id">
-        <option>Select</option>
-        {{#each parents_data}}
-        <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
-        {{/each}}
-    </select>
-    {{!-- <label for="input-pet-name">Pet Name:</label>
-    <input type="text" name="input-pet-name" id="display-pet-name" value="{{this.pet_name}}"> --}}
-
-    <label for="input-parent-number">Phone Number:</label>
-    <input type="tel" name="input-parent-number" id="update-parent-number">
-
-    <label for="input-parent-email">Email:</label>
-    <input type="email" name="input-parent-email" id="update-parent-email">
-
-    <input type="submit" value="Update Parent">
-
-</form>
-
-<script src="./js/update_parent.js"></script>
+    <script src="./js/update_parent.js"></script>
+</div>

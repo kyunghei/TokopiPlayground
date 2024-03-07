@@ -34,55 +34,60 @@
 
 
 {{!-- Form to add a record to the table --}}
-<h2>Adding Pet Form</h2>
-<form id="add-pet-form-ajax">
-    <label for="input-pet-name">Pet Name:</label>
-    <input type="text" name="input-pet-name" id="input-pet-name">
+<div class="forms">
+    <form id="add-pet-form-ajax">
+        <h2>Add New Pet</h2>
+        {{!-- <label for="input-pet-name">Pet Name:</label> --}}
+        <input type="text" name="input-pet-name" id="input-pet-name" placeholder="Pet Name">
+        <br>
+        {{!-- <label for="input-parent-id">Parent ID: </label> --}}
+        {{!-- <input type="number" name="input-parent-id" id="input-parent-id"> --}}
+        <select name="input-parent-id" id="input-parent-id">
+            <option>Parent ID</option>
+            {{#each parents_data}}
+            <option value="{{this.parent_id}}">{{this.parent_id}}</option>
+            {{/each}}
+        </select>
+        <br>
+        {{!-- <label for="input-breed">Breed: </label> --}}
+        <input type="text" name="input-breed" id="input-breed" placeholder="Breed">
+        <br>
+        <input type="submit" value="Add Pet">
+        <br>
+    </form>
 
-    <label for="input-parent-id">Parent ID: </label>
-    {{!-- <input type="number" name="input-parent-id" id="input-parent-id"> --}}
-    <select name="input-parent-id" id="input-parent-id">
-        <option>Select</option>
-        {{#each parents_data}}
-        <option value="{{this.parent_id}}">{{this.parent_id}}</option>
-        {{/each}}
-    </select>
-
-    <label for="input-breed">Breed: </label>
-    <input type="text" name="input-breed" id="input-breed">
-
-    <input type="submit" value="Add Pet">
-</form>
-
-<script src="./js/add_pet.js"></script>
+    <script src="./js/add_pet.js"></script>
 
 
-<h2>Updating Pet Form</h2>
-<form id="update-pet-form-ajax">
+    <form id="update-pet-form-ajax">
+        <h2>Update Pet Data</h2>
 
-    <label for="input-pet-id">Pet ID [Pet Name]:</label>
-    <select name="input-pet-id" id="select-pet-id">
-        <option>Select</option>
-        {{#each data}}
-        <option value="{{this.pet_id}}">{{this.pet_id}} [{{this.pet_name}}]</option>
-        {{/each}}
-    </select>
-    {{!-- <label for="input-pet-name">Pet Name:</label>
-    <input type="text" name="input-pet-name" id="display-pet-name" value="{{this.pet_name}}"> --}}
+        {{!-- <label for="input-pet-id">Pet ID [Pet Name]:</label> --}}
+        <select name="input-pet-id" id="select-pet-id">
+            <option>Pet ID [Pet Name]</option>
+            {{#each data}}
+            <option value="{{this.pet_id}}">{{this.pet_id}} [{{this.pet_name}}]</option>
+            {{/each}}
+        </select>
+        {{!-- <label for="input-pet-name">Pet Name:</label>
+        <input type="text" name="input-pet-name" id="display-pet-name" value="{{this.pet_name}}"> --}}
+        <br>
+        {{!-- <label for="input-parent-id">Parent ID: </label> --}}
+        <select name="input-parent-id" id="update-parent-id">
+            <option>Parent ID</option>
+            {{#each parents_data}}
+            <option value="{{this.parent_id}}">{{this.parent_id}}</option>
+            {{/each}}
+        </select>
+        <br>
+        {{!-- <label for="input-breed">Breed:</label> --}}
+        <input type="text" name="input-breed" id="update-breed" placeholder="Breed">
+        <br>
+        <input type="submit" value="Update Pet">
+        <br>
 
-    <label for="input-parent-id">Parent ID: </label>
-    <select name="input-parent-id" id="update-parent-id">
-        <option>Select</option>
-        {{#each parents_data}}
-        <option value="{{this.parent_id}}">{{this.parent_id}}</option>
-        {{/each}}
-    </select>
+    </form>
 
-    <label for="input-breed">Breed:</label>
-    <input type="text" name="input-breed" id="update-breed">
-    <input type="submit" value="Update Pet">
-
-</form>
-
-<script src="./js/update_pet.js"></script>
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+    <script src="./js/update_pet.js"></script>
+    {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+</div>
