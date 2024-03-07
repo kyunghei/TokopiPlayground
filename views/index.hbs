@@ -38,12 +38,12 @@
     <form id="add-pet-form-ajax">
         <h2>Add New Pet</h2>
         {{!-- <label for="input-pet-name">Pet Name:</label> --}}
-        <input type="text" name="input-pet-name" id="input-pet-name" placeholder="Pet Name">
+        <input type="text" name="input-pet-name" id="input-pet-name" placeholder="Pet Name" required>
         <br>
         {{!-- <label for="input-parent-id">Parent ID: </label> --}}
         {{!-- <input type="number" name="input-parent-id" id="input-parent-id"> --}}
-        <select name="input-parent-id" id="input-parent-id">
-            <option>Parent ID</option>
+        <select name="input-parent-id" id="input-parent-id" required>
+            <option value="">Parent ID</option>
             {{#each parents_data}}
             <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
             {{/each}}
@@ -63,8 +63,8 @@
         <h2>Update Pet Data</h2>
 
         {{!-- <label for="input-pet-id">Pet ID [Pet Name]:</label> --}}
-        <select name="input-pet-id" id="select-pet-id">
-            <option>Pet ID [Pet Name]</option>
+        <select name="input-pet-id" id="select-pet-id" required>
+            <option value="">Pet ID [Pet Name]</option>
             {{#each data}}
             <option value="{{this.pet_id}}">{{this.pet_id}} [{{this.pet_name}}]</option>
             {{/each}}

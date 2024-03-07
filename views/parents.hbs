@@ -38,10 +38,10 @@
         <h2>Add New Parent</h2>
 
         {{!-- <label for="input-parent-name">Parent Name:</label> --}}
-        <input type="text" name="input-parent-name" id="input-parent-name" placeholder="Parent Name">
+        <input type="text" name="input-parent-name" id="input-parent-name" placeholder="Parent Name" required>
         <br>
         {{!-- <label for="input-parent-number">Phone Number: </label> --}}
-        <input type="tel" name="input-parent-number" id="input-parent-number" placeholder="Phone Number">
+        <input type="tel" name="input-parent-number" id="input-parent-number" placeholder="Phone Number" required>
         <br>
         {{!-- <label for="input-parent-email">Email: </label> --}}
         <input type="email" name="input-parent-email" id="input-parent-email" placeholder="Email">
@@ -56,8 +56,8 @@
         <h2>Update Parent Data</h2>
 
         {{!-- <label for="input-parent-id">Parent ID [Parent Name]:</label> --}}
-        <select name="input-parent-id" id="select-parent-id">
-            <option>Parent ID [Parent Name]</option>
+        <select name="input-parent-id" id="select-parent-id" required>
+            <option value="">Parent ID [Parent Name]</option>
             {{#each parents_data}}
             <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
             {{/each}}

@@ -33,17 +33,17 @@
 <div class="forms">
     <form id="add-invoice-form-ajax">
         <h2>Add New Invoice</h2>
-        <select name="input-parent-id" id="input-parent-id">
-            <option>Parent ID</option>
+        <select name="input-parent-id" id="input-parent-id" required>
+            <option value="">Parent ID</option>
             {{#each parents_data}}
             <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
             {{/each}}
         </select>
         <br>
-        <input type="date" name="input-invoice-date" id="input-invoice-date">
+        <input type="date" name="input-invoice-date" id="input-invoice-date" required>
         <br>
         <input type="number" min="0.01" step="0.01" name="input-invoice-total" id="input-invoice-total"
-            placeholder="Invoice Total">
+            placeholder="Invoice Total" required>
         <br>
         <input type="submit" value="Add Invoice">
         <br>
@@ -55,8 +55,8 @@
     <form id="update-invoice-form-ajax">
         <h2>Update Invoice Data</h2>
 
-        <select name="input-invoice-id" id="select-invoice-id">
-            <option>Invoice ID</option>
+        <select name="input-invoice-id" id="select-invoice-id" required>
+            <option value="">Invoice ID</option>
             {{#each invoices_data}}
             <option value="{{this.invoice_id}}">{{this.invoice_id}}</option>
             {{/each}}
