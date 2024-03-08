@@ -15,7 +15,6 @@ addServiceDuringVisitForm.addEventListener("submit", function (e) {
     let VisitIdValue = inputVisitId.value;
     let ServiceIdValue = inputServiceId.value;
 
-    console.log(`data obtained: ${VisitIdValue} ${ServiceIdValue}`)
 
     // Put our data we want to send in a javascript object
     let data = {
@@ -58,7 +57,7 @@ addRowToTable = (data) => {
     let currentTable = document.getElementById("services-during-visit-table");
 
     // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
+    //let newRowIndex = currentTable.rows.length;
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
@@ -66,20 +65,24 @@ addRowToTable = (data) => {
 
     // Create a row and 4 cells
     let row = document.createElement("TR");
-    let idCell = document.createElement("TD");
+    let serviceDuringVisitIdCell = document.createElement("TD");
     let visitIdCell = document.createElement("TD");
     let serviceIdCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    idCell.innerText = newRow.id;
+    serviceDuringVisitIdCell.innerText = newRow.service_during_visit_id;
     visitIdCell.innerText = newRow.visit_id;
     serviceIdCell.innerText = newRow.service_id;
 
     // Add the cells to the row 
-    row.appendChild(idCell);
+    row.appendChild(serviceDuringVisitIdCell);
     row.appendChild(visitIdCell);
     row.appendChild(serviceIdCell);
+
+    row.setAttribute('data-value', newRow.service_id);
+
+    let currentTableBody = document.getElementById("services-during-visit-table-body");
     
     // Add the row to the table
-    currentTable.appendChild(row);
+    currentTableBody.appendChild(row);
 }
