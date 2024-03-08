@@ -76,16 +76,8 @@ addRowToTable = (data) => {
     petIdCell.innerText = newRow.pet_id;
     invoiceIdCell.innerText = newRow.invoice_id;
 
-
-    // deleteBtn = document.createElement("button");
-    // deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
-    // deleteBtn.onclick = function () {
-    //     deletePet(newRow.pet_id);
-    // };
-    // deleteCell.appendChild(deleteBtn);
-
     deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = "Delete";
+    deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
     deleteBtn.onclick = function () {
         deletePet(newRow.service_id);
     };

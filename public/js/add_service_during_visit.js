@@ -3,7 +3,7 @@ let addServiceDuringVisitForm = document.getElementById('add-services-during-vis
 
 // Modify the objects we need
 addServiceDuringVisitForm.addEventListener("submit", function (e) {
-    
+
     // Prevent the form from submitting
     e.preventDefault();
 
@@ -21,7 +21,7 @@ addServiceDuringVisitForm.addEventListener("submit", function (e) {
         visit_id: VisitIdValue,
         service_id: ServiceIdValue
     }
-    
+
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/add-services-during-visit-ajax", true);
@@ -68,21 +68,30 @@ addRowToTable = (data) => {
     let serviceDuringVisitIdCell = document.createElement("TD");
     let visitIdCell = document.createElement("TD");
     let serviceIdCell = document.createElement("TD");
+    let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
     serviceDuringVisitIdCell.innerText = newRow.service_during_visit_id;
     visitIdCell.innerText = newRow.visit_id;
     serviceIdCell.innerText = newRow.service_id;
 
+    deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
+    deleteBtn.onclick = function () {
+        deleteServiceDuringVisit(newRow.service_id);
+    };
+    deleteCell.appendChild(deleteBtn);
+
     // Add the cells to the row 
     row.appendChild(serviceDuringVisitIdCell);
     row.appendChild(visitIdCell);
     row.appendChild(serviceIdCell);
+    row.appendChild(deleteCell);
 
     row.setAttribute('data-value', newRow.service_id);
 
     let currentTableBody = document.getElementById("services-during-visit-table-body");
-    
+
     // Add the row to the table
     currentTableBody.appendChild(row);
 }

@@ -84,7 +84,7 @@ addRowToTable = (data) => {
     serviceDescriptionCell.innerText = newRow.service_description;
 
     deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = "Delete";
+    deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
     deleteBtn.onclick = function () {
         deletePet(newRow.service_id);
     };

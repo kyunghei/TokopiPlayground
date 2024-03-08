@@ -1,4 +1,3 @@
-
 <table id="services-table">
     <caption>Services</caption>
     {{!-- Header section --}}
@@ -25,7 +24,7 @@
             <td>{{this.service_name}}</td>
             <td>{{this.service_cost}}</td>
             <td>{{this.service_description}}</td>
-            <td><button onclick="deleteService({{this.service_id}})">Delete</button></td> 
+            <td><button onclick="deleteService({{this.service_id}})"><i class="fa fa-trash"></i></button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -35,45 +34,47 @@
 <script src="./js/delete_service.js"></script>
 
 
+<div class="forms">
+    <form id="add-service-form-ajax">
+        <h2>Add New Service</h2>
 
-<form id="add-service-form-ajax">
-    <h2>Adding Service Form</h2>
+        <input type="text" name="input-service-name" id="input-service-name" placeholder="Service Name">
+        <br>
+        <input type="number" name="input-service-cost" id="input-service-cost" placeholder="Service Cost">
+        <br>
+        <input type="text" name="input-service-description" id="input-service-description"
+            placeholder="Service Description">
+        <br>
+        <input type="submit" value="Add Service">
+        <br>
+    </form>
 
-    <input type="text" name="input-service-name" id="input-service-name" placeholder="Service Name">
-
-    <input type="number" name="input-service-cost" id="input-service-cost" placeholder="Service Cost">
-
-    <input type="text" name="input-service-description" id="input-service-description" placeholder="Service Description">
-
-    <input type="submit" value="Add Service">
-</form>
-
-<script src="./js/add_service.js"></script>
-
-
-
-<form id="update-service-form-ajax">
-    <h2>Updating Service Form</h2>
+    <script src="./js/add_service.js"></script>
 
 
-    <select name="select-service-id" id="select-service-id">
-        <option>Service ID</option>
-        {{#each services_data}}
-        <option value="{{this.service_id}}">{{this.service_id}}</option>
-        {{/each}}
-    </select>
+
+    <form id="update-service-form-ajax">
+        <h2>Update Service Data</h2>
 
 
-    <input type="text" name="update-service-name" id="update-service-name" placeholder="Service Name">
+        <select name="select-service-id" id="select-service-id">
+            <option>Service ID</option>
+            {{#each services_data}}
+            <option value="{{this.service_id}}">{{this.service_id}}</option>
+            {{/each}}
+        </select>
+        <br>
+        <input type="text" name="update-service-name" id="update-service-name" placeholder="Service Name">
 
+        <br>
+        <input type="number" name="update-service-cost" id="update-service-cost" placeholder="Service Cost">
+        <br>
+        <input type="text" name="update-service-description" id="update-service-description"
+            placeholder="Service Description">
+        <br>
+        <input type="submit" value="Update Service">
+        <br>
+    </form>
 
-    <input type="number" name="update-service-cost" id="update-service-cost" placeholder="Service Cost">
-
-
-    <input type="text" name="update-service-description" id="update-service-description" placeholder="Service Description">
-
-    <input type="submit" value="Update Service">
-
-</form>
-
-<script src="./js/update_service.js"></script>
+    <script src="./js/update_service.js"></script>
+</div>

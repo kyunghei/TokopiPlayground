@@ -87,7 +87,7 @@ addRowToTable = (data) => {
     visitCostCell.innerText = newRow.visit_cost;
 
     deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = "Delete";
+    deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
     deleteBtn.onclick = function () {
         deletePet(newRow.visit_id);
     };

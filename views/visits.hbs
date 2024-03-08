@@ -1,4 +1,3 @@
-
 <table id="visits-table">
     <caption>Visits</caption>
     {{!-- Header section --}}
@@ -25,7 +24,7 @@
             <td>{{this.pet_id}}</td>
             <td>{{this.visit_date}}</td>
             <td>{{this.visit_cost}}</td>
-            <td><button onclick="deleteVisit({{this.visit_id}})">Delete</button></td> 
+            <td><button onclick="deleteVisit({{this.visit_id}})"><i class="fa fa-trash"></i></button></td>
         </tr>
         {{/each}}
     </tbody>
@@ -35,50 +34,53 @@
 
 
 {{!-- Form to add a record to the table --}}
+<div class="forms">
+    <form id="add-visit-form-ajax">
+        <h2>Add New Visit</h2>
 
-<form id="add-visit-form-ajax">
-    <h2>Adding Visit Form</h2>
+        <select name="input-pet-id" id="input-pet-id">
+            <option>Pet ID</option>
+            {{#each pets_data}}
+            <option value="{{this.pet_id}}">{{this.pet_id}}</option>
+            {{/each}}
+        </select>
+        <br>
+        <input type="date" name="input-visit-date" id="input-visit-date" placeholder="Visit Date">
+        <br>
+        <input type="number" name="input-visit-cost" id="input-visit-cost" placeholder="Visit Cost">
+        <br>
+        <input type="submit" value="Add Visit">
+        <br>
+    </form>
 
-    <select name="input-pet-id" id="input-pet-id">
-        <option>Pet ID</option>
-        {{#each pets_data}}
-        <option value="{{this.pet_id}}">{{this.pet_id}}</option>
-        {{/each}}
-    </select>
-
-    <input type="date" name="input-visit-date" id="input-visit-date" placeholder="Visit Date">
-
-    <input type="number" name="input-visit-cost" id="input-visit-cost" placeholder="Visit Cost">
-
-    <input type="submit" value="Add Visit">
-</form>
-
-<script src="./js/add_visit.js"></script>
-
-
-
-<form id="update-visit-form-ajax">
-    <h2>Updating Visit Form</h2>
-    <select name="select-visit-id" id="select-visit-id">
-        <option>Visit ID</option>
-        {{#each visits_data}}
-        <option value="{{this.visit_id}}">{{this.visit_id}}</option>
-        {{/each}}
-    </select>
-
-    <select name="update-pet-id" id="update-pet-id">
-        <option>Pet ID</option>
-        {{#each pets_data}}
-        <option value="{{this.pet_id}}">{{this.pet_id}}</option>
-        {{/each}}
-    </select>
+    <script src="./js/add_visit.js"></script>
 
 
-    <input type="date" name="update-visit-date" id="update-visit-date" placeholder="Visit Date">
 
-    <input type="number" name="update-visit-cost" id="update-visit-cost" placeholder="Visit Cost">
-    <input type="submit" value="Update Visit">
+    <form id="update-visit-form-ajax">
+        <h2>Update Visit Data</h2>
+        <select name="select-visit-id" id="select-visit-id">
+            <option>Visit ID</option>
+            {{#each visits_data}}
+            <option value="{{this.visit_id}}">{{this.visit_id}}</option>
+            {{/each}}
+        </select>
+        <br>
+        <select name="update-pet-id" id="update-pet-id">
+            <option>Pet ID</option>
+            {{#each pets_data}}
+            <option value="{{this.pet_id}}">{{this.pet_id}}</option>
+            {{/each}}
+        </select>
 
-</form>
+        <br>
+        <input type="date" name="update-visit-date" id="update-visit-date" placeholder="Visit Date">
+        <br>
+        <input type="number" name="update-visit-cost" id="update-visit-cost" placeholder="Visit Cost">
+        <br>
+        <input type="submit" value="Update Visit">
+        <br>
+    </form>
 
-<script src="./js/update_visit.js"></script>
+    <script src="./js/update_visit.js"></script>
+</div>
