@@ -1,3 +1,4 @@
+
 <table id="visits-table">
     <caption>Visits</caption>
     {{!-- Header section --}}
@@ -6,7 +7,7 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
+            {{#each visits_data.[0]}}
             <th>
                 {{@key}}
             </th>
@@ -18,71 +19,70 @@
     <tbody id="visits-table-body">
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
+        {{#each visits_data}}
         <tr data-value="{{this.visit_id}}">
             <td>{{this.visit_id}}</td>
             <td>{{this.pet_id}}</td>
             <td>{{this.visit_date}}</td>
             <td>{{this.visit_cost}}</td>
-            <td><button onclick="deletePet({{this.visit_id}})">Delete</button></td> //###########
+            <td><button onclick="deleteVisit({{this.visit_id}})">Delete</button></td> 
         </tr>
         {{/each}}
     </tbody>
 </table>
 
-<script src="./js/delete_pet.js"></script>
+<script src="./js/delete_visit.js"></script>
 
 
 {{!-- Form to add a record to the table --}}
-<h2>Adding Pet Form</h2>
-<form id="add-pet-form-ajax">
-    <label for="input-pet-name">Pet Name:</label>
-    <input type="text" name="input-pet-name" id="input-pet-name">
-
-    <label for="input-parent-id">Parent ID: </label>
-    {{!-- <input type="number" name="input-parent-id" id="input-parent-id"> --}}
-    <select name="input-parent-id" id="input-parent-id">
+<h2>Adding Visit Form</h2>
+<form id="add-visit-form-ajax">
+    <label for="input-pet-id">Pet ID: </label>
+    <select name="input-pet-id" id="input-pet-id">
         <option>Select</option>
-        {{#each parents_data}}
-        <option value="{{this.parent_id}}">{{this.parent_id}}</option>
+        {{#each pets_data}}
+        <option value="{{this.pet_id}}">{{this.pet_id}}</option>
         {{/each}}
     </select>
 
-    <label for="input-breed">Breed: </label>
-    <input type="text" name="input-breed" id="input-breed">
+    <label for="input-visit-date">Visit Date: </label>
+    <input type="date" name="input-visit-date" id="input-visit-date">
 
-    <input type="submit" value="Add Pet">
+    <label for="input-visit-cost">Cost: </label>
+    <input type="number" name="input-visit-cost" id="input-visit-cost">
+
+    <input type="submit" value="Add Visit">
 </form>
 
-<script src="./js/add_pet.js"></script>
+<script src="./js/add_visit.js"></script>
 
 
-<h2>Updating Pet Form</h2>
-<form id="update-pet-form-ajax">
+<h2>Updating Visit Form</h2>
+<form id="update-visit-form-ajax">
 
-    <label for="input-pet-id">Pet ID [Pet Name]:</label>
-    <select name="input-pet-id" id="select-pet-id">
+    <label for="select-visit-id">Visit ID:</label>
+    <select name="select-visit-id" id="select-visit-id">
         <option>Select</option>
-        {{#each data}}
-        <option value="{{this.pet_id}}">{{this.pet_id}} [{{this.pet_name}}]</option>
-        {{/each}}
-    </select>
-    {{!-- <label for="input-pet-name">Pet Name:</label>
-    <input type="text" name="input-pet-name" id="display-pet-name" value="{{this.pet_name}}"> --}}
-
-    <label for="input-parent-id">Parent ID: </label>
-    <select name="input-parent-id" id="update-parent-id">
-        <option>Select</option>
-        {{#each parents_data}}
-        <option value="{{this.parent_id}}">{{this.parent_id}}</option>
+        {{#each visits_data}}
+        <option value="{{this.visit_id}}">{{this.visit_id}}</option>
         {{/each}}
     </select>
 
-    <label for="input-breed">Breed:</label>
-    <input type="text" name="input-breed" id="update-breed">
-    <input type="submit" value="Update Pet">
+    <label for="update-pet-id">Pet ID: </label>
+    <select name="update-pet-id" id="update-pet-id">
+        <option>Select</option>
+        {{#each pets_data}}
+        <option value="{{this.pet_id}}">{{this.pet_id}}</option>
+        {{/each}}
+    </select>
+
+    <label for="update-visit-date">Visit Date: </label>
+    <input type="date" name="update-visit-date" id="update-visit-date">
+
+    <label for="update-visit-cost">Cost: </label>
+    <input type="number" name="update-visit-cost" id="update-visit-cost">
+    <input type="submit" value="Update Visit">
 
 </form>
 
-<script src="./js/update_pet.js"></script>
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/update_visit.js"></script>

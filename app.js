@@ -244,6 +244,43 @@ app.post('/add-pet-invoice-ajax', function (req, res) {
     })
 });
 
+app.post('/add-visit-ajax', function (req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let visits_data = req.body;
+
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Visits (pet_id, visit_date, visit_cost) VALUES ('${visits_data.pet_id}', '${visits_data.visit_date}', '${visits_data.visit_cost}')`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM Visits;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
 app.delete('/delete-pet-ajax', function (req, res, next) {
     let data = req.body;
     let petID = parseInt(data.pet_id);
@@ -271,6 +308,26 @@ app.delete('/delete-parent-ajax', function (req, res, next) {
 
     // Run the 1st query
     db.pool.query(deleteParent, [parentID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            res.sendStatus(204);
+        }
+
+    })
+});
+
+app.delete('/delete-visit-ajax', function (req, res, next) {
+    let data = req.body;
+    let visitID = parseInt(data.visit_id);
+    let deleteVisit = `DELETE FROM Visits WHERE visit_id = ?`;
+
+    // Run the 1st query
+    db.pool.query(deleteVisit, [visitID], function (error, rows, fields) {
         if (error) {
 
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
