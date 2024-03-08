@@ -33,19 +33,19 @@
 <script src="./js/delete_service_during_visit.js"></script>
 
 {{!-- Form to add a record to the table --}}
-<h2>Adding Services During Visit Form</h2>
+
 <form id="add-services-during-visit-form-ajax">
-    <label for="input-visit-id">Visit ID: </label>
+    <h2>Adding Services During Visit Form</h2>
+
     <select name="input-visit-id" id="input-visit-id">
-        <option>Select</option>
+        <option>Visit ID</option>
         {{#each visits_data}}
         <option value="{{this.visit_id}}">{{this.visit_id}}</option>
         {{/each}}
     </select>
 
-    <label for="input-service-id">Service ID: </label>
     <select name="input-service-id" id="input-service-id">
-        <option>Select</option>
+        <option>Service ID</option>
         {{#each services_data}}
         <option value="{{this.service_id}}">{{this.service_id}}</option>
         {{/each}}
@@ -57,28 +57,27 @@
 <script src="./js/add_service_during_visit.js"></script>
 
 
-<h2>Updating Services During Visit Form</h2>
-<form id="update-service-during-visit-form-ajax">
 
-    <label for="select-service-during-visit-id">Service During Visit ID:</label>
+<form id="update-service-during-visit-form-ajax">
+    <h2>Updating Services During Visit Form</h2>
+
     <select name="select-service-during-visit-id" id="select-service-during-visit-id">
-        <option>Select</option>
+        <option>Service During Visit ID</option>
         {{#each services_during_visit_data}}
         <option value="{{this.service_during_visit_id}}">{{this.service_during_visit_id}}</option>
         {{/each}}
     </select>
 
-    <label for="update-visit-id">Visit ID:</label>
     <select name="update-visit-id" id="update-visit-id">
-        <option>Select</option>
+        <option>Visit ID</option>
         {{#each visits_data}}
         <option value="{{this.visit_id}}">{{this.visit_id}}</option>
         {{/each}}
     </select>
 
-    <label for="update-service-id">Service ID:</label>
+
     <select name="update-service-id" id="update-service-id">
-        <option>Select</option>
+        <option>Service ID</option>
         {{#each services_data}}
         <option value="{{this.service_id}}">{{this.service_id}}</option>
         {{/each}}

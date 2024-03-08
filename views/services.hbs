@@ -35,17 +35,15 @@
 <script src="./js/delete_service.js"></script>
 
 
-<h2>Adding Service Form</h2>
+
 <form id="add-service-form-ajax">
+    <h2>Adding Service Form</h2>
 
-    <label for="input-service-name">Service Name: </label>
-    <input type="text" name="input-service-name" id="input-service-name">
+    <input type="text" name="input-service-name" id="input-service-name" placeholder="Service Name">
 
-    <label for="input-service-cost">Service Cost: </label>
-    <input type="number" name="input-service-cost" id="input-service-cost">
+    <input type="number" name="input-service-cost" id="input-service-cost" placeholder="Service Cost">
 
-    <label for="input-service-description">Service Description: </label>
-    <input type="text" name="input-service-description" id="input-service-description">
+    <input type="text" name="input-service-description" id="input-service-description" placeholder="Service Description">
 
     <input type="submit" value="Add Service">
 </form>
@@ -53,25 +51,26 @@
 <script src="./js/add_service.js"></script>
 
 
-<h2>Updating Service Form</h2>
-<form id="update-service-form-ajax">
 
-    <label for="select-service-id">Service ID:</label>
+<form id="update-service-form-ajax">
+    <h2>Updating Service Form</h2>
+
+
     <select name="select-service-id" id="select-service-id">
-        <option>Select</option>
+        <option>Service ID</option>
         {{#each services_data}}
         <option value="{{this.service_id}}">{{this.service_id}}</option>
         {{/each}}
     </select>
 
-    <label for="update-service-name">Service Name: </label>
-    <input type="text" name="update-service-name" id="update-service-name">
 
-    <label for="update-service-cost">Service Cost: </label>
-    <input type="number" name="update-service-cost" id="update-service-cost">
+    <input type="text" name="update-service-name" id="update-service-name" placeholder="Service Name">
 
-    <label for="update-service-description">Service Description: </label>
-    <input type="text" name="update-service-description" id="update-service-description">
+
+    <input type="number" name="update-service-cost" id="update-service-cost" placeholder="Service Cost">
+
+
+    <input type="text" name="update-service-description" id="update-service-description" placeholder="Service Description">
 
     <input type="submit" value="Update Service">
 

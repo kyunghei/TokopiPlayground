@@ -35,21 +35,20 @@
 
 
 {{!-- Form to add a record to the table --}}
-<h2>Adding Visit Form</h2>
+
 <form id="add-visit-form-ajax">
-    <label for="input-pet-id">Pet ID: </label>
+    <h2>Adding Visit Form</h2>
+
     <select name="input-pet-id" id="input-pet-id">
-        <option>Select</option>
+        <option>Pet ID</option>
         {{#each pets_data}}
         <option value="{{this.pet_id}}">{{this.pet_id}}</option>
         {{/each}}
     </select>
 
-    <label for="input-visit-date">Visit Date: </label>
-    <input type="date" name="input-visit-date" id="input-visit-date">
+    <input type="date" name="input-visit-date" id="input-visit-date" placeholder="Visit Date">
 
-    <label for="input-visit-cost">Cost: </label>
-    <input type="number" name="input-visit-cost" id="input-visit-cost">
+    <input type="number" name="input-visit-cost" id="input-visit-cost" placeholder="Visit Cost">
 
     <input type="submit" value="Add Visit">
 </form>
@@ -57,30 +56,27 @@
 <script src="./js/add_visit.js"></script>
 
 
-<h2>Updating Visit Form</h2>
-<form id="update-visit-form-ajax">
 
-    <label for="select-visit-id">Visit ID:</label>
+<form id="update-visit-form-ajax">
+    <h2>Updating Visit Form</h2>
     <select name="select-visit-id" id="select-visit-id">
-        <option>Select</option>
+        <option>Visit ID</option>
         {{#each visits_data}}
         <option value="{{this.visit_id}}">{{this.visit_id}}</option>
         {{/each}}
     </select>
 
-    <label for="update-pet-id">Pet ID: </label>
     <select name="update-pet-id" id="update-pet-id">
-        <option>Select</option>
+        <option>Pet ID</option>
         {{#each pets_data}}
         <option value="{{this.pet_id}}">{{this.pet_id}}</option>
         {{/each}}
     </select>
 
-    <label for="update-visit-date">Visit Date: </label>
-    <input type="date" name="update-visit-date" id="update-visit-date">
 
-    <label for="update-visit-cost">Cost: </label>
-    <input type="number" name="update-visit-cost" id="update-visit-cost">
+    <input type="date" name="update-visit-date" id="update-visit-date" placeholder="Visit Date">
+
+    <input type="number" name="update-visit-cost" id="update-visit-cost" placeholder="Visit Cost">
     <input type="submit" value="Update Visit">
 
 </form>
