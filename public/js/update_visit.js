@@ -34,11 +34,10 @@ updateVisitForm.addEventListener("submit", function (e) {
         visit_date: visitDateValue,
         visit_cost:visitCostValue,
     }
-    //console.log(`PET:${data.pet_id} PARENT:${data.parent_id} BREED: ${data.breed}`);
 
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "/put-pet-ajax", true);
+    xhttp.open("PUT", "/put-visit-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     // Tell our AJAX request how to resolve
@@ -46,7 +45,7 @@ updateVisitForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            updateRow(xhttp.response, petIdValue);
+            updateRow(xhttp.response, visitIdValue);
 
             // Clear the input fields for another transaction
             selectVisitId.value = 'Select';
@@ -80,14 +79,17 @@ function updateRow(data, visitID){
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
             // Get td of parent_id value
-            let visit_id_td = updateRowIndex.getElementsByTagName("td")[2];
+            let pet_id_td = updateRowIndex.getElementsByTagName("td")[1];
+
+            let visit_date_td = updateRowIndex.getElementsByTagName("td")[2];
 
             // Get td of breed value
-            let breed_td = updateRowIndex.getElementsByTagName("td")[3];
+            let visit_cost_td = updateRowIndex.getElementsByTagName("td")[3];
 
             // Reassign homeworld to our value we updated to
-            parent_id_td.innerHTML = parsedData[0].parent_id; 
-            breed_td.innerHTML = parsedData[0].breed; 
+            pet_id_td.innerHTML = parsedData[0].pet_id; 
+            visit_date_td.innerHTML = parsedData[0].visit_date; 
+            visit_cost_td.innerHTML = parsedData[0].visit_cost; 
        }
     }
 }

@@ -22,9 +22,9 @@ updatePetForm.addEventListener("submit", function (e) {
     // currently the database table for bsg_people does not allow updating values to NULL
     // so we must abort if being bassed NULL for homeworld
 
-    if (isNaN(parentIdValue)) {
-        return;
-    }
+    // if (isNaN(parentIdValue)) {
+    //     return;
+    // }
 
 
     // Put our data we want to send in a javascript object

@@ -90,6 +90,20 @@ app.get('/pet_invoices', function (req, res) {
 }
 );
 
+app.get('/visits', function (req, res) {
+    let query1 = "SELECT * FROM Visits;";               // Define our query
+    let query2 = "SELECT * FROM Pets;";
+    db.pool.query(query1, function (error, rows, fields) {    // Execute the query
+        let visits = rows;
+
+        db.pool.query(query2, function (error, rows, fields) {    // Execute the query
+            let pets = rows;
+            return res.render('visits', {visits_data: visits, pets_data: pets });                  // Render the index.hbs file, and also send the renderer
+        });
+    });                                                      // an object where 'data' is equal to the 'rows' we  
+}
+);   
+
 app.post('/add-pet-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -531,6 +545,71 @@ app.put('/put-invoice-ajax', function (req, res, next) {
     })
 });
 
+app.put('/put-visit-ajax', function (req, res, next) {
+    let data = req.body;
+
+    let visit_id = parseInt(data.visit_id);
+    let pet_id = parseInt(data.pet_id);
+    let visit_date = data.visit_date;
+    let visit_cost = parseInt(data.visit_cost);
+
+
+    let queryUpdatePetId = `UPDATE Visits SET pet_id = ? WHERE Visits.visit_id = ?`;
+    let queryUpdateVisitDate = `UPDATE Visits SET visit_date = ? WHERE Visits.visit_id = ?`;
+    let queryUpdateVisitCost = `UPDATE Visits SET visit_cost = ? WHERE Visits.visit_id = ?`;
+    let selectVisit = `SELECT * FROM Visits WHERE visit_id = ?`
+
+    // Run the 1st query
+    db.pool.query(queryUpdatePetId, [pet_id, visit_id], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            db.pool.query(queryUpdateVisitDate, [visit_date, visit_id], function (error, rows, fields) {
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                // If there was no error, we run our second query and return that data so we can use it to update the people's
+                // table on the front-end
+                else {
+                    // Run the second query
+                    db.pool.query(queryUpdateVisitCost, [visit_cost, visit_id], function (error, rows, fields) {
+                        if (error) {
+
+                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                            console.log(error);
+                            res.sendStatus(400);
+                        }
+
+                        // If there was no error, we run our second query and return that data so we can use it to update the people's
+                        // table on the front-end
+                        else {
+                            // Run the second query
+                            db.pool.query(selectVisit, [visit_id], function (error, rows, fields) {
+
+                                if (error) {
+                                    console.log(error);
+                                    res.sendStatus(400);
+                                } else {
+                                    res.send(rows);
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    })
+
+
+});
 
 //with handlebar
 app.get('/', function (req, res) {
