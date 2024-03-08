@@ -76,6 +76,7 @@ addRowToTable = (data) => {
     petIdCell.innerText = newRow.pet_id;
     invoiceIdCell.innerText = newRow.invoice_id;
 
+
     // deleteBtn = document.createElement("button");
     // deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
     // deleteBtn.onclick = function () {
@@ -83,11 +84,18 @@ addRowToTable = (data) => {
     // };
     // deleteCell.appendChild(deleteBtn);
 
+    deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = "Delete";
+    deleteBtn.onclick = function () {
+        deletePet(newRow.service_id);
+    };
+    deleteCell.appendChild(deleteBtn);
+
     // Add the cells to the row 
     row.appendChild(petInvoiceIdCell);
     row.appendChild(petIdCell);
     row.appendChild(invoiceIdCell);
-    // row.appendChild(deleteCell);
+    row.appendChild(deleteCell);
 
     // Add a custom row attribute so the deleteRow function can find a newly added row
     row.setAttribute('data-value', newRow.pet_invoice_id);
