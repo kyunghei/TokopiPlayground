@@ -10,7 +10,7 @@
 //express
 var express = require('express');   // We are using the express library for the web server
 var app = express();            // We need to instantiate an express object to interact with the server in our code
-PORT = 6224;                 // Set a port number at the top so it's easy to change in the future
+PORT = 6225;                 // Set a port number at the top so it's easy to change in the future
 
 // configure express to handle JSON and Form Data
 app.use(express.json())
@@ -103,6 +103,16 @@ app.get('/visits', function (req, res) {
     });                                                      // an object where 'data' is equal to the 'rows' we  
 }
 );   
+
+app.get('/services', function (req, res) {
+    let query1 = "SELECT * FROM Services;";               // Define our query
+
+    db.pool.query(query1, function (error, rows, fields) {    // Execute the query
+        let services_rows = rows;
+        res.render('services', { services_data: services_rows });                  // Render the index.hbs file, and also send the renderer
+    })                                                      // an object where 'data' is equal to the 'rows' we
+}
+); 
 
 app.post('/add-pet-ajax', function (req, res) {
     // Capture the incoming data and parse it back to a JS object
@@ -295,6 +305,43 @@ app.post('/add-visit-ajax', function (req, res) {
     })
 });
 
+app.post('/add-service-ajax', function (req, res) {
+    // Capture the incoming data and parse it back to a JS object
+    let services_data = req.body;
+
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Services (service_name, service_cost, service_description) VALUES ('${services_data.service_name}', '${services_data.service_cost}', '${services_data.service_description}')`;
+    db.pool.query(query1, function (error, rows, fields) {
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else {
+            // If there was no error, perform a SELECT * on bsg_people
+            query2 = `SELECT * FROM Services;`;
+            db.pool.query(query2, function (error, rows, fields) {
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
 app.delete('/delete-pet-ajax', function (req, res, next) {
     let data = req.body;
     let petID = parseInt(data.pet_id);
@@ -355,6 +402,25 @@ app.delete('/delete-visit-ajax', function (req, res, next) {
     })
 });
 
+app.delete('/delete-service-ajax', function (req, res, next) {
+    let data = req.body;
+    let serviceID = parseInt(data.service_id);
+    let deleteService = `DELETE FROM Services WHERE service_id = ?`;
+
+    // Run the 1st query
+    db.pool.query(deleteService, [serviceID], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            res.sendStatus(204);
+        }
+
+    })
+});
 
 app.put('/put-pet-ajax', function (req, res, next) {
     let data = req.body;
@@ -608,6 +674,71 @@ app.put('/put-visit-ajax', function (req, res, next) {
         }
     })
 
+
+});
+
+app.put('/put-service-ajax', function (req, res, next) {
+    let data = req.body;
+
+    let service_id = parseInt(data.service_id);
+    let service_name = data.service_name;
+    let service_cost = parseInt(data.service_cost);
+    let service_description = data.service_description;
+
+
+    let queryUpdateServiceName = `UPDATE Services SET service_name = ? WHERE Services.service_id = ?`;
+    let queryUpdateServiceCost = `UPDATE Services SET service_cost = ? WHERE Services.service_id = ?`;
+    let queryUpdateServiceDescription = `UPDATE Services SET service_description = ? WHERE Services.service_id = ?`;
+    let selectService = `SELECT * FROM Services WHERE service_id = ?`
+
+    // Run the 1st query
+    db.pool.query(queryUpdateServiceName, [service_name, service_id], function (error, rows, fields) {
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else {
+            db.pool.query(queryUpdateServiceCost, [service_cost, service_id], function (error, rows, fields) {
+                if (error) {
+
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                // If there was no error, we run our second query and return that data so we can use it to update the people's
+                // table on the front-end
+                else {
+                    // Run the second query
+                    db.pool.query(queryUpdateServiceDescription, [service_description, service_id], function (error, rows, fields) {
+                        if (error) {
+
+                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                            console.log(error);
+                            res.sendStatus(400);
+                        }
+
+                        // If there was no error, we run our second query and return that data so we can use it to update the people's
+                        // table on the front-end
+                        else {
+                            // Run the second query
+                            db.pool.query(selectService, [service_id], function (error, rows, fields) {
+
+                                if (error) {
+                                    console.log(error);
+                                    res.sendStatus(400);
+                                } else {
+                                    res.send(rows);
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    })
 
 });
 

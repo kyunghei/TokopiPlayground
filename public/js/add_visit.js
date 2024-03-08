@@ -17,7 +17,6 @@ addVisitForm.addEventListener("submit", function (e) {
     let VisitDateValue = inputVisitDate.value;
     let VisitCostValue = inputVisitCost.value;
 
-    console.log(`data obtained: ${PetIdValue} ${VisitDateValue} ${VisitCostValue}`)
 
     // Put our data we want to send in a javascript object
     let data = {
@@ -66,7 +65,6 @@ addRowToTable = (data) => {
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
-    console.log(parsedData);
     let newRow = parsedData[parsedData.length - 1]
 
     // Create a row and 4 cells

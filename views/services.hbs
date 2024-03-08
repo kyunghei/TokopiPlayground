@@ -1,0 +1,80 @@
+
+<table id="services-table">
+    <caption>Services</caption>
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each services_data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody id="services-table-body">
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each services_data}}
+        <tr data-value="{{this.service_id}}">
+            <td>{{this.service_id}}</td>
+            <td>{{this.service_name}}</td>
+            <td>{{this.service_cost}}</td>
+            <td>{{this.service_description}}</td>
+            <td><button onclick="deleteService({{this.service_id}})">Delete</button></td> 
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+
+<script src="./js/delete_service.js"></script>
+
+
+<h2>Adding Service Form</h2>
+<form id="add-service-form-ajax">
+
+    <label for="input-service-name">Service Name: </label>
+    <input type="text" name="input-service-name" id="input-service-name">
+
+    <label for="input-service-cost">Service Cost: </label>
+    <input type="number" name="input-service-cost" id="input-service-cost">
+
+    <label for="input-service-description">Service Description: </label>
+    <input type="text" name="input-service-description" id="input-service-description">
+
+    <input type="submit" value="Add Service">
+</form>
+
+<script src="./js/add_service.js"></script>
+
+
+<h2>Updating Service Form</h2>
+<form id="update-service-form-ajax">
+
+    <label for="select-service-id">Service ID:</label>
+    <select name="select-service-id" id="select-service-id">
+        <option>Select</option>
+        {{#each services_data}}
+        <option value="{{this.service_id}}">{{this.service_id}}</option>
+        {{/each}}
+    </select>
+
+    <label for="update-service-name">Service Name: </label>
+    <input type="text" name="update-service-name" id="update-service-name">
+
+    <label for="update-service-cost">Service Cost: </label>
+    <input type="number" name="update-service-cost" id="update-service-cost">
+
+    <label for="update-service-description">Service Description: </label>
+    <input type="text" name="update-service-description" id="update-service-description">
+
+    <input type="submit" value="Update Service">
+
+</form>
+
+<script src="./js/update_service.js"></script>
