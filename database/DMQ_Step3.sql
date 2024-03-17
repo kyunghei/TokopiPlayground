@@ -1,3 +1,9 @@
+--  Citation for the following function:
+-- Date: 02/15/2024
+-- Adapted from bsg_sample_data_manipulation_queries.sql
+-- Source URL: https://canvas.oregonstate.edu/courses/1946034/files/102219622?wrap=1
+
+
 /* QUERIES FOR PARENT HTML */
 -- Get all parents
 SELECT parent_id, parent_name, parent_number, parent_email FROM Parents;
