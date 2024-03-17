@@ -6,18 +6,17 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each invoices_data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>Invoice ID</th>
+            <th>Parent ID</th>
+            <th>Invoice Date</th>
+            <th>Invoice Total ($)</th>
         </tr>
     </thead>
 
     {{!-- Body section --}}
     <tbody id="invoices-table-body">
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{!-- For each row, print the invoice id, parent id, invoice date, and invoice total, in order --}}
         {{#each invoices_data}}
         <tr data-value="{{this.invoice_id}}">
             <td>{{this.invoice_id}}</td>
@@ -29,8 +28,9 @@
     </tbody>
 </table>
 
-{{!-- Form to add a record to the table --}}
+
 <div class="forms">
+    {{!-- Form to add an invoice to the table --}}
     <form id="add-invoice-form-ajax">
         <h2>Add New Invoice</h2>
         <select name="input-parent-id" id="input-parent-id" required>
@@ -51,7 +51,7 @@
 
     <script src="./js/add_invoice.js"></script>
 
-
+    {{!-- Form to update an invoice on the table --}}
     <form id="update-invoice-form-ajax">
         <h2>Update Invoice Data</h2>
 

@@ -6,18 +6,16 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each services_during_visit_data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>Service During Visit ID</th>
+            <th>Visit ID</th>
+            <th>Service ID</th>
         </tr>
     </thead>
 
     {{!-- Body section --}}
     <tbody id="services-during-visit-table-body">
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{!-- For each row, print the service during visit id, visit id, and service id in order --}}
         {{#each services_during_visit_data}}
         <tr data-value="{{this.service_during_visit_id}}">
             <td>{{this.service_during_visit_id}}</td>
@@ -32,11 +30,10 @@
 
 <script src="./js/delete_service_during_visit.js"></script>
 
-{{!-- Form to add a record to the table --}}
 <div class="forms">
+    {{!-- Form to add a service during vist record to the table --}}
     <form id="add-services-during-visit-form-ajax">
         <h2>Add New Service During Visit</h2>
-
         <select name="input-visit-id" id="input-visit-id">
             <option>Visit ID</option>
             {{#each visits_data}}
@@ -54,14 +51,11 @@
         <input type="submit" value="Add Services During Visit">
         <br>
     </form>
-
     <script src="./js/add_service_during_visit.js"></script>
 
-
-
+    {{!-- Form to update a service during vist record from the table --}}
     <form id="update-service-during-visit-form-ajax">
         <h2>Update Service During Visit Data</h2>
-
         <select name="select-service-during-visit-id" id="select-service-during-visit-id">
             <option>Service During Visit ID</option>
             {{#each services_during_visit_data}}
@@ -76,7 +70,6 @@
             {{/each}}
         </select>
         <br>
-
         <select name="update-service-id" id="update-service-id">
             <option>Service ID</option>
             {{#each services_data}}
@@ -84,7 +77,6 @@
             {{/each}}
         </select>
         <br>
-
         <input type="submit" value="Update Service During Visit">
         <br>
     </form>

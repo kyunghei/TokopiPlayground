@@ -6,18 +6,17 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each visits_data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>Visit ID</th>
+            <th>Pet ID</th>
+            <th>Visit Date</th>
+            <th>Visit Cost ($)</th>
         </tr>
     </thead>
 
     {{!-- Body section --}}
     <tbody id="visits-table-body">
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{!-- For each row, print the visit id, pet id, visit date, and visit cost in order --}}
         {{#each visits_data}}
         <tr data-value="{{this.visit_id}}">
             <td>{{this.visit_id}}</td>
@@ -33,11 +32,10 @@
 <script src="./js/delete_visit.js"></script>
 
 
-{{!-- Form to add a record to the table --}}
 <div class="forms">
+    {{!-- Form to add a visit record to the table --}}
     <form id="add-visit-form-ajax">
         <h2>Add New Visit</h2>
-
         <select name="input-pet-id" id="input-pet-id">
             <option>Pet ID</option>
             {{#each pets_data}}
@@ -55,8 +53,7 @@
 
     <script src="./js/add_visit.js"></script>
 
-
-
+    {{!-- Form to update a visit record from the table --}}
     <form id="update-visit-form-ajax">
         <h2>Update Visit Data</h2>
         <select name="select-visit-id" id="select-visit-id">

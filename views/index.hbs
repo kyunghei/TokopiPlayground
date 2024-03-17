@@ -6,18 +6,17 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>Pet ID</th>
+            <th>Pet Name</th>
+            <th>Parent ID</th>
+            <th>Breed</th>
         </tr>
     </thead>
 
     {{!-- Body section --}}
     <tbody id="pets-table-body">
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{!-- For each row, print the pet id, pet name, parent id, and breed in order --}}
         {{#each data}}
         <tr data-value="{{this.pet_id}}">
             <td>{{this.pet_id}}</td>
@@ -33,15 +32,12 @@
 <script src="./js/delete_pet.js"></script>
 
 
-{{!-- Form to add a record to the table --}}
 <div class="forms">
+    {{!-- Form to add a pet record to the table --}}
     <form id="add-pet-form-ajax">
         <h2>Add New Pet</h2>
-        {{!-- <label for="input-pet-name">Pet Name:</label> --}}
         <input type="text" name="input-pet-name" id="input-pet-name" placeholder="Pet Name" required>
         <br>
-        {{!-- <label for="input-parent-id">Parent ID: </label> --}}
-        {{!-- <input type="number" name="input-parent-id" id="input-parent-id"> --}}
         <select name="input-parent-id" id="input-parent-id" required>
             <option value="">Parent ID</option>
             {{#each parents_data}}
@@ -49,7 +45,6 @@
             {{/each}}
         </select>
         <br>
-        {{!-- <label for="input-breed">Breed: </label> --}}
         <input type="text" name="input-breed" id="input-breed" placeholder="Breed">
         <br>
         <input type="submit" value="Add Pet">
@@ -58,23 +53,19 @@
 
     <script src="./js/add_pet.js"></script>
 
-
+    {{!-- Form to update a pet record to the table --}}
     <form id="update-pet-form-ajax">
         <h2>Update Pet Data</h2>
 
-        {{!-- <label for="input-pet-id">Pet ID [Pet Name]:</label> --}}
         <select name="input-pet-id" id="select-pet-id" required>
             <option value="">Pet ID [Pet Name]</option>
             {{#each data}}
             <option value="{{this.pet_id}}">{{this.pet_id}} [{{this.pet_name}}]</option>
             {{/each}}
         </select>
-        {{!-- <label for="input-pet-name">Pet Name:</label>
-        <input type="text" name="input-pet-name" id="display-pet-name" value="{{this.pet_name}}"> --}}
         <br>
         <input type="text" name="input-pet-name" id="update-pet-name" placeholder="Pet Name">
         <br>
-        {{!-- <label for="input-parent-id">Parent ID: </label> --}}
         <select name="input-parent-id" id="update-parent-id">
             <option>Parent ID</option>
             {{#each parents_data}}
@@ -82,7 +73,6 @@
             {{/each}}
         </select>
         <br>
-        {{!-- <label for="input-breed">Breed:</label> --}}
         <input type="text" name="input-breed" id="update-breed" placeholder="Breed">
         <br>
         <input type="submit" value="Update Pet">

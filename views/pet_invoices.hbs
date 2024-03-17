@@ -6,18 +6,16 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{#each pet_invoices_data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
+            <th>Pet Invoice ID</th>
+            <th>Pet ID</th>
+            <th>Invoice ID</th>
         </tr>
     </thead>
 
     {{!-- Body section --}}
     <tbody id="pet-invoices-table-body">
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{!-- For each row, print the pet invoice id, pet id, and invoice id --}}
         {{#each pet_invoices_data}}
         <tr data-value="{{this.pet_invoice_id}}">
             <td>{{this.pet_invoice_id}}</td>
@@ -33,6 +31,7 @@
 
 {{!-- Form to add a record to the table --}}
 <div class="forms">
+    {{!-- Form to add a pet invoice record to the table --}}
     <form id="add-pet-invoice-form-ajax">
         <h2>Add New Pet Invoice</h2>
         <select name="input-pet-id" id="input-pet-id" required>
@@ -55,7 +54,7 @@
 
     <script src="./js/add_pet_invoice.js"></script>
 
-
+    {{!-- Form to update a pet invoice record to the table --}}
     <form id="update-pet-invoice-form-ajax">
         <h2>Update Pet Invoice</h2>
         <select name="select-pet-invoice-id" id="select-pet-invoice-id">
