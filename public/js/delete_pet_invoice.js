@@ -1,6 +1,6 @@
 function deletePetInvoice(petInvoiceID) {
     // Create a delete confirmation dialog
-    if (confirm(`Delete Pet Invoice ID ${petInvoiceID}?`)) {
+    if (confirm(`Delete pet invoice with ID ${petInvoiceID}?`)) {
         // Put our data we want to send in a javascript object
         let data = {
             pet_invoice_id: petInvoiceID
@@ -14,7 +14,7 @@ function deletePetInvoice(petInvoiceID) {
         // Tell our AJAX request how to resolve
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == 4 && xhttp.status == 204) {
-                // Add the new data to the table
+                // Delete data from the table
                 deleteRow(petInvoiceID);
 
             }
@@ -38,7 +38,6 @@ function deleteRow(petInvoiceID) {
     for (let i = 0, row; row = table.rows[i]; i++) {
         //iterate through rows
         //rows would be accessed using the "row" variable assigned in the for loop
-        //console.log(table.rows[i].getAttribute("data-value"));
         if (table.rows[i].getAttribute("data-value") == petInvoiceID) {
             table.deleteRow(i);
             break;
