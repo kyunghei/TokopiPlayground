@@ -6,7 +6,7 @@
 
 /* QUERIES FOR PARENT HTML */
 -- Get all parents
-SELECT parent_id, parent_name, parent_number, parent_email FROM Parents;
+SELECT * FROM Parents;
 
 -- Add a new parent with colon : character used to denote the variables that will have data from the backend programming language
 INSERT INTO Parents (parent_name, parent_number, parent_email)
@@ -67,7 +67,7 @@ VALUES (:pet_id_from_dropdown_Input, :visitdateInput, :visitcostInput);
 
 /* QUERIES FOR SERVICES */
 -- Get all services
-SELECT service_id, service_name, service_cost, service_description FROM Services;
+SELECT * FROM Services;
 
 -- Add a new service with colon : character used to denote the variables that will have data from the backend programming language
 INSERT INTO Services (service_name, service_cost, service_description) 
