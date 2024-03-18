@@ -41,9 +41,9 @@ updatePetInvoiceForm.addEventListener("submit", function (e) {
             // update new data to the table
             updateRow(xhttp.response, petInvoiceIdValue);
 
-            selectPetInvoiceId.value = 'Pet Invoice ID';
-            updatePetId.value = 'Pet ID';
-            updateInvoiceId.value = 'Invoice ID';
+            selectPetInvoiceId.value = '';
+            updatePetId.value = '';
+            updateInvoiceId.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")

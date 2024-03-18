@@ -36,8 +36,8 @@ addPetInvoiceForm.addEventListener("submit", function (e) {
 
             addRowToTable(xhttp.response);
 
-            inputPetId.value = 'Pet ID';
-            inputInvoiceId.value = 'Invoice ID';
+            inputPetId.value = '';
+            inputInvoiceId.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")

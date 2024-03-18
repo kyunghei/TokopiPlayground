@@ -87,3 +87,7 @@ addRowToTable = (data) => {
 
 }
 
+function formatDate(currentDate){
+    return currentDate.toISOString().slice(0,10);
+}
+

@@ -44,9 +44,9 @@ updatePetForm.addEventListener("submit", function (e) {
             // update new data to the table
             updateRow(xhttp.response, petIdValue);
 
-            inputPetId.value = 'Pet ID [Pet Name]';
+            inputPetId.value = '';
             inputPetName.value = "";
-            inputParentId.value = 'Parent ID';
+            inputParentId.value = '';
             inputBreed.value = '';
 
         }

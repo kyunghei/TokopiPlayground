@@ -43,8 +43,8 @@ updateInvoiceForm.addEventListener("submit", function (e) {
             // update new data to the table
             updateRow(xhttp.response, invoiceIdValue);
 
-            inputInvoiceId.value = 'Invoice ID';
-            inputParentId.value = 'Parent ID';
+            inputInvoiceId.value = '';
+            inputParentId.value = '';
             inputInvoiceDate.value = '';
             inputInvoiceTotal.value = '';
 
