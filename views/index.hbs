@@ -40,7 +40,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <h2>Add New Pet</h2>
         <input type="text" name="input-pet-name" id="input-pet-name" placeholder="Pet Name" required>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
+        {{!-- display dropdown by iterating through each row --}}
         <select name="input-parent-id" id="input-parent-id" required>
             <option value="">Parent [ID]</option>
             {{#each parents_data}}
@@ -59,7 +59,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a pet record to the table --}}
     <form id="update-pet-form-ajax">
         <h2>Update Pet Data</h2>
-        {{!-- display dropdown by iterating through each row  --}}
+        {{!-- display dropdown by iterating through each row --}}
         <select name="input-pet-id" id="select-pet-id" required>
             <option value="">Pet [ID]</option>
             {{#each data}}
@@ -67,11 +67,11 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
-        <input type="text" name="input-pet-name" id="update-pet-name" placeholder="Pet Name">
+        <input type="text" name="input-pet-name" id="update-pet-name" placeholder="Pet Name" required>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="input-parent-id" id="update-parent-id">
-            <option>Parent [ID]</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="input-parent-id" id="update-parent-id" required>
+            <option value="">Parent [ID]</option>
             {{#each parents_data}}
             <option value="{{this.parent_id}}">{{this.parent_name}} [{{this.parent_id}}]</option>
             {{/each}}
