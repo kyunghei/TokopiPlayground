@@ -164,7 +164,7 @@ app.post('/add-pet-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Pets
             query2 = `SELECT * FROM Pets;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -200,7 +200,7 @@ app.post('/add-parent-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Parents
             query2 = `SELECT * FROM Parents;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -237,7 +237,7 @@ app.post('/add-invoice-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Invoices
             query2 = `SELECT * FROM Invoices;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -274,7 +274,7 @@ app.post('/add-pet-invoice-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * Pet_Invoices
             query2 = `SELECT * FROM Pet_Invoices;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -312,7 +312,7 @@ app.post('/add-visit-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Visits
             query2 = `SELECT * FROM Visits;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -349,7 +349,7 @@ app.post('/add-service-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Services
             query2 = `SELECT * FROM Services;`;
             db.pool.query(query2, function (error, rows, fields) {
 
@@ -385,7 +385,7 @@ app.post('/add-services-during-visit-ajax', function (req, res) {
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on bsg_people
+            // If there was no error, perform a SELECT * on Services_During_Visits
             query2 = `SELECT * FROM Services_During_Visit;`;
             db.pool.query(query2, function (error, rows, fields) {
 
