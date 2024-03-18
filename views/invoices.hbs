@@ -22,7 +22,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <tr data-value="{{this.invoice_id}}">
             <td>{{this.invoice_id}}</td>
             <td>{{this.parent_id}}</td>
-            <td>{{this.invoice_date}}</td>
+            <td>{{formatDate this.invoice_date}}</td>
             <td>{{this.invoice_total}}</td>
         </tr>
         {{/each}}
