@@ -49,7 +49,7 @@ addPetInvoiceForm.addEventListener("submit", function (e) {
 })
 
 
-// Creates a single row when receiving an object as an argument 
+//Receives an object of data as an argument and creates a new row of values with the corresponding data
 addRowToTable = (data) => {
 
     // Find new data from query
