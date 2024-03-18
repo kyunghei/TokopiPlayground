@@ -1,6 +1,6 @@
 // Citation for the following function:
-// Date: 02/29/2024
-// Based on:
+// Date: 03/07/2024
+// Based on: CS 340 starter code 'Step 8 Dynamically Updating Data'
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 // Get the objects we need to modify
