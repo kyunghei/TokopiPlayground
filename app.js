@@ -28,7 +28,7 @@ app.set('view engine', '.hbs');
 var db = require('./database/db-connector')
 
 
-//helper function
+//formats mySQL date to YYYY-MM-DD format
 const Handlebars = require('handlebars');
 Handlebars.registerHelper('formatDate', function(currentDate){
     return currentDate.toISOString().slice(0,10);
@@ -156,9 +156,11 @@ app.get('/services_during_visit', function (req, res) {
     ROUTES TO ADD ROW
 */
 
-// Create and run query. If there is no error, then create and run the next query. If there is an error, send error status with error message.
+// Creates route to create and run INSERT INTO Pets query on the database
+// If there is no error, then create and run SELECT ALL query to send back updated data
+//If there is an error, send error status with error message
 app.post('/add-pet-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
+    // save and parse data 
     let data = req.body;
 
     query1 = `INSERT INTO Pets (pet_name, parent_id, breed) VALUES ('${data.pet_name}', '${data.parent_id}', '${data.breed}')`;
@@ -183,34 +185,31 @@ app.post('/add-pet-ajax', function (req, res) {
     })
 });
 
+// Creates route to create and run INSERT INTO Parents query on the database
+// If there is no error, then create and run SELECT ALL query to send back updated data
+//If there is an error, send error status with error message
 app.post('/add-parent-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
+    // save and parse data 
     let parents_data = req.body;
 
-    // Create the query and run it on the database
     query1 = `INSERT INTO Parents (parent_name, parent_number, parent_email) VALUES ('${parents_data.parent_name}', '${parents_data.parent_number}', '${parents_data.parent_email}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
-        // Check to see if there was an error
         if (error) {
 
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on Parents
+
             query2 = `SELECT * FROM Parents;`;
             db.pool.query(query2, function (error, rows, fields) {
 
-                // If there was an error on the second query, send a 400
                 if (error) {
 
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else {
                     parents_rows = rows;
                     res.send(parents_rows);
@@ -220,34 +219,29 @@ app.post('/add-parent-ajax', function (req, res) {
     })
 });
 
+// Creates route to create and run INSERT INTO Invoices query on the database
+// If there is no error, then create and run SELECT ALL query to send back updated data
+//If there is an error, send error status with error message
 app.post('/add-invoice-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
+    // save and parse data 
     let invoices_data = req.body;
 
-    // Create the query and run it on the database
     query1 = `INSERT INTO Invoices (parent_id, invoice_date, invoice_total) VALUES ('${invoices_data.parent_id}', '${invoices_data.invoice_date}', '${invoices_data.invoice_total}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
-        // Check to see if there was an error
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on Invoices
+
             query2 = `SELECT * FROM Invoices;`;
             db.pool.query(query2, function (error, rows, fields) {
 
-                // If there was an error on the second query, send a 400
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else {
                     invoices_rows = rows;
                     res.send(invoices_rows);
@@ -257,34 +251,29 @@ app.post('/add-invoice-ajax', function (req, res) {
     })
 });
 
+// Creates route to create and run INSERT INTO Pet_Invoices query on the database
+// If there is no error, then create and run SELECT ALL query to send back updated data
+//If there is an error, send error status with error message
 app.post('/add-pet-invoice-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
+    // save and parse data 
     let pet_invoices_data = req.body;
 
-    // Create the query and run it on the database
     query1 = `INSERT INTO Pet_Invoices (pet_id, invoice_id) VALUES ('${pet_invoices_data.pet_id}', '${pet_invoices_data.invoice_id}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
-        // Check to see if there was an error
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * Pet_Invoices
+
             query2 = `SELECT * FROM Pet_Invoices;`;
             db.pool.query(query2, function (error, rows, fields) {
 
-                // If there was an error on the second query, send a 400
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else {
                     pet_invoices_rows = rows;
                     res.send(pet_invoices_rows);
@@ -294,35 +283,28 @@ app.post('/add-pet-invoice-ajax', function (req, res) {
     })
 });
 
+// Creates route to create and run INSERT INTO Visits query on the database
+// If there is no error, then create and run SELECT ALL query to send back updated data
+//If there is an error, send error status with error message
 app.post('/add-visit-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
+    // save and parse data 
     let visits_data = req.body;
 
-
-    // Create the query and run it on the database
     query1 = `INSERT INTO Visits (pet_id, visit_date, visit_cost) VALUES ('${visits_data.pet_id}', '${visits_data.visit_date}', '${visits_data.visit_cost}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
-        // Check to see if there was an error
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on Visits
             query2 = `SELECT * FROM Visits;`;
             db.pool.query(query2, function (error, rows, fields) {
 
-                // If there was an error on the second query, send a 400
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else {
                     res.send(rows);
                 }
@@ -331,35 +313,30 @@ app.post('/add-visit-ajax', function (req, res) {
     })
 });
 
+// Creates route to create and run INSERT INTO Services query on the database
+// If there is no error, then create and run SELECT ALL query to send back updated data
+//If there is an error, send error status with error message
 app.post('/add-service-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
+    // save and parse data 
     let services_data = req.body;
 
-
-    // Create the query and run it on the database
     query1 = `INSERT INTO Services (service_name, service_cost, service_description) VALUES ('${services_data.service_name}', '${services_data.service_cost}', '${services_data.service_description}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
-        // Check to see if there was an error
         if (error) {
 
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on Services
             query2 = `SELECT * FROM Services;`;
             db.pool.query(query2, function (error, rows, fields) {
 
-                // If there was an error on the second query, send a 400
                 if (error) {
 
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else {
                     res.send(rows);
                 }
@@ -368,34 +345,28 @@ app.post('/add-service-ajax', function (req, res) {
     })
 });
 
+// Creates route to create and run INSERT INTO Services_During_Visit query on the database
+// If there is no error, then create and run SELECT ALL query to send back updated data
+//If there is an error, send error status with error message
 app.post('/add-services-during-visit-ajax', function (req, res) {
-    // Capture the incoming data and parse it back to a JS object
+    // save and parse data 
     let services_during_visit_data = req.body;
 
-    // Create the query and run it on the database
     query1 = `INSERT INTO Services_During_Visit (visit_id, service_id) VALUES ('${services_during_visit_data.visit_id}', '${services_during_visit_data.service_id}')`;
     db.pool.query(query1, function (error, rows, fields) {
 
-        // Check to see if there was an error
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error)
             res.sendStatus(400);
         }
         else {
-            // If there was no error, perform a SELECT * on Services_During_Visits
             query2 = `SELECT * FROM Services_During_Visit;`;
             db.pool.query(query2, function (error, rows, fields) {
 
-                // If there was an error on the second query, send a 400
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                // If all went well, send the results of the query back.
                 else {
                     res.send(rows);
                 }
@@ -408,16 +379,16 @@ app.post('/add-services-during-visit-ajax', function (req, res) {
     ROUTES TO DELETE ROW
 */
 
+// Creates route to create and run DELETE FROM Pets query on the database given petID
+//If there is an error, send error status with error message
 app.delete('/delete-pet-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
     let petID = parseInt(data.pet_id);
     let deletePet = `DELETE FROM Pets WHERE pet_id = ?`;
 
-    // Run the 1st query
     db.pool.query(deletePet, [petID], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
@@ -428,16 +399,16 @@ app.delete('/delete-pet-ajax', function (req, res, next) {
     })
 });
 
+// Creates route to create and run DELETE FROM Parents query on the database given parentID
+//If there is an error, send error status with error message
 app.delete('/delete-parent-ajax', function (req, res, next) {
     let data = req.body;
     let parentID = parseInt(data.parent_id);
     let deleteParent = `DELETE FROM Parents WHERE parent_id = ?`;
 
-    // Run the 1st query
     db.pool.query(deleteParent, [parentID], function (error, rows, fields) {
         if (error) {
 
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
@@ -448,16 +419,16 @@ app.delete('/delete-parent-ajax', function (req, res, next) {
     })
 });
 
+// Creates route to create and run DELETE FROM Pet_Invoices query on the database given petInvoiceID
+//If there is an error, send error status with error message
 app.delete('/delete-pet-invoice-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
     let petInvoiceID = parseInt(data.pet_invoice_id);
     let deletePetInvoice = `DELETE FROM Pet_Invoices WHERE pet_invoice_id = ?`;
 
-    // Run the 1st query
     db.pool.query(deletePetInvoice, [petInvoiceID], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
@@ -468,16 +439,17 @@ app.delete('/delete-pet-invoice-ajax', function (req, res, next) {
     })
 });
 
+// Creates route to create and run DELETE FROM Visits query on the database given visitID
+//If there is an error, send error status with error message
 app.delete('/delete-visit-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
     let visitID = parseInt(data.visit_id);
     let deleteVisit = `DELETE FROM Visits WHERE visit_id = ?`;
 
-    // Run the 1st query
     db.pool.query(deleteVisit, [visitID], function (error, rows, fields) {
         if (error) {
 
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
@@ -488,16 +460,16 @@ app.delete('/delete-visit-ajax', function (req, res, next) {
     })
 });
 
+// Creates route to create and run DELETE FROM Services query on the database given serviceID
+//If there is an error, send error status with error message
 app.delete('/delete-service-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
     let serviceID = parseInt(data.service_id);
     let deleteService = `DELETE FROM Services WHERE service_id = ?`;
 
-    // Run the 1st query
     db.pool.query(deleteService, [serviceID], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
@@ -508,16 +480,17 @@ app.delete('/delete-service-ajax', function (req, res, next) {
     })
 });
 
+// Creates route to create and run DELETE FROM Services_During_Visit query on the database given serviceDuringVisitID
+//If there is an error, send error status with error message
 app.delete('/delete-service-during-visit-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
     let serviceDuringVisitID = parseInt(data.service_during_visit_id);
     let deleteServiceDuringVisit = `DELETE FROM Services_During_Visit WHERE service_during_visit_id = ?`;
 
-    // Run the 1st query
     db.pool.query(deleteServiceDuringVisit, [serviceDuringVisitID], function (error, rows, fields) {
         if (error) {
 
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
@@ -532,9 +505,15 @@ app.delete('/delete-service-during-visit-ajax', function (req, res, next) {
 /*
     ROUTES TO UPDATE ROW
 */
-app.put('/put-pet-ajax', function (req, res, next) {
-    let data = req.body;
 
+// Creates route to create and run UPDATE queries for pet_name, parent_id, and breed  
+// and SELECT ALL query for Pets with given pet_id on the database
+// If there is no error, then create and run next query
+// Once all queries are executed with no errors, send back updated data
+//If there is an error, send error status with error message
+app.put('/put-pet-ajax', function (req, res, next) {
+    // save and parse data 
+    let data = req.body;
     let pet_id = parseInt(data.pet_id);
     let pet_name = data.pet_name;
     let parent_id = parseInt(data.parent_id);
@@ -545,45 +524,34 @@ app.put('/put-pet-ajax', function (req, res, next) {
     let queryUpdateBreed = `UPDATE Pets SET breed = ? WHERE Pets.pet_id = ?`;
     let selectPet = `SELECT * FROM Pets WHERE pet_id = ?`
 
-    // Run the 1st query
+    // Run the 1st UPDATE query
     db.pool.query(queryUpdatePetName, [pet_name, pet_id], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
         else {
+            // Run the 2nd UPDATE query
             db.pool.query(queryUpdateParentId, [parent_id, pet_id], function (error, rows, fields) {
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-
-                // If there was no error, we run our second query and return that data so we can use it to update the people's
-                // table on the front-end
                 else {
-                    // Run the second query
+                    // Run the 3rd UPDATE query
                     db.pool.query(queryUpdateBreed, [breed, pet_id], function (error, rows, fields) {
                         if (error) {
-
-                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                             console.log(error);
                             res.sendStatus(400);
                         }
-
-                        // If there was no error, we run our second query and return that data so we can use it to update the people's
-                        // table on the front-end
                         else {
-                            // Run the second query
+                            // Run SELECT query
                             db.pool.query(selectPet, [pet_id], function (error, rows, fields) {
-
                                 if (error) {
                                     console.log(error);
                                     res.sendStatus(400);
                                 } else {
+                                    //send updated data after all queries are successfully executed
                                     res.send(rows);
                                 }
                             })
@@ -597,8 +565,13 @@ app.put('/put-pet-ajax', function (req, res, next) {
 
 });
 
-
+// Creates route to create and run UPDATE queries for parent_name, parent_number, parent_email 
+// and SELECT ALL query for Parents with given parent_id on the database
+// If there is no error, then create and run next query
+// Once all queries are executed with no errors, send back updated data
+//If there is an error, send error status with error message
 app.put('/put-parent-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
 
     let parent_id = parseInt(data.parent_id);
@@ -611,43 +584,39 @@ app.put('/put-parent-ajax', function (req, res, next) {
     let queryUpdateParentEmail = `UPDATE Parents SET parent_email = ? WHERE Parents.parent_id = ?`;
     let selectParent = `SELECT * FROM Parents WHERE parent_id = ?`
 
-    // Run the 1st query
+    // Run the 1st UPDATE query
     db.pool.query(queryUpdateParentName, [parent_name, parent_id], function (error, rows, fields) {
         if (error) {
             console.log(error);
-            res.sendStauts(400);
+            res.sendStatus(400);
         }
         else {
+            // Run the 2nd UPDATE query
             db.pool.query(queryUpdateParentNumber, [parent_number, parent_id], function (error, rows, fields) {
                 if (error) {
 
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
 
-                // If there was no error, we run our second query and return that data so we can use it to update the people's
-                // table on the front-end
                 else {
-                    // Run the second query
+                    // Run the 3rd UPDATE query
                     db.pool.query(queryUpdateParentEmail, [parent_email, parent_id], function (error, rows, fields) {
                         if (error) {
 
-                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                             console.log(error);
                             res.sendStatus(400);
                         }
 
-                        // If there was no error, we run our second query and return that data so we can use it to update the people's
-                        // table on the front-end
                         else {
-                            // Run the second query
+                            // Run SELECT query
                             db.pool.query(selectParent, [parent_id], function (error, rows, fields) {
 
                                 if (error) {
                                     console.log(error);
                                     res.sendStatus(400);
                                 } else {
+                                    //send updated data after all queries are successfully executed
                                     res.send(rows);
                                 }
                             })
@@ -660,7 +629,13 @@ app.put('/put-parent-ajax', function (req, res, next) {
 
 });
 
+// Creates route to create and run UPDATE queries for parent_id, invoice_date, invoice_total 
+// and SELECT ALL query for Invoices given invoice_id on the database
+// If there is no error, then create and run next query
+// Once all queries are executed with no errors, send back updated data
+//If there is an error, send error status with error message
 app.put('/put-invoice-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
 
     let invoice_id = parseInt(data.invoice_id);
@@ -673,43 +648,37 @@ app.put('/put-invoice-ajax', function (req, res, next) {
     let queryUpdateInvoiceTotal = `UPDATE Invoices SET invoice_total = ? WHERE Invoices.invoice_id = ?`;
     let selectInvoice = `SELECT * FROM Invoices WHERE invoice_id = ?`
 
-    // Run the 1st query
+    // Run the 1st UPDATE query
     db.pool.query(queryUpdateParentId, [parent_id, invoice_id], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
-
-        // If there was no error, we run our second query and return that data so we can use it to update the people's
-        // table on the front-end
         else {
-            // Run the second query
+            // Run the 2nd UPDATE query
             db.pool.query(queryUpdateInvoiceDate, [invoice_date, invoice_id], function (error, rows, fields) {
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
 
-                // If there was no error, we run our second query and return that data so we can use it to update the people's
-                // table on the front-end
                 else {
-                    // Run the second query
+                    // Run the 3rd UPDATE query
                     db.pool.query(queryUpdateInvoiceTotal, [invoice_total, invoice_id], function (error, rows, fields) {
 
                         if (error) {
                             console.log(error);
                             res.sendStatus(400);
-                        } else {
+                        } 
+                        else {
+                            // Run SELECT query
                             db.pool.query(selectInvoice, [invoice_id], function (error, rows, fields) {
 
                                 if (error) {
                                     console.log(error);
                                     res.sendStatus(400);
                                 } else {
+                                    //send updated data after all queries are successfully executed
                                     res.send(rows);
                                 }
                             })
@@ -721,7 +690,13 @@ app.put('/put-invoice-ajax', function (req, res, next) {
     })
 });
 
+// Creates route to create and run UPDATE queries for pet_id and invoice_id 
+// and SELECT ALL query for Pet_Invoices given pet_invoice_id on the database
+// If there is no error, then create and run next query
+// Once all queries are executed with no errors, send back updated data
+//If there is an error, send error status with error message
 app.put('/put-pet-invoice-form-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
 
     let pet_invoice_id = parseInt(data.pet_invoice_id);
@@ -732,32 +707,26 @@ app.put('/put-pet-invoice-form-ajax', function (req, res, next) {
     let queryUpdateInvoiceId = `UPDATE Pet_Invoices SET invoice_id = ? WHERE Pet_Invoices.pet_invoice_id = ?`;
     let selectPetInvoices = `SELECT * FROM Pet_Invoices WHERE pet_invoice_id = ?`
 
-    // Run the 1st query
+    // Run the 1st UPDATE query
     db.pool.query(queryUpdatePetId, [pet_id, pet_invoice_id], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
         else {
+            // Run the 2nd UPDATE query
             db.pool.query(queryUpdateInvoiceId, [invoice_id, pet_invoice_id], function (error, rows, fields) {
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-
-                // If there was no error, we run our second query and return that data so we can use it to update the people's
-                // table on the front-end
                 else {
                     db.pool.query(selectPetInvoices, [pet_invoice_id], function (error, rows, fields) {
-
                         if (error) {
                             console.log(error);
                             res.sendStatus(400);
                         } else {
+                            //send updated data after all queries are successfully executed
                             res.send(rows);
                         }
                     })
@@ -768,7 +737,13 @@ app.put('/put-pet-invoice-form-ajax', function (req, res, next) {
 
 });
 
+// Creates route to create and run UPDATE queries for pet_id, visit_date, visit_cost
+// and SELECT ALL query for Visits given visit_id on the database
+// If there is no error, then create and run next query
+// Once all queries are executed with no errors, send back updated data
+//If there is an error, send error status with error message
 app.put('/put-visit-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
 
     let visit_id = parseInt(data.visit_id);
@@ -782,45 +757,35 @@ app.put('/put-visit-ajax', function (req, res, next) {
     let queryUpdateVisitCost = `UPDATE Visits SET visit_cost = ? WHERE Visits.visit_id = ?`;
     let selectVisit = `SELECT * FROM Visits WHERE visit_id = ?`
 
-    // Run the 1st query
+    // Run the 1st UPDATE query
     db.pool.query(queryUpdatePetId, [pet_id, visit_id], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
         else {
+            // Run the 2nd UPDATE query
             db.pool.query(queryUpdateVisitDate, [visit_date, visit_id], function (error, rows, fields) {
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-
-                // If there was no error, we run our second query and return that data so we can use it to update the people's
-                // table on the front-end
                 else {
-                    // Run the second query
+                    // Run the 3rd UPDATE query
                     db.pool.query(queryUpdateVisitCost, [visit_cost, visit_id], function (error, rows, fields) {
                         if (error) {
-
-                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                             console.log(error);
                             res.sendStatus(400);
                         }
-
-                        // If there was no error, we run our second query and return that data so we can use it to update the people's
-                        // table on the front-end
                         else {
-                            // Run the second query
+                            // Run SELECT query
                             db.pool.query(selectVisit, [visit_id], function (error, rows, fields) {
 
                                 if (error) {
                                     console.log(error);
                                     res.sendStatus(400);
                                 } else {
+                                    //send updated data after all queries are successfully executed
                                     res.send(rows);
                                 }
                             })
@@ -834,7 +799,13 @@ app.put('/put-visit-ajax', function (req, res, next) {
 
 });
 
+// Creates route to create and run UPDATE queries for service_name, service_cost, service_description
+// and SELECT ALL query for Services given service_id on the database
+// If there is no error, then create and run next query
+// Once all queries are executed with no errors, send back updated data
+//If there is an error, send error status with error message
 app.put('/put-service-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
 
     let service_id = parseInt(data.service_id);
@@ -848,45 +819,36 @@ app.put('/put-service-ajax', function (req, res, next) {
     let queryUpdateServiceDescription = `UPDATE Services SET service_description = ? WHERE Services.service_id = ?`;
     let selectService = `SELECT * FROM Services WHERE service_id = ?`
 
-    // Run the 1st query
+    // Run the 1st UPDATE query
     db.pool.query(queryUpdateServiceName, [service_name, service_id], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
         else {
+            // Run the 2nd UPDATE query
             db.pool.query(queryUpdateServiceCost, [service_cost, service_id], function (error, rows, fields) {
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-
-                // If there was no error, we run our second query and return that data so we can use it to update the people's
-                // table on the front-end
                 else {
-                    // Run the second query
+                    // Run the 3rd UPDATE query
                     db.pool.query(queryUpdateServiceDescription, [service_description, service_id], function (error, rows, fields) {
                         if (error) {
-
-                            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                             console.log(error);
                             res.sendStatus(400);
                         }
 
-                        // If there was no error, we run our second query and return that data so we can use it to update the people's
-                        // table on the front-end
                         else {
-                            // Run the second query
+                            // Run SELECT query
                             db.pool.query(selectService, [service_id], function (error, rows, fields) {
 
                                 if (error) {
                                     console.log(error);
                                     res.sendStatus(400);
                                 } else {
+                                    //send updated data after all queries are successfully executed
                                     res.send(rows);
                                 }
                             })
@@ -899,46 +861,44 @@ app.put('/put-service-ajax', function (req, res, next) {
 
 });
 
+// Creates route to create and run UPDATE queries for visit_id, service_id
+// and SELECT ALL query for Services_During_Visit given services_during_visit_id on the database
+// If there is no error, then create and run next query
+// Once all queries are executed with no errors, send back updated data
+//If there is an error, send error status with error message
 app.put('/put-service-during-visit-form-ajax', function (req, res, next) {
+    // save and parse data 
     let data = req.body;
 
     let service_during_visit_id = parseInt(data.service_during_visit_id);
     let visit_id = parseInt(data.visit_id);
     let service_id = parseInt(data.service_id);
 
-
-
-
     let queryUpdateVisitId = `UPDATE Services_During_Visit SET visit_id = ? WHERE Services_During_Visit.service_during_visit_id= ?`;
     let queryUpdateServiceId = `UPDATE Services_During_Visit SET service_id = ? WHERE Services_During_Visit.service_during_visit_id = ?`;
     let selectServiceDuringVisit = `SELECT * FROM Services_During_Visit WHERE service_during_visit_id = ?`
 
-    // Run the 1st query
+    // Run the 1st UPDATE query
     db.pool.query(queryUpdateVisitId, [visit_id, service_during_visit_id], function (error, rows, fields) {
         if (error) {
-
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
         }
         else {
+            // Run the 2nd UPDATE query
             db.pool.query(queryUpdateServiceId, [service_id, service_during_visit_id], function (error, rows, fields) {
                 if (error) {
-
-                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-
-                // If there was no error, we run our second query and return that data so we can use it to update the people's
-                // table on the front-end
                 else {
+                    // Run SELECT query
                     db.pool.query(selectServiceDuringVisit, [service_during_visit_id], function (error, rows, fields) {
-
                         if (error) {
                             console.log(error);
                             res.sendStatus(400);
                         } else {
+                            //send updated data after all queries are successfully executed
                             res.send(rows);
                         }
                     })
@@ -949,15 +909,16 @@ app.put('/put-service-during-visit-form-ajax', function (req, res, next) {
 
 });
 
-//with handlebar
+//render index page as home page
 app.get('/', function (req, res) {
-    res.render('index');                    // Note the call to render() and not send(). Using render() ensures the templating engine
-});                                         // will process this file, before sending the finished HTML to the client.
+    res.render('index');                    
+});                                         
 
 
 /*
     LISTENER
 */
-app.listen(PORT, function () {            // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
+//express listening on provided PORT
+app.listen(PORT, function () {            
     console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
 });
