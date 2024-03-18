@@ -3,57 +3,48 @@
 // Based on: CS 340 starter code 'Step 8 Dynamically Updating Data'
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
-// Get the objects we need to modify
+
 let updateParentForm = document.getElementById('update-parent-form-ajax');
 
-// Modify the objects we need
+// Execute when form is submitted 
 updateParentForm.addEventListener("submit", function (e) {
 
-    // Prevent the form from submitting
+    // Prevent the form from submitting automatically
     e.preventDefault();
-    // Get form fields we need to get data from
+
+    //Get the id that represents the data we wish to update and values that are to be updated from form fields 
+    //and save it into an object
     let inputParentId = document.getElementById("select-parent-id");
     let inputParentName = document.getElementById("update-parent-name");
     let inputParentNumber = document.getElementById("update-parent-number");
     let inputParentEmail = document.getElementById("update-parent-email");
 
-    // Get the values from the form fields
     let parentIdValue = inputParentId.value;
     let parentNameValue = inputParentName.value;
     let parentNumberValue = inputParentNumber.value;
     let parentEmailValue = inputParentEmail.value;
 
-    // currently the database table for bsg_people does not allow updating values to NULL
-    // so we must abort if being bassed NULL for homeworld
-
-    // if (isNaN(parentIdValue)) 
-    // {
-    //     return;
-    // }
-
-
-    // Put our data we want to send in a javascript object
     let data = {
         parent_id: parentIdValue,
         parent_name: parentNameValue,
         parent_number: parentNumberValue,
         parent_email: parentEmailValue
     }
-    //console.log(`PET:${data.pet_id} PARENT:${data.parent_id} BREED: ${data.breed}`);
 
-    // Setup our AJAX request
+
+    //Initialize AJAX request to receive data
+    // Upon receiving data, we update row to table, clear input fields, and send data
+    // Handles errors if AJAX not set up correctly or invalid inputs
     var xhttp = new XMLHttpRequest();
     xhttp.open("PUT", "/put-parent-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
-    // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            // Add the new data to the table
+            // update new data to the table
             updateRow(xhttp.response, parentIdValue);
 
-            // Clear the input fields for another transaction
             inputParentId.value = 'Parent ID [Parent Name]';
             inputParentName.value = '';
             inputParentNumber.value = '';
@@ -65,12 +56,12 @@ updateParentForm.addEventListener("submit", function (e) {
         }
     }
 
-    // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
 })
 
-
+//Finds table and iterates through the rows until the row's unique value is equivalent to the provided row id
+//Once row is found, iterate through cells and update with new data
 function updateRow(data, parentID) {
     let parsedData = JSON.parse(data);
 

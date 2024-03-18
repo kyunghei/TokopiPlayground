@@ -77,7 +77,6 @@ addRowToTable = (data) => {
     row.appendChild(parentIdCell);
     row.appendChild(invoiceDateCell);
     row.appendChild(invoiceTotalCell);
-    // row.appendChild(deleteCell);
 
     // initialize unique row attribute to easily identify row
     row.setAttribute('data-value', newRow.invoice_id);
