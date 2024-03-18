@@ -45,8 +45,8 @@ updateVisitForm.addEventListener("submit", function (e) {
             // update new data to the table
             updateRow(xhttp.response, visitIdValue);
 
-            selectVisitId.value = 'Select';
-            updatePetId.value = 'Select';
+            selectVisitId.value = '';
+            updatePetId.value = '';
             updateVisitDate = '';
             updateVisitCost = '';
 

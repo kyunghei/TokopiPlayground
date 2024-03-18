@@ -41,9 +41,9 @@ updateServiceDuringVisitForm.addEventListener("submit", function (e) {
             // update new data to the table
             updateRow(xhttp.response, serviceDuringVisitIdValue);
 
-            selectServiceDuringVisitId.value = 'Select';
-            updateVisitId.value = 'Select';
-            updateServiceId.value = 'Select';
+            selectServiceDuringVisitId.value = '';
+            updateVisitId.value = '';
+            updateServiceId.value = '';
 
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {

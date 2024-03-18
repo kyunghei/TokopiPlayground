@@ -45,7 +45,7 @@ updateParentForm.addEventListener("submit", function (e) {
             // update new data to the table
             updateRow(xhttp.response, parentIdValue);
 
-            inputParentId.value = 'Parent ID [Parent Name]';
+            inputParentId.value = '';
             inputParentName.value = '';
             inputParentNumber.value = '';
             inputParentEmail.value = '';

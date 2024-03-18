@@ -46,7 +46,7 @@ updateServiceForm.addEventListener("submit", function (e) {
             // update new data to the table
             updateRow(xhttp.response, serviceIdValue);
 
-            selectServiceId.value = 'Select';
+            selectServiceId.value = '';
             updateServiceName.value = '';
             updateServiceCost.value = '';
             updateServiceDescription.value = '';
