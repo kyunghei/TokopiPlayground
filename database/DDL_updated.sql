@@ -37,7 +37,7 @@ CREATE OR REPLACE TABLE Visits (
     --visit_id int AUTO_INCREMENT UNIQUE,
     pet_id int NOT NULL,
     visit_date date NOT NULL,
-    visit_cost decimal(19,2) DEFAULT 35.00 NOT NULL,
+    visit_cost decimal(19,2) NOT NULL,
     PRIMARY KEY (visit_id),
     FOREIGN KEY (pet_id) REFERENCES Pets(pet_id) ON DELETE CASCADE
 );

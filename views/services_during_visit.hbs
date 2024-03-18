@@ -16,7 +16,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </tr>
     </thead>
 
-    {{!-- display every row from services during visit table with attributes: service during visit id, visit id, service id--}}
+    {{!-- display every row from services during visit table with attributes: service during visit id, visit id, service
+    id--}}
     <tbody id="services-during-visit-table-body">
         {{#each services_during_visit_data}}
         <tr data-value="{{this.service_during_visit_id}}">
@@ -37,17 +38,17 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to add a service during visit record to the table --}}
     <form id="add-services-during-visit-form-ajax">
         <h2>Add New Service During Visit</h2>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="input-visit-id" id="input-visit-id">
-            <option>Visit ID</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="input-visit-id" id="input-visit-id" required>
+            <option value="">Visit ID</option>
             {{#each visits_data}}
             <option value="{{this.visit_id}}">{{this.visit_id}}</option>
             {{/each}}
         </select>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="input-service-id" id="input-service-id">
-            <option>Service [ID]</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="input-service-id" id="input-service-id" required>
+            <option value="">Service [ID]</option>
             {{#each services_data}}
             <option value="{{this.service_id}}">{{this.service_name}} [{{this.service_id}}]</option>
             {{/each}}
@@ -61,25 +62,25 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a service during vist record from the table --}}
     <form id="update-service-during-visit-form-ajax">
         <h2>Update Service During Visit Data</h2>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="select-service-during-visit-id" id="select-service-during-visit-id">
-            <option>Service During Visit ID</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="select-service-during-visit-id" id="select-service-during-visit-id" required>
+            <option value="">Service During Visit ID</option>
             {{#each services_during_visit_data}}
             <option value="{{this.service_during_visit_id}}">{{this.service_during_visit_id}}</option>
             {{/each}}
         </select>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="update-visit-id" id="update-visit-id">
-            <option>Visit ID</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="update-visit-id" id="update-visit-id" required>
+            <option value="">Visit ID</option>
             {{#each visits_data}}
             <option value="{{this.visit_id}}">{{this.visit_id}}</option>
             {{/each}}
         </select>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="update-service-id" id="update-service-id">
-            <option>Service [ID]</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="update-service-id" id="update-service-id" required>
+            <option value="">Service [ID]</option>
             {{#each services_data}}
             <option value="{{this.service_id}}">{{this.service_name}} [{{this.service_id}}]</option>
             {{/each}}

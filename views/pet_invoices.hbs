@@ -37,7 +37,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to add a pet invoice record to the table --}}
     <form id="add-pet-invoice-form-ajax">
         <h2>Add New Pet Invoice</h2>
-        {{!-- display dropdown by iterating through each row  --}}
+        {{!-- display dropdown by iterating through each row --}}
         <select name="input-pet-id" id="input-pet-id" required>
             <option value="">Pet [ID]</option>
             {{#each pets_data}}
@@ -45,7 +45,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
+        {{!-- display dropdown by iterating through each row --}}
         <select name="input-invoice-id" id="input-invoice-id" required>
             <option value="">Invoice ID</option>
             {{#each invoices_data}}
@@ -62,25 +62,25 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a pet invoice record to the table --}}
     <form id="update-pet-invoice-form-ajax">
         <h2>Update Pet Invoice</h2>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="select-pet-invoice-id" id="select-pet-invoice-id">
-            <option>Pet Invoice ID</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="select-pet-invoice-id" id="select-pet-invoice-id" required>
+            <option value="">Pet Invoice ID</option>
             {{#each pet_invoices_data}}
             <option value="{{this.pet_invoice_id}}">{{this.pet_invoice_id}}</option>
             {{/each}}
         </select>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="update-pet-id" id="update-pet-id">
-            <option>Pet [ID]</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="update-pet-id" id="update-pet-id" required>
+            <option value="">Pet [ID]</option>
             {{#each pets_data}}
             <option value="{{this.pet_id}}">{{this.pet_name}} [{{this.pet_id}}]</option>
             {{/each}}
         </select>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="update-invoice-id" id="update-invoice-id">
-            <option>Invoice ID</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="update-invoice-id" id="update-invoice-id" required>
+            <option value="">Invoice ID</option>
             {{#each invoices_data}}
             <option value="{{this.invoice_id}}">{{this.invoice_id}}</option>
             {{/each}}

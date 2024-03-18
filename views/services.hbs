@@ -1,6 +1,7 @@
 {{!-- Citation for the following function:
 Date: 03/07/2024
-Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders for input fields instead of labels, and utilizing a trash icon to show the delete feature.
+Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders
+for input fields instead of labels, and utilizing a trash icon to show the delete feature.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
 {{!-- display services table --}}
@@ -16,7 +17,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </tr>
     </thead>
 
-    {{!-- display every row from services table with attributes: service id, service name, service cost, service description --}}
+    {{!-- display every row from services table with attributes: service id, service name, service cost, service
+    description --}}
     <tbody id="services-table-body">
         {{#each services_data}}
         <tr data-value="{{this.service_id}}">
@@ -40,9 +42,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     <form id="add-service-form-ajax">
         <h2>Add New Service</h2>
 
-        <input type="text" name="input-service-name" id="input-service-name" placeholder="Service Name">
+        <input type="text" name="input-service-name" id="input-service-name" placeholder="Service Name" required>
         <br>
-        <input type="number" name="input-service-cost" id="input-service-cost" placeholder="Service Cost">
+        <input type="number" name="input-service-cost" id="input-service-cost" placeholder="Service Cost" required>
         <br>
         <input type="text" name="input-service-description" id="input-service-description"
             placeholder="Service Description">
@@ -56,7 +58,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a service record from the table --}}
     <form id="update-service-form-ajax">
         <h2>Update Service Data</h2>
-        {{!-- display dropdown by iterating through each row  --}}
+        {{!-- display dropdown by iterating through each row --}}
         <select name="select-service-id" id="select-service-id">
             <option>Service ID</option>
             {{#each services_data}}
@@ -64,10 +66,10 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
-        <input type="text" name="update-service-name" id="update-service-name" placeholder="Service Name">
+        <input type="text" name="update-service-name" id="update-service-name" placeholder="Service Name" required>
 
         <br>
-        <input type="number" name="update-service-cost" id="update-service-cost" placeholder="Service Cost">
+        <input type="number" name="update-service-cost" id="update-service-cost" placeholder="Service Cost" required>
         <br>
         <input type="text" name="update-service-description" id="update-service-description"
             placeholder="Service Description">

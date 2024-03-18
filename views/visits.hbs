@@ -40,17 +40,17 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to add a visit record to the table --}}
     <form id="add-visit-form-ajax">
         <h2>Add New Visit</h2>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="input-pet-id" id="input-pet-id">
-            <option>Pet [ID]</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="input-pet-id" id="input-pet-id" required>
+            <option value="">Pet [ID]</option>
             {{#each pets_data}}
             <option value="{{this.pet_id}}">{{this.pet_name}} [{{this.pet_id}}]</option>
             {{/each}}
         </select>
         <br>
-        <input type="date" name="input-visit-date" id="input-visit-date" placeholder="Visit Date">
+        <input type="date" name="input-visit-date" id="input-visit-date" placeholder="Visit Date" required>
         <br>
-        <input type="number" name="input-visit-cost" id="input-visit-cost" placeholder="Visit Cost">
+        <input type="number" name="input-visit-cost" id="input-visit-cost" placeholder="Visit Cost" required>
         <br>
         <input type="submit" value="Add Visit">
         <br>
@@ -61,26 +61,26 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a visit record from the table --}}
     <form id="update-visit-form-ajax">
         <h2>Update Visit Data</h2>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="select-visit-id" id="select-visit-id">
-            <option>Visit ID</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="select-visit-id" id="select-visit-id" required>
+            <option value="">Visit ID</option>
             {{#each visits_data}}
             <option value="{{this.visit_id}}">{{this.visit_id}}</option>
             {{/each}}
         </select>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
-        <select name="update-pet-id" id="update-pet-id">
-            <option>Pet [ID]</option>
+        {{!-- display dropdown by iterating through each row --}}
+        <select name="update-pet-id" id="update-pet-id" required>
+            <option value="">Pet [ID]</option>
             {{#each pets_data}}
             <option value="{{this.pet_id}}">{{this.pet_name}} [{{this.pet_id}}]</option>
             {{/each}}
         </select>
 
         <br>
-        <input type="date" name="update-visit-date" id="update-visit-date" placeholder="Visit Date">
+        <input type="date" name="update-visit-date" id="update-visit-date" placeholder="Visit Date" required>
         <br>
-        <input type="number" name="update-visit-cost" id="update-visit-cost" placeholder="Visit Cost">
+        <input type="number" name="update-visit-cost" id="update-visit-cost" placeholder="Visit Cost" required>
         <br>
         <input type="submit" value="Update Visit">
         <br>

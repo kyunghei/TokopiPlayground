@@ -67,17 +67,17 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </select>
         <br>
         {{!-- display dropdown by iterating through each row --}}
-        <select name="input-parent-id" id="update-parent-id">
-            <option>Parent [ID]</option>
+        <select name="input-parent-id" id="update-parent-id" required>
+            <option value="">Parent [ID]</option>
             {{#each parents_data}}
             <option value="{{this.parent_id}}">{{this.parent_name}} [{{this.parent_id}}]</option>
             {{/each}}
         </select>
         <br>
-        <input type="date" name="input-invoice-date" id="update-invoice-date">
+        <input type="date" name="input-invoice-date" id="update-invoice-date" required>
         <br>
         <input type="number" min="0.01" step="0.01" name="input-invoice-total" id="update-invoice-total"
-            placeholder="Invoice Total">
+            placeholder="Invoice Total" required>
         <br>
         <input type="submit" value="Update Invoice">
         <br>

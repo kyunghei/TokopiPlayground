@@ -18,7 +18,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     </thead>
 
     <tbody id="parents-table-body">
-        {{!-- display every row from parents table with attributes: parent id, parent name, parent number, parent email--}}
+        {{!-- display every row from parents table with attributes: parent id, parent name, parent number, parent
+        email--}}
         {{#each parents_data}}
         <tr data-value="{{this.parent_id}}">
             <td>{{this.parent_id}}</td>
@@ -53,7 +54,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a parent record to the table --}}
     <form id="update-parent-form-ajax">
         <h2>Update Parent Data</h2>
-        {{!-- display dropdown by iterating through each row  --}}
+        {{!-- display dropdown by iterating through each row --}}
         <select name="input-parent-id" id="select-parent-id" required>
             <option value="">Parent [ID]</option>
             {{#each parents_data}}
@@ -61,9 +62,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
-        <input type="text" name="input-parent-name" id="update-parent-name" placeholder="Parent Name">
+        <input type="text" name="input-parent-name" id="update-parent-name" placeholder="Parent Name" required>
         <br>
-        <input type="tel" name="input-parent-number" id="update-parent-number" placeholder="Phone Number">
+        <input type="tel" name="input-parent-number" id="update-parent-number" placeholder="Phone Number" required>
         <br>
         <input type="email" name="input-parent-email" id="update-parent-email" placeholder="Email">
         <br>
