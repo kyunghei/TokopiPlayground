@@ -4,13 +4,11 @@ Based on: CS 340 starter code with the exception of displaying user-friendly for
 for input fields instead of labels, and utilizing a trash icon to show the delete feature.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
+{{!-- display service during visit table --}}
 <table id="services-during-visit-table">
     <caption>Services During Visit</caption>
-    {{!-- Header section --}}
+    {{!-- display service during visit header --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             <th>Service During Visit ID</th>
             <th>Visit ID</th>
@@ -18,15 +16,14 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </tr>
     </thead>
 
-    {{!-- Body section --}}
+    {{!-- display every row from services during visit table with attributes: service during visit id, visit id, service id--}}
     <tbody id="services-during-visit-table-body">
-
-        {{!-- For each row, print the service during visit id, visit id, and service id in order --}}
         {{#each services_during_visit_data}}
         <tr data-value="{{this.service_during_visit_id}}">
             <td>{{this.service_during_visit_id}}</td>
             <td>{{this.visit_id}}</td>
             <td>{{this.service_id}}</td>
+            {{!-- display delete button where delete functionality is executed on click for the corresponding row --}}
             <td><button onclick="deleteServiceDuringVisit({{this.service_during_visit_id}})"><i
                         class="fa fa-trash"></i></button></td>
         </tr>
@@ -37,9 +34,10 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 <script src="./js/delete_service_during_visit.js"></script>
 
 <div class="forms">
-    {{!-- Form to add a service during vist record to the table --}}
+    {{!-- Form to add a service during visit record to the table --}}
     <form id="add-services-during-visit-form-ajax">
         <h2>Add New Service During Visit</h2>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-visit-id" id="input-visit-id">
             <option>Visit ID</option>
             {{#each visits_data}}
@@ -47,6 +45,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-service-id" id="input-service-id">
             <option>Service [ID]</option>
             {{#each services_data}}
@@ -62,6 +61,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a service during vist record from the table --}}
     <form id="update-service-during-visit-form-ajax">
         <h2>Update Service During Visit Data</h2>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="select-service-during-visit-id" id="select-service-during-visit-id">
             <option>Service During Visit ID</option>
             {{#each services_during_visit_data}}
@@ -69,6 +69,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="update-visit-id" id="update-visit-id">
             <option>Visit ID</option>
             {{#each visits_data}}
@@ -76,6 +77,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="update-service-id" id="update-service-id">
             <option>Service [ID]</option>
             {{#each services_data}}

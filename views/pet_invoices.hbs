@@ -4,13 +4,11 @@ Based on: CS 340 starter code with the exception of displaying user-friendly for
 for input fields instead of labels, and utilizing a trash icon to show the delete feature.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
+{{!-- display pet invoices table --}}
 <table id="pet-invoices-table">
     <caption>Pet Invoices</caption>
-    {{!-- Header section --}}
+    {{!-- display pet invoices header--}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             <th>Pet Invoice ID</th>
             <th>Pet ID</th>
@@ -18,15 +16,14 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </tr>
     </thead>
 
-    {{!-- Body section --}}
+    {{!-- display every row from pet invoices table with attributes: pet invoice id, pet id, invoice id--}}
     <tbody id="pet-invoices-table-body">
-
-        {{!-- For each row, print the pet invoice id, pet id, and invoice id --}}
         {{#each pet_invoices_data}}
         <tr data-value="{{this.pet_invoice_id}}">
             <td>{{this.pet_invoice_id}}</td>
             <td>{{this.pet_id}}</td>
             <td>{{this.invoice_id}}</td>
+            {{!-- display delete button where delete functionality is executed on click for the corresponding row --}}
             <td><button onclick="deletePetInvoice({{this.pet_invoice_id}})"><i class="fa fa-trash"></i></button></td>
         </tr>
         {{/each}}
@@ -40,6 +37,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to add a pet invoice record to the table --}}
     <form id="add-pet-invoice-form-ajax">
         <h2>Add New Pet Invoice</h2>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-pet-id" id="input-pet-id" required>
             <option value="">Pet [ID]</option>
             {{#each pets_data}}
@@ -47,6 +45,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-invoice-id" id="input-invoice-id" required>
             <option value="">Invoice ID</option>
             {{#each invoices_data}}
@@ -63,6 +62,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a pet invoice record to the table --}}
     <form id="update-pet-invoice-form-ajax">
         <h2>Update Pet Invoice</h2>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="select-pet-invoice-id" id="select-pet-invoice-id">
             <option>Pet Invoice ID</option>
             {{#each pet_invoices_data}}
@@ -70,6 +70,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="update-pet-id" id="update-pet-id">
             <option>Pet [ID]</option>
             {{#each pets_data}}
@@ -77,6 +78,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="update-invoice-id" id="update-invoice-id">
             <option>Invoice ID</option>
             {{#each invoices_data}}

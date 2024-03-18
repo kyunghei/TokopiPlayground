@@ -4,13 +4,11 @@ Based on: CS 340 starter code with the exception of displaying user-friendly for
 for input fields instead of labels, and utilizing a trash icon to show the delete feature.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
+{{!-- display parents table--}}
 <table id="parents-table">
     <caption>Parents</caption>
-    {{!-- Header section --}}
+    {{!-- display parents header --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             <th>Parent ID</th>
             <th>Parent Name</th>
@@ -19,16 +17,15 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </tr>
     </thead>
 
-    {{!-- Body section --}}
     <tbody id="parents-table-body">
-
-        {{!-- For each row, print the parent id, parent name, phone number, and email in order --}}
+        {{!-- display every row from parents table with attributes: parent id, parent name, parent number, parent email--}}
         {{#each parents_data}}
         <tr data-value="{{this.parent_id}}">
             <td>{{this.parent_id}}</td>
             <td>{{this.parent_name}}</td>
             <td>{{this.parent_number}}</td>
             <td>{{this.parent_email}}</td>
+            {{!-- display delete button where delete functionality is executed on click for the corresponding row --}}
             <td><button onclick="deleteParent({{this.parent_id}})"><i class="fa fa-trash"></i></button></button></td>
         </tr>
         {{/each}}
@@ -56,6 +53,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a parent record to the table --}}
     <form id="update-parent-form-ajax">
         <h2>Update Parent Data</h2>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-parent-id" id="select-parent-id" required>
             <option value="">Parent [ID]</option>
             {{#each parents_data}}

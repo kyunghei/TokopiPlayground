@@ -5,13 +5,11 @@ for input fields instead of labels, utilizing a trash icon to show the delete fe
 fields to correctly display the date.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
+{{!-- display visits table --}}
 <table id="visits-table">
     <caption>Visits</caption>
-    {{!-- Header section --}}
+    {{!-- display visits header --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             <th>Visit ID</th>
             <th>Pet ID</th>
@@ -20,16 +18,15 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </tr>
     </thead>
 
-    {{!-- Body section --}}
+    {{!-- display every row from visits table with attributes: visit id, pet id, visit date, visit cost --}}
     <tbody id="visits-table-body">
-
-        {{!-- For each row, print the visit id, pet id, visit date, and visit cost in order --}}
         {{#each visits_data}}
         <tr data-value="{{this.visit_id}}">
             <td>{{this.visit_id}}</td>
             <td>{{this.pet_id}}</td>
             <td>{{this.visit_date}}</td>
             <td>{{this.visit_cost}}</td>
+            {{!-- display delete button where delete functionality is executed on click for the corresponding row --}}
             <td><button onclick="deleteVisit({{this.visit_id}})"><i class="fa fa-trash"></i></button></td>
         </tr>
         {{/each}}
@@ -43,6 +40,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to add a visit record to the table --}}
     <form id="add-visit-form-ajax">
         <h2>Add New Visit</h2>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-pet-id" id="input-pet-id">
             <option>Pet [ID]</option>
             {{#each pets_data}}
@@ -63,6 +61,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a visit record from the table --}}
     <form id="update-visit-form-ajax">
         <h2>Update Visit Data</h2>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="select-visit-id" id="select-visit-id">
             <option>Visit ID</option>
             {{#each visits_data}}
@@ -70,6 +69,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="update-pet-id" id="update-pet-id">
             <option>Pet [ID]</option>
             {{#each pets_data}}

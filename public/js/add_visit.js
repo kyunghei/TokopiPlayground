@@ -3,46 +3,42 @@
 // Based on: CS 340 starter code 'Step 5 Adding New Data'
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
-// Get the objects we need to modify
+
 let addVisitForm = document.getElementById('add-visit-form-ajax');
 
-// Modify the objects we need
+// Execute this when we submit the current form
 addVisitForm.addEventListener("submit", function (e) {
 
-    // Prevent the form from submitting
+    // Prevent the form from submitting automatically
     e.preventDefault();
 
-    // Get form fields we need to get data from
+    //Get the values from form fields and save it into an object
     let inputPetId = document.getElementById("input-pet-id");
     let inputVisitDate = document.getElementById("input-visit-date");
     let inputVisitCost = document.getElementById("input-visit-cost");
 
-    // Get the values from the form fields
     let PetIdValue = inputPetId.value;
     let VisitDateValue = inputVisitDate.value;
     let VisitCostValue = inputVisitCost.value;
 
-
-    // Put our data we want to send in a javascript object
     let data = {
         pet_id: PetIdValue,
         visit_date: VisitDateValue,
         visit_cost: VisitCostValue
     }
 
-    // Setup our AJAX request
+    //Initialize AJAX request to receive data
+    // Upon receiving data, we add row to table, clear input fields, and send data
+    // Handles errors if AJAX not set up correctly or invalid inputs
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/add-visit-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
-    // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            // Add the new data to the table
             addRowToTable(xhttp.response);
 
-            // Clear the input fields for another transaction
             inputPetId.value = '';
             inputVisitDate.value = '';
             inputVisitCost.value = '';
@@ -52,27 +48,19 @@ addVisitForm.addEventListener("submit", function (e) {
         }
     }
 
-    // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// bsg_people
+//Receives an object of data as an argument and creates a new row of values with the corresponding data
 addRowToTable = (data) => {
 
-    // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("visits-table");
-
-    // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
-
-    // Get a reference to the new row from the database query (last object)
+    // Find new data from query
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 4 cells
+    // Create containers for new row, cells, and delete button, then fill them with new data values
     let row = document.createElement("TR");
     let visitIdCell = document.createElement("TD");
     let petIdCell = document.createElement("TD");
@@ -81,9 +69,7 @@ addRowToTable = (data) => {
 
     let deleteCell = document.createElement("TD");
 
-    console.log(newRow.visit_date);
     date_with_time = newRow.visit_date;
-    console.log(date_with_time)
 
     // Fill the cells with correct data
     petIdCell.innerText = newRow.pet_id;
@@ -91,6 +77,7 @@ addRowToTable = (data) => {
     visitDateCell.innerText = newRow.visit_date;
     visitCostCell.innerText = newRow.visit_cost;
 
+    //include on click delete functionality for corresponding row of data
     deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
     deleteBtn.onclick = function () {
@@ -105,20 +92,12 @@ addRowToTable = (data) => {
     row.appendChild(visitCostCell);
     row.appendChild(deleteCell);
 
-    // Add a custom row attribute so the deleteRow function can find a newly added row
+    // initialize unique row attribute to easily identify row
     row.setAttribute('data-value', newRow.visit_id);
 
+    // Add the row to the end of the table
     let currentTableBody = document.getElementById("visits-table-body");
-    // Add the row to the table
     currentTableBody.appendChild(row);
 
-    // Find drop down menu, create a new option, fill data in the option (full name, id),
-    // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
-
-    // let selectMenu = document.getElementById("select-visit-id");
-    // let option = document.createElement("option");
-    // option.text = newRow.pet_id + ' ' + newRow.pet_name;
-    // option.value = newRow.pet_id;
-    // selectMenu.add(option);
 }
 

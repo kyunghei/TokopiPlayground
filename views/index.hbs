@@ -4,14 +4,11 @@ Based on: CS 340 starter code with the exception of displaying user-friendly for
 for input fields instead of labels, and utilizing a trash icon to show the delete feature.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
-
+{{!-- display pets table --}}
 <table id="pets-table">
     <caption>Pets</caption>
-    {{!-- Header section --}}
+    {{!-- display pets header --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             <th>Pet ID</th>
             <th>Pet Name</th>
@@ -19,17 +16,15 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             <th>Breed</th>
         </tr>
     </thead>
-
-    {{!-- Body section --}}
+    {{!-- display every row from pets table with attributes: pet id, pet name, parent id, and breed --}}
     <tbody id="pets-table-body">
-
-        {{!-- For each row, print the pet id, pet name, parent id, and breed in order --}}
         {{#each data}}
         <tr data-value="{{this.pet_id}}">
             <td>{{this.pet_id}}</td>
             <td>{{this.pet_name}}</td>
             <td>{{this.parent_id}}</td>
             <td>{{this.breed}}</td>
+            {{!-- display delete button where delete functionality is executed on click for the corresponding row --}}
             <td><button onclick="deletePet({{this.pet_id}})"><i class="fa fa-trash"></i></button></td>
         </tr>
         {{/each}}
@@ -45,6 +40,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <h2>Add New Pet</h2>
         <input type="text" name="input-pet-name" id="input-pet-name" placeholder="Pet Name" required>
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-parent-id" id="input-parent-id" required>
             <option value="">Parent [ID]</option>
             {{#each parents_data}}
@@ -63,7 +59,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update a pet record to the table --}}
     <form id="update-pet-form-ajax">
         <h2>Update Pet Data</h2>
-
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-pet-id" id="select-pet-id" required>
             <option value="">Pet [ID]</option>
             {{#each data}}
@@ -73,6 +69,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <br>
         <input type="text" name="input-pet-name" id="update-pet-name" placeholder="Pet Name">
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-parent-id" id="update-parent-id">
             <option>Parent [ID]</option>
             {{#each parents_data}}
@@ -88,5 +85,4 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     </form>
 
     <script src="./js/update_pet.js"></script>
-    {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 </div>
