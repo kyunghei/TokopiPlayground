@@ -3,13 +3,11 @@ Date: 03/07/2024
 Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders for input fields instead of labels, utilizing a trash icon to show the delete feature, and implementing date input fields to correctly display the date.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
+{{!-- display invoices table --}}
 <table id="invoices-table">
     <caption>Invoices</caption>
-    {{!-- Header section --}}
+    {{!-- display invoices header --}}
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             <th>Invoice ID</th>
             <th>Parent ID</th>
@@ -18,10 +16,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </tr>
     </thead>
 
-    {{!-- Body section --}}
+    {{!-- display every row from invoices table with attributes: invoice id, parent id, invoice date, and invoice total --}}
     <tbody id="invoices-table-body">
-
-        {{!-- For each row, print the invoice id, parent id, invoice date, and invoice total, in order --}}
         {{#each invoices_data}}
         <tr data-value="{{this.invoice_id}}">
             <td>{{this.invoice_id}}</td>
@@ -59,7 +55,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update an invoice on the table --}}
     <form id="update-invoice-form-ajax">
         <h2>Update Invoice Data</h2>
-
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-invoice-id" id="select-invoice-id" required>
             <option value="">Invoice ID</option>
             {{#each invoices_data}}
@@ -67,6 +63,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
+        {{!-- display dropdown by iterating through each row  --}}
         <select name="input-parent-id" id="update-parent-id">
             <option>Parent ID</option>
             {{#each parents_data}}
