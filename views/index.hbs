@@ -1,6 +1,7 @@
 {{!-- Citation for the following function:
 Date: 02/29/2024
-Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders for input fields instead of labels, and utilizing a trash icon to show the delete feature.
+Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders
+for input fields instead of labels, and utilizing a trash icon to show the delete feature.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
 
@@ -45,9 +46,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <input type="text" name="input-pet-name" id="input-pet-name" placeholder="Pet Name" required>
         <br>
         <select name="input-parent-id" id="input-parent-id" required>
-            <option value="">Parent ID</option>
+            <option value="">Parent [ID]</option>
             {{#each parents_data}}
-            <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
+            <option value="{{this.parent_id}}">{{this.parent_name}} [{{this.parent_id}}]</option>
             {{/each}}
         </select>
         <br>
@@ -64,18 +65,18 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <h2>Update Pet Data</h2>
 
         <select name="input-pet-id" id="select-pet-id" required>
-            <option value="">Pet ID [Pet Name]</option>
+            <option value="">Pet [ID]</option>
             {{#each data}}
-            <option value="{{this.pet_id}}">{{this.pet_id}} [{{this.pet_name}}]</option>
+            <option value="{{this.pet_id}}">{{this.pet_name}} [{{this.pet_id}}]</option>
             {{/each}}
         </select>
         <br>
         <input type="text" name="input-pet-name" id="update-pet-name" placeholder="Pet Name">
         <br>
         <select name="input-parent-id" id="update-parent-id">
-            <option>Parent ID</option>
+            <option>Parent [ID]</option>
             {{#each parents_data}}
-            <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
+            <option value="{{this.parent_id}}">{{this.parent_name}} [{{this.parent_id}}]</option>
             {{/each}}
         </select>
         <br>

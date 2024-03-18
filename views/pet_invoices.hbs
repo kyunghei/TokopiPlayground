@@ -1,6 +1,7 @@
 {{!-- Citation for the following function:
 Date: 03/07/2024
-Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders for input fields instead of labels, and utilizing a trash icon to show the delete feature.
+Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders
+for input fields instead of labels, and utilizing a trash icon to show the delete feature.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
 <table id="pet-invoices-table">
@@ -40,9 +41,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     <form id="add-pet-invoice-form-ajax">
         <h2>Add New Pet Invoice</h2>
         <select name="input-pet-id" id="input-pet-id" required>
-            <option value="">Pet ID</option>
+            <option value="">Pet [ID]</option>
             {{#each pets_data}}
-            <option value="{{this.pet_id}}">{{this.pet_id}}[{{this.pet_name}}]</option>
+            <option value="{{this.pet_id}}">{{this.pet_name}} [{{this.pet_id}}]</option>
             {{/each}}
         </select>
         <br>
@@ -70,9 +71,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </select>
         <br>
         <select name="update-pet-id" id="update-pet-id">
-            <option>Pet ID</option>
+            <option>Pet [ID]</option>
             {{#each pets_data}}
-            <option value="{{this.pet_id}}">{{this.pet_id}}</option>
+            <option value="{{this.pet_id}}">{{this.pet_name}} [{{this.pet_id}}]</option>
             {{/each}}
         </select>
         <br>

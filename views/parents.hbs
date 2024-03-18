@@ -1,6 +1,7 @@
 {{!-- Citation for the following function:
 Date: 02/29/2024
-Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders for input fields instead of labels, and utilizing a trash icon to show the delete feature.
+Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders
+for input fields instead of labels, and utilizing a trash icon to show the delete feature.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
 <table id="parents-table">
@@ -56,9 +57,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     <form id="update-parent-form-ajax">
         <h2>Update Parent Data</h2>
         <select name="input-parent-id" id="select-parent-id" required>
-            <option value="">Parent ID [Parent Name]</option>
+            <option value="">Parent [ID]</option>
             {{#each parents_data}}
-            <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
+            <option value="{{this.parent_id}}">{{this.parent_name}} [{{this.parent_id}}]</option>
             {{/each}}
         </select>
         <br>

@@ -116,3 +116,4 @@ addRowToTable = (data) => {
     // option.value = newRow.pet_id;
     // selectMenu.add(option);
 }
+

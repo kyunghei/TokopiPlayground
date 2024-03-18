@@ -104,11 +104,11 @@ app.get('/visits', function (req, res) {
 
         db.pool.query(query2, function (error, rows, fields) {    // Execute the query
             let pets = rows;
-            return res.render('visits', {visits_data: visits, pets_data: pets });                  // Render the index.hbs file, and also send the renderer
+            return res.render('visits', { visits_data: visits, pets_data: pets });                  // Render the index.hbs file, and also send the renderer
         });
     });                                                      // an object where 'data' is equal to the 'rows' we  
 }
-);   
+);
 
 app.get('/services', function (req, res) {
     let query1 = "SELECT * FROM Services;";               // Define our query
@@ -118,7 +118,7 @@ app.get('/services', function (req, res) {
         res.render('services', { services_data: services_rows });                  // Render the index.hbs file, and also send the renderer
     })                                                      // an object where 'data' is equal to the 'rows' we
 }
-); 
+);
 
 app.get('/services_during_visit', function (req, res) {
     let query1 = "SELECT * FROM Services_During_Visit;";               // Define our query
