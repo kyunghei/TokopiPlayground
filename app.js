@@ -112,10 +112,11 @@ app.get('/visits', function (req, res) {
         db.pool.query(query2, function (error, rows, fields) {   
             let pets = rows;
             return res.render('visits', {visits_data: visits, pets_data: pets });                 
+
         });
     });                                               
 }
-);   
+);
 
 //creates route to execute queries to receive all data from Services and send data received from queries to services hbs
 app.get('/services', function (req, res) {
@@ -126,7 +127,7 @@ app.get('/services', function (req, res) {
         res.render('services', { services_data: services_rows });               
     })                                                  
 }
-); 
+);
 
 //creates route to execute queries to receive all data from Visits, Services, Services_During_Visit and send data received from queries to services_during_visit hbs
 app.get('/services_during_visit', function (req, res) {
