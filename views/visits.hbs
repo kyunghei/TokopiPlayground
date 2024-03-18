@@ -24,7 +24,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <tr data-value="{{this.visit_id}}">
             <td>{{this.visit_id}}</td>
             <td>{{this.pet_id}}</td>
-            <td>{{this.visit_date}}</td>
+            <td>{{formatDate this.visit_date}}</td>
             <td>{{this.visit_cost}}</td>
             {{!-- display delete button where delete functionality is executed on click for the corresponding row --}}
             <td><button onclick="deleteVisit({{this.visit_id}})"><i class="fa fa-trash"></i></button></td>

@@ -28,6 +28,11 @@ app.set('view engine', '.hbs');
 var db = require('./database/db-connector')
 
 
+//helper function
+const Handlebars = require('handlebars');
+Handlebars.registerHelper('formatDate', function(currentDate){
+    return currentDate.toISOString().slice(0,10);
+})
 
 /*
     ROUTES
@@ -399,6 +404,10 @@ app.post('/add-services-during-visit-ajax', function (req, res) {
     })
 });
 
+/*
+    ROUTES TO DELETE ROW
+*/
+
 app.delete('/delete-pet-ajax', function (req, res, next) {
     let data = req.body;
     let petID = parseInt(data.pet_id);
@@ -519,6 +528,10 @@ app.delete('/delete-service-during-visit-ajax', function (req, res, next) {
     })
 });
 
+
+/*
+    ROUTES TO UPDATE ROW
+*/
 app.put('/put-pet-ajax', function (req, res, next) {
     let data = req.body;
 
