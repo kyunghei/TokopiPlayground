@@ -3,47 +3,42 @@
 // Based on: CS 340 starter code 'Step 5 Adding New Data'
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
-// Get the objects we need to modify
+
 let addParentForm = document.getElementById('add-parent-form-ajax');
 
-// Modify the objects we need
+// Execute this when we submit the current form
 addParentForm.addEventListener("submit", function (e) {
 
-    // Prevent the form from submitting
+    // Prevent the form from submitting automatically
     e.preventDefault();
 
-    // Get form fields we need to get data from
+    //Get the values from form fields and save it into an object
     let inputParentName = document.getElementById("input-parent-name");
     let inputParentNumber = document.getElementById("input-parent-number");
     let inputParentEmail = document.getElementById("input-parent-email");
 
-    // Get the values from the form fields
     let ParentNameValue = inputParentName.value;
     let ParentNumberValue = inputParentNumber.value;
     let ParentEmailValue = inputParentEmail.value;
 
-    //console.log(`data obtained: ${PetNameValue} ${ParentNameValue} ${BreedValue}`)
-
-    // Put our data we want to send in a javascript object
     let data = {
         parent_name: ParentNameValue,
         parent_number: ParentNumberValue,
         parent_email: ParentEmailValue
     }
 
-    // Setup our AJAX request
+    //Initialize AJAX request to receive data
+    // Upon receiving data, we add row to table, clear input fields, and send data
+    // Handles errors if AJAX not set up correctly or invalid inputs
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/add-parent-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
-    // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            // Add the new data to the table
             addRowToTable(xhttp.response);
 
-            // Clear the input fields for another transaction
             inputParentName.value = '';
             inputParentNumber.value = '';
             inputParentEmail.value = '';
@@ -53,27 +48,19 @@ addParentForm.addEventListener("submit", function (e) {
         }
     }
 
-    // Send the request and wait for the response
     xhttp.send(JSON.stringify(data));
 
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// bsg_people
+// Creates a single row when receiving an object as an argument 
 addRowToTable = (data) => {
 
-    // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("parents-table");
-
-    // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
-
-    // Get a reference to the new row from the database query (last object)
+    // Find new data from query
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 4 cells
+    // Create containers for new row, cells, and delete button, then fill them with new data values
     let row = document.createElement("TR");
     let parentIdCell = document.createElement("TD");
     let parentNameCell = document.createElement("TD");
@@ -82,13 +69,13 @@ addRowToTable = (data) => {
 
     let deleteCell = document.createElement("TD");
 
-
     // Fill the cells with correct data
     parentIdCell.innerText = newRow.parent_id;
     parentNameCell.innerText = newRow.parent_name;
     parentNumberCell.innerText = newRow.parent_number;
     parentEmailCell.innerText = newRow.parent_email;
 
+    //include on click delete functionality for corresponding row of data
     deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
     deleteBtn.onclick = function () {
@@ -103,11 +90,11 @@ addRowToTable = (data) => {
     row.appendChild(parentEmailCell);
     row.appendChild(deleteCell);
 
-    // Add a custom row attribute so the deleteRow function can find a newly added row
+    // initialize unique row attribute to easily identify row
     row.setAttribute('data-value', newRow.parent_id);
 
+    // Add the row to the end of the table
     let currentTableBody = document.getElementById("parents-table-body");
-    // Add the row to the table
     currentTableBody.appendChild(row);
 }
 
