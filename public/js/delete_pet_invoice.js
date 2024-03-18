@@ -1,6 +1,6 @@
 // Citation for the following function:
 // Date: 03/07/2024
-// Based on:
+// Based on: CS 340 starter code 'Step 7 Dynamically Deleting Data'
 // Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 function deletePetInvoice(petInvoiceID) {
