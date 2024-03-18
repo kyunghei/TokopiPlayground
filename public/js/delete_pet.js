@@ -1,3 +1,8 @@
+// Citation for the following function:
+// Date: 02/29/2024
+// Based on:
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 function deletePet(petID) {
     if (confirm(`Delete pet with ID ${petID}?`)) {
         // Put our data we want to send in a javascript object

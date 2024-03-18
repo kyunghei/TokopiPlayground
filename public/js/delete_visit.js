@@ -1,3 +1,8 @@
+// Citation for the following function:
+// Date: 03/07/2024
+// Based on:
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 function deleteVisit(visitID) {
     // Create a delete confirmation dialog
     if (confirm(`Delete visit with ID ${visitID}?`)) {

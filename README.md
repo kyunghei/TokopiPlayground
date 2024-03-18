@@ -1,6 +1,2 @@
 
-
-What technology you're using: Node.js
-What works: All CRUD functionalities work for All Tables. 
-What doesn’t work: The dates in Invoices Table and Visits Tables are display more than the date. The M:N tables do not account for duplicates
-Where/why you are blocked: We are currently blocked in displaying only the date when using input type="date".
+All code is based on the CS 340 starter code, with the exception of style.css an html files in Draft3 folder.

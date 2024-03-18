@@ -1,3 +1,8 @@
+// Citation for the following function:
+// Date: 03/07/2024
+// Based on:
+// Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 // Get the objects we need to modify
 let updatePetInvoiceForm = document.getElementById('update-pet-invoice-form-ajax');
 
