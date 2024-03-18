@@ -86,3 +86,4 @@ addRowToTable = (data) => {
     currentTableBody.appendChild(row);
 
 }
+

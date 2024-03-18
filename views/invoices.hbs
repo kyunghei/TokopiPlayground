@@ -1,6 +1,8 @@
 {{!-- Citation for the following function:
 Date: 03/07/2024
-Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders for input fields instead of labels, utilizing a trash icon to show the delete feature, and implementing date input fields to correctly display the date.
+Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders
+for input fields instead of labels, utilizing a trash icon to show the delete feature, and implementing date input
+fields to correctly display the date.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
 {{!-- display invoices table --}}
@@ -16,7 +18,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         </tr>
     </thead>
 
-    {{!-- display every row from invoices table with attributes: invoice id, parent id, invoice date, and invoice total --}}
+    {{!-- display every row from invoices table with attributes: invoice id, parent id, invoice date, and invoice total
+    --}}
     <tbody id="invoices-table-body">
         {{#each invoices_data}}
         <tr data-value="{{this.invoice_id}}">
@@ -35,9 +38,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     <form id="add-invoice-form-ajax">
         <h2>Add New Invoice</h2>
         <select name="input-parent-id" id="input-parent-id" required>
-            <option value="">Parent ID</option>
+            <option value="">Parent [ID]</option>
             {{#each parents_data}}
-            <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
+            <option value="{{this.parent_id}}">{{this.parent_name}} [{{this.parent_id}}]</option>
             {{/each}}
         </select>
         <br>
@@ -55,7 +58,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     {{!-- Form to update an invoice on the table --}}
     <form id="update-invoice-form-ajax">
         <h2>Update Invoice Data</h2>
-        {{!-- display dropdown by iterating through each row  --}}
+        {{!-- display dropdown by iterating through each row --}}
         <select name="input-invoice-id" id="select-invoice-id" required>
             <option value="">Invoice ID</option>
             {{#each invoices_data}}
@@ -63,11 +66,11 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
             {{/each}}
         </select>
         <br>
-        {{!-- display dropdown by iterating through each row  --}}
+        {{!-- display dropdown by iterating through each row --}}
         <select name="input-parent-id" id="update-parent-id">
-            <option>Parent ID</option>
+            <option>Parent [ID]</option>
             {{#each parents_data}}
-            <option value="{{this.parent_id}}">{{this.parent_id}} [{{this.parent_name}}]</option>
+            <option value="{{this.parent_id}}">{{this.parent_name}} [{{this.parent_id}}]</option>
             {{/each}}
         </select>
         <br>

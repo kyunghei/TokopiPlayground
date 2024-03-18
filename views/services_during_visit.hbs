@@ -1,6 +1,7 @@
 {{!-- Citation for the following function:
 Date: 03/07/2024
-Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders for input fields instead of labels, and utilizing a trash icon to show the delete feature.
+Based on: CS 340 starter code with the exception of displaying user-friendly foreign key drop-downs, using placeholders
+for input fields instead of labels, and utilizing a trash icon to show the delete feature.
 Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
 
 {{!-- display service during visit table --}}
@@ -46,9 +47,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <br>
         {{!-- display dropdown by iterating through each row  --}}
         <select name="input-service-id" id="input-service-id">
-            <option>Service ID</option>
+            <option>Service [ID]</option>
             {{#each services_data}}
-            <option value="{{this.service_id}}">{{this.service_id}}</option>
+            <option value="{{this.service_id}}">{{this.service_name}} [{{this.service_id}}]</option>
             {{/each}}
         </select>
         <br>
@@ -78,9 +79,9 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <br>
         {{!-- display dropdown by iterating through each row  --}}
         <select name="update-service-id" id="update-service-id">
-            <option>Service ID</option>
+            <option>Service [ID]</option>
             {{#each services_data}}
-            <option value="{{this.service_id}}">{{this.service_id}}</option>
+            <option value="{{this.service_id}}">{{this.service_name}} [{{this.service_id}}]</option>
             {{/each}}
         </select>
         <br>
