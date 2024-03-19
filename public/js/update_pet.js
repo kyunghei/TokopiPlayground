@@ -78,7 +78,7 @@ function updateRow(data, petID) {
 
             //update cells with new data values
             pet_name_td.innerHTML = parsedData[0].pet_name;
-            parent_id_td.innerHTML = parsedData[0].parent_id;
+            parent_id_td.innerHTML = parsedData[0].parent_name;
             breed_td.innerHTML = parsedData[0].breed;
         }
     }

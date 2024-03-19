@@ -68,7 +68,7 @@ addRowToTable = (data) => {
     let invoiceTotalCell = document.createElement("TD");
 
     invoiceIdCell.innerText = newRow.invoice_id;
-    parentIdCell.innerText = newRow.parent_id;
+    parentIdCell.innerText = newRow.parent_name;
     invoiceDateCell.innerText = newRow.invoice_date;
     invoiceTotalCell.innerText = newRow.invoice_total;
 
@@ -87,7 +87,7 @@ addRowToTable = (data) => {
 
 }
 
-function formatDate(currentDate){
-    return currentDate.toISOString().slice(0,10);
+function formatDate(currentDate) {
+    return currentDate.toISOString().slice(0, 10);
 }
 

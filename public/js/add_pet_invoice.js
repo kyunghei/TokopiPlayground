@@ -66,8 +66,8 @@ addRowToTable = (data) => {
 
     // Fill the cells with correct data
     petInvoiceIdCell.innerText = newRow.pet_invoice_id;
-    petIdCell.innerText = newRow.pet_id;
-    invoiceIdCell.innerText = newRow.invoice_id;
+    petIdCell.innerText = newRow.pet_name;
+    invoiceIdCell.innerText = `$${newRow.invoice_total} to ${newRow.parent_name} dated ${newRow.invoice_date}`;
 
     //include on click delete functionality for corresponding row of data
     deleteBtn = document.createElement("button");

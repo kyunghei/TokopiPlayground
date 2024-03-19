@@ -11,8 +11,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     <thead>
         <tr>
             <th>Service During Visit ID</th>
-            <th>Visit ID</th>
-            <th>Service ID</th>
+            <th>Visit</th>
+            <th>Service</th>
         </tr>
     </thead>
 
@@ -22,8 +22,8 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         {{#each services_during_visit_data}}
         <tr data-value="{{this.service_during_visit_id}}">
             <td>{{this.service_during_visit_id}}</td>
-            <td>{{this.visit_id}}</td>
-            <td>{{this.service_id}}</td>
+            <td>{{formatDate this.visit_date}} {{this.pet_name}}</td>
+            <td>{{this.service_name}}</td>
             {{!-- display delete button where delete functionality is executed on click for the corresponding row --}}
             <td><button onclick="deleteServiceDuringVisit({{this.service_during_visit_id}})"><i
                         class="fa fa-trash"></i></button></td>
@@ -40,9 +40,10 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <h2>Add New Service During Visit</h2>
         {{!-- display dropdown by iterating through each row --}}
         <select name="input-visit-id" id="input-visit-id" required>
-            <option value="">Visit ID</option>
+            <option value="">Visit [ID]</option>
             {{#each visits_data}}
-            <option value="{{this.visit_id}}">{{this.visit_id}}</option>
+            <option value="{{this.visit_id}}">{{formatDate this.visit_date}} {{this.pet_name}} [{{this.visit_id}}]
+            </option>
             {{/each}}
         </select>
         <br>
@@ -72,9 +73,10 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <br>
         {{!-- display dropdown by iterating through each row --}}
         <select name="update-visit-id" id="update-visit-id" required>
-            <option value="">Visit ID</option>
+            <option value="">Visit [ID]</option>
             {{#each visits_data}}
-            <option value="{{this.visit_id}}">{{this.visit_id}}</option>
+            <option value="{{this.visit_id}}">{{formatDate this.visit_date}} {{this.pet_name}} [{{this.visit_id}}]
+            </option>
             {{/each}}
         </select>
         <br>

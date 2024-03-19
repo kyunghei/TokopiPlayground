@@ -8,7 +8,7 @@ let updatePetInvoiceForm = document.getElementById('update-pet-invoice-form-ajax
 
 // Execute when form is submitted 
 updatePetInvoiceForm.addEventListener("submit", function (e) {
-   
+
     // Prevent the form from submitting automatically
     e.preventDefault();
 
@@ -56,22 +56,22 @@ updatePetInvoiceForm.addEventListener("submit", function (e) {
 
 //Finds table and iterates through the rows until the row's unique value is equivalent to the provided row id
 //Once row is found, iterate through cells and update with new data
-function updateRow(data, petInvoiceID){
+function updateRow(data, petInvoiceID) {
     let parsedData = JSON.parse(data);
-    
+
     let table = document.getElementById("pet-invoices-table");
 
     for (let i = 0, row; row = table.rows[i]; i++) {
 
-       if (table.rows[i].getAttribute("data-value") == petInvoiceID) {
+        if (table.rows[i].getAttribute("data-value") == petInvoiceID) {
 
             let updateRowIndex = table.getElementsByTagName("tr")[i];
             let pet_id_td = updateRowIndex.getElementsByTagName("td")[1];
             let invoice_id_td = updateRowIndex.getElementsByTagName("td")[2];
-            
+
             //update cells with new data values
-            pet_id_td.innerHTML = parsedData[0].pet_id; 
-            invoice_id_td.innerHTML = parsedData[0].invoice_id; 
-       }
+            pet_id_td.innerHTML = parsedData[0].pet_name;
+            invoice_id_td.innerHTML = `$${parsedData[0].invoice_total} to ${parsedData[0].parent_name} dated ${parsedData[0].invoice_date}`;
+        }
     }
 }

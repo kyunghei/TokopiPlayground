@@ -8,7 +8,7 @@ let updateServiceDuringVisitForm = document.getElementById('update-service-durin
 
 // Execute when form is submitted 
 updateServiceDuringVisitForm.addEventListener("submit", function (e) {
-   
+
     // Prevent the form from submitting automatically
     e.preventDefault();
 
@@ -57,21 +57,21 @@ updateServiceDuringVisitForm.addEventListener("submit", function (e) {
 
 //Finds table and iterates through the rows until the row's unique value is equivalent to the provided row id
 //Once row is found, iterate through cells and update with new data
-function updateRow(data, serviceDuringVisitID){
+function updateRow(data, serviceDuringVisitID) {
     let parsedData = JSON.parse(data);
-    
+
     let table = document.getElementById("services-during-visit-table");
 
     for (let i = 0, row; row = table.rows[i]; i++) {
-       if (table.rows[i].getAttribute("data-value") == serviceDuringVisitID) {
+        if (table.rows[i].getAttribute("data-value") == serviceDuringVisitID) {
 
             let updateRowIndex = table.getElementsByTagName("tr")[i];
             let visit_id_td = updateRowIndex.getElementsByTagName("td")[1];
             let service_id_td = updateRowIndex.getElementsByTagName("td")[2];
 
             //update cells with new data values
-            visit_id_td.innerHTML = parsedData[0].visit_id; 
-            service_id_td.innerHTML = parsedData[0].service_id; 
-       }
+            visit_id_td.innerHTML = parsedData[0].visit_date + ' ' + parsedData[0].pet_name;
+            service_id_td.innerHTML = parsedData[0].service_name;
+        }
     }
 }

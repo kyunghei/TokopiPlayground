@@ -70,7 +70,7 @@ addRowToTable = (data) => {
 
     petIdCell.innerText = newRow.pet_id;
     petNameCell.innerText = newRow.pet_name;
-    parentIdCell.innerText = newRow.parent_id;
+    parentIdCell.innerText = newRow.parent_name;
     breedCell.innerText = newRow.breed;
 
     //include on click delete functionality for corresponding row of data

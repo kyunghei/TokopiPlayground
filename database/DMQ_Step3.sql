@@ -58,7 +58,7 @@ WHERE pet_id = :pet_id_selected_from_browse_pet_page;
 SELECT pet_id, pet_name FROM Pets;
 
 -- Get all visits and respective pet name 
-SELECT Visits.visit_id, Pets.pet_name as pet_visited, Visits.visit_date, Visits.visit_cost
+SELECT Visits.visit_id, Pets.pet_name, Visits.visit_date, Visits.visit_cost
 FROM Visits INNER JOIN Pets ON Visits.pet_id = Pets.pet_id;
 
 -- Add a new visit with colon : character used to denote the variables that will have data from the backend programming language
@@ -81,8 +81,11 @@ SELECT visit_id FROM Visits;
 SELECT service_id FROM Services;
 
 -- Get all visits with their associated services to be listed
-SELECT Services_During_Visit.visit_id, Services_During_Visit.service_id
-FROM Services_During_Visit;
+SELECT Services_During_Visit.service_during_visit_id, Services_During_Visit.visit_id, Services_During_Visit.service_id, Services.service_name, Visits.visit_date, Pets.pet_name
+FROM Services_During_Visit 
+INNER JOIN Services ON Services.service_id = Services_During_Visit.service_id 
+INNER JOIN Visits ON Visits.visit_id = Services_During_Visit.visit_id
+INNER JOIN Pets ON Pets.pet_id = Visits.pet_id;
 
 -- Associate a visit with a service (M-to-M relationship addition)
 INSERT INTO Services_During_Visit (visit_id, service_id)
@@ -97,7 +100,7 @@ WHERE visit_id = :visit_id_selected_from_services_and_visit_list AND service_id 
 SELECT parent_id, parent_name FROM Parents;
 
 -- Get all invoices and their parent's name 
-SELECT Invoices.invoice_id, Parents.parent_name AS pet_parent_name, Invoices.invoice_date, Invoices.invoice_total
+SELECT Invoices.invoice_id, Parents.parent_name, Invoices.invoice_date, Invoices.invoice_total
 FROM Invoices INNER JOIN Parents ON Parents.parent_id = Invoices.parent_id;
 
 -- Add a new invoice with colon : character used to denote the variables that will have data from the backend programming language
@@ -112,8 +115,11 @@ SELECT pet_id FROM Pets;
 SELECT invoice_id FROM Invoices;
 
 -- Get all pets with their associated invoices to be listed
-SELECT Pet_Invoices.pet_id, Pet_Invoices.invoice_id
-FROM Pet_Invoices;
+SELECT Pet_Invoices.pet_invoice_id, Pet_Invoices.pet_id, Pet_Invoices.invoice_id, Pets.pet_name, Invoices.invoice_date, Invoices.invoice_total, Parents.parent_name
+FROM Pet_Invoices
+INNER JOIN Pets ON Pets.pet_id = Pet_Invoices.pet_id
+INNER JOIN Invoices ON Invoices.invoice_id = Pet_Invoices.invoice_id
+INNER JOIN Parents ON Parents.parent_id = Invoices.parent_id;
 
 -- Associate a pet with an invoice (M-to-M relationship addition)
 INSERT INTO Pet_Invoices (pet_id, invoice_id)

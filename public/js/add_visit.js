@@ -72,7 +72,7 @@ addRowToTable = (data) => {
     date_with_time = newRow.visit_date;
 
     // Fill the cells with correct data
-    petIdCell.innerText = newRow.pet_id;
+    petIdCell.innerText = newRow.pet_name;
     visitIdCell.innerText = newRow.visit_id;
     visitDateCell.innerText = newRow.visit_date;
     visitCostCell.innerText = newRow.visit_cost;

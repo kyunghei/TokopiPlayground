@@ -12,7 +12,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
     <thead>
         <tr>
             <th>Visit ID</th>
-            <th>Pet ID</th>
+            <th>Pet</th>
             <th>Visit Date</th>
             <th>Visit Cost ($)</th>
         </tr>
@@ -23,7 +23,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         {{#each visits_data}}
         <tr data-value="{{this.visit_id}}">
             <td>{{this.visit_id}}</td>
-            <td>{{this.pet_id}}</td>
+            <td>{{this.pet_name}}</td>
             <td>{{formatDate this.visit_date}}</td>
             <td>{{this.visit_cost}}</td>
             {{!-- display delete button where delete functionality is executed on click for the corresponding row --}}
@@ -42,7 +42,7 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <h2>Add New Visit</h2>
         {{!-- display dropdown by iterating through each row --}}
         <select name="input-pet-id" id="input-pet-id" required>
-            <option value="">Pet [ID]</option>
+            <option value="">Pet ID</option>
             {{#each pets_data}}
             <option value="{{this.pet_id}}">{{this.pet_name}} [{{this.pet_id}}]</option>
             {{/each}}
@@ -63,9 +63,10 @@ Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app --}}
         <h2>Update Visit Data</h2>
         {{!-- display dropdown by iterating through each row --}}
         <select name="select-visit-id" id="select-visit-id" required>
-            <option value="">Visit ID</option>
+            <option value="">Visit [ID]</option>
             {{#each visits_data}}
-            <option value="{{this.visit_id}}">{{this.visit_id}}</option>
+            <option value="{{this.visit_id}}">{{formatDate this.visit_date}} {{this.pet_name}} [{{this.visit_id}}]
+            </option>
             {{/each}}
         </select>
         <br>

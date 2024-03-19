@@ -75,7 +75,7 @@ function updateRow(data, invoiceID) {
             let invoice_total_td = updateRowIndex.getElementsByTagName("td")[3];
 
             //update cells with new data values
-            parent_id_td.innerHTML = parsedData[0].parent_id;
+            parent_id_td.innerHTML = parsedData[0].parent_name;
             invoice_date_td.innerHTML = parsedData[0].invoice_date;
             invoice_total_td.innerHTML = parsedData[0].invoice_total;
         }

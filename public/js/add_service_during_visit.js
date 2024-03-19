@@ -66,8 +66,8 @@ addRowToTable = (data) => {
 
     // Fill the cells with correct data
     serviceDuringVisitIdCell.innerText = newRow.service_during_visit_id;
-    visitIdCell.innerText = newRow.visit_id;
-    serviceIdCell.innerText = newRow.service_id;
+    visitIdCell.innerText = newRow.visit_date + ' ' + newRow.pet_name;
+    serviceIdCell.innerText = newRow.service_name;
 
     //include on click delete functionality for corresponding row of data
     deleteBtn = document.createElement("button");
