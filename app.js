@@ -42,6 +42,7 @@ Handlebars.registerHelper('formatDate', function (currentDate) {
 
 //creates route to execute queries to receive all data from Pets and Parents and send data received from queries to index hbs
 app.get('/', function (req, res) {
+    // Get all Pets and respective parent name by using inner join
     let query1 = "SELECT Pets.pet_id, Pets.pet_name, Pets.parent_id, Parents.parent_name, Pets.breed FROM Pets INNER JOIN Parents ON Pets.parent_id = Parents.parent_id;";
     let query2 = "SELECT * FROM Parents;";
     db.pool.query(query1, function (error, rows, fields) {
@@ -68,6 +69,7 @@ app.get('/parents', function (req, res) {
 
 //creates route to execute queries to receive all data from Invoices and Parents and send data received from queries to invoices hbs
 app.get('/invoices', function (req, res) {
+    // Get all invoices and respective parent name by using inner join
     let query1 = "SELECT Invoices.invoice_id, Invoices.parent_id, Parents.parent_name, Invoices.invoice_date, Invoices.invoice_total FROM Invoices INNER JOIN Parents ON Parents.parent_id = Invoices.parent_id;";
     let query2 = "SELECT * FROM Parents;";
     db.pool.query(query1, function (error, rows, fields) {
@@ -83,6 +85,7 @@ app.get('/invoices', function (req, res) {
 
 //creates route to execute queries to receive all data from Pets, Pet_Invoices, Invoices and send data received from queries to pet_invoices hbs
 app.get('/pet_invoices', function (req, res) {
+    // Get all Pet invoices and respective pet name & parent name by using inner join
     let query1 = `SELECT Pet_Invoices.pet_invoice_id, Pet_Invoices.pet_id, Pet_Invoices.invoice_id, Pets.pet_name, Invoices.invoice_date, Invoices.invoice_total, Parents.parent_name
     FROM Pet_Invoices
     INNER JOIN Pets ON Pets.pet_id = Pet_Invoices.pet_id
@@ -125,6 +128,7 @@ app.get('/visits', function (req, res) {
 
 //creates route to execute queries to receive all data from Services and send data received from queries to services hbs
 app.get('/services', function (req, res) {
+    // Get all services
     let query1 = "SELECT * FROM Services;";
 
     db.pool.query(query1, function (error, rows, fields) {
@@ -136,6 +140,7 @@ app.get('/services', function (req, res) {
 
 //creates route to execute queries to receive all data from Visits, Services, Services_During_Visit and send data received from queries to services_during_visit hbs
 app.get('/services_during_visit', function (req, res) {
+    // Get all services during visits as well as respective service name, visit date, and pet name by using inner join
     let query1 = `SELECT Services_During_Visit.service_during_visit_id, Services_During_Visit.visit_id, Services_During_Visit.service_id, Services.service_name, Visits.visit_date, Pets.pet_name
     FROM Services_During_Visit 
     INNER JOIN Services ON Services.service_id = Services_During_Visit.service_id 
