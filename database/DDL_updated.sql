@@ -33,7 +33,7 @@ CREATE OR REPLACE TABLE Invoices (
 
 -- Create table for Visits entity
 CREATE OR REPLACE TABLE Visits (
-    visit_id int AUTO_INCREMENT UNIQUE NOT NULL,
+    visit_id int AUTO_INCREMENT UNIQUE,
     pet_id int NOT NULL,
     visit_date date NOT NULL,
     visit_cost decimal(19,2) NOT NULL,
@@ -43,7 +43,7 @@ CREATE OR REPLACE TABLE Visits (
 
 -- Create table for Services entity
 CREATE OR REPLACE TABLE Services (
-    service_id int AUTO_INCREMENT UNIQUE NOT NULL,
+    service_id int AUTO_INCREMENT UNIQUE,
     service_name varchar(45) NOT NULL,
     service_cost decimal(19,2) NOT NULL,
     service_description text,
@@ -66,8 +66,8 @@ CREATE OR REPLACE TABLE Services_During_Visit(
     visit_id int NOT NULL,
     service_id int NOT NULL,
     PRIMARY KEY (service_during_visit_id),
-    FOREIGN KEY (visit_id) REFERENCES Visits(visit_id) ON DELETE CASCADE,
-    FOREIGN KEY (service_id) REFERENCES Services(service_id) ON DELETE CASCADE
+    FOREIGN KEY (visit_id) REFERENCES Visits(visit_id) ON DELETE CASCADE SET NULL,
+    FOREIGN KEY (service_id) REFERENCES Services(service_id) ON DELETE CASCADE SET NULL
 );
 
  -- Insert sample data into Parents entity
