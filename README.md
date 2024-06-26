@@ -20,12 +20,6 @@ TokopiPlayground is a doggy daycare management application developed as a part o
 - **Source Code**
 - **Sample Data**
 
-## Setup Instructions
-1. Clone the repository.
-2. Install dependencies: `npm install`
-3. Configure the database connection in `config.js`.
-4. Run the application: `npm start`
-
 ## Full Report
 [Portfolio.pdf](https://github.com/user-attachments/files/15982707/Portfolio.pdf)
 
