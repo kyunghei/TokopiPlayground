@@ -896,6 +896,8 @@ app.put('/put-service-during-visit-form-ajax', function (req, res, next) {
     let data = req.body;
 
     let service_during_visit_id = parseInt(data.service_during_visit_id);
+
+    // Check if null has chosen
     let visit_id = parseInt(data.visit_id);
     let service_id = parseInt(data.service_id);
 

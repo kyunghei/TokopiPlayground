@@ -4,7 +4,8 @@
   "description": "https://web.engr.oregonstate.edu/~seolo/TokopiPlayground/index.html",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
     "express": "^4.18.2",
     "express-handlebars": "^7.1.2",
     "handlebars": "^4.7.8",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.7"
   }
 }
