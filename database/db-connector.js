@@ -1,16 +1,21 @@
 // ./database/db-connector.js
 
 // Get an instance of mysql we can use in the app
-var mysql = require('mysql')
+var mysql = require('mysql');
+var pool;
 
-// Create a 'connection pool' using the provided credentials
-var pool = mysql.createPool({
-    connectionLimit: 10,
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'HoneyDew1!',
-    database: 'tokopiplayground'
-})
+if (process.env.JAWSDB_URL) {
+    pool = mysql.createPool(process.env.JAWSDB_URL);
+} else {
+    pool = mysql.createPool({
+        connectionLimit: 10,
+        host: 'o3iyl77734b9n3tg.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        user: 'wcwstp88a9o42t5d',
+        password: 'uxinnhyzo38cfw4k',
+        database: 'hpsojqb7a6ul0h32'
+    });
+}
+
 
 pool.getConnection(function (err, connection) {
     if (err) {

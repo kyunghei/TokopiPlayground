@@ -2,8 +2,18 @@
 SET FOREIGN_KEY_CHECKS = 0;
 SET AUTOCOMMIT = 0;
 
+-- Drop tables if they exist
+DROP TABLE IF EXISTS Services_During_Visit;
+DROP TABLE IF EXISTS Visits;
+DROP TABLE IF EXISTS Services;
+DROP TABLE IF EXISTS Customers;
+DROP TABLE IF EXISTS Parents;
+DROP TABLE IF EXISTS Pets;
+DROP TABLE IF EXISTS Invoices;
+DROP TABLE IF EXISTS Pet_Invoices;
+
 -- Create table for Parents entitiy
-CREATE OR REPLACE TABLE Parents (
+CREATE TABLE Parents (
     parent_id int AUTO_INCREMENT UNIQUE NOT NULL,
     parent_name varchar(255) NOT NULL,
     parent_number varchar(255) NOT NULL,
@@ -12,7 +22,7 @@ CREATE OR REPLACE TABLE Parents (
 );
 
 -- Create table for Pets entitiy
-CREATE OR REPLACE TABLE Pets (
+CREATE TABLE Pets (
     pet_id int AUTO_INCREMENT UNIQUE NOT NULL,
     pet_name varchar(45) NOT NULL,
     parent_id int NOT NULL,
@@ -22,7 +32,7 @@ CREATE OR REPLACE TABLE Pets (
 );
 
 -- Create table for Invoices entity
-CREATE OR REPLACE TABLE Invoices (
+CREATE TABLE Invoices (
     invoice_id int AUTO_INCREMENT UNIQUE NOT NULL,
     parent_id int NOT NULL,
     invoice_date date NOT NULL,
@@ -32,7 +42,7 @@ CREATE OR REPLACE TABLE Invoices (
 );
 
 -- Create table for Visits entity
-CREATE OR REPLACE TABLE Visits (
+CREATE TABLE Visits (
     visit_id int AUTO_INCREMENT UNIQUE,
     pet_id int NOT NULL,
     visit_date date NOT NULL,
@@ -42,7 +52,7 @@ CREATE OR REPLACE TABLE Visits (
 );
 
 -- Create table for Services entity
-CREATE OR REPLACE TABLE Services (
+CREATE TABLE Services (
     service_id int AUTO_INCREMENT UNIQUE,
     service_name varchar(45) NOT NULL,
     service_cost decimal(19,2) NOT NULL,
@@ -51,7 +61,7 @@ CREATE OR REPLACE TABLE Services (
 );
 
 -- Create intersection table for Pet_Invoices connecting the Pets and Invoices entities
-CREATE OR REPLACE TABLE Pet_Invoices(
+CREATE TABLE Pet_Invoices(
     pet_invoice_id int AUTO_INCREMENT NOT NULL UNIQUE,
     pet_id int NOT NULL,
     invoice_id int NOT NULL,
@@ -61,13 +71,13 @@ CREATE OR REPLACE TABLE Pet_Invoices(
 );
 
 -- Create intersection table for Services_During_Visit connecting the Visits and Services entities
-CREATE OR REPLACE TABLE Services_During_Visit(
+CREATE TABLE Services_During_Visit(
     service_during_visit_id int AUTO_INCREMENT NOT NULL UNIQUE,
     visit_id int NOT NULL,
-    service_id int NOT NULL,
+    service_id int,
     PRIMARY KEY (service_during_visit_id),
-    FOREIGN KEY (visit_id) REFERENCES Visits(visit_id) ON DELETE CASCADE SET NULL,
-    FOREIGN KEY (service_id) REFERENCES Services(service_id) ON DELETE CASCADE SET NULL
+    FOREIGN KEY (visit_id) REFERENCES Visits(visit_id) ON DELETE CASCADE,
+    FOREIGN KEY (service_id) REFERENCES Services(service_id) ON DELETE SET NULL
 );
 
  -- Insert sample data into Parents entity
@@ -149,7 +159,7 @@ INSERT INTO Services(service_name, service_cost, service_description)
 VALUES 
   ('15-minute walk', 5.00, 'An employee will walk the pet around the block for approximately 15 minutes.'),
   ('Bath', 50.00, 'An employee will shampoo and dry your pet.'),
-  ('Clip nails', 25.00, 'An employee will trim your pet’s nails.')
+  ('Clip nails', 25.00, 'An employee will trim your pet`s nails.')
   ;
   
  -- Insert sample data into Visits entity
